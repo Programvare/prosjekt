@@ -1,3 +1,3 @@
 # prosjekt
 It's a prosjekt
-And this is a test :)
+and this is a test :)
