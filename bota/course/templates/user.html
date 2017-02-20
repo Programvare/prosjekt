@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<p>here are your courses:</p>
+<ul>
+{% for entry in takes%}
+    <li>{{ entry.CourseID }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

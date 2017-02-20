@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'course.apps.CourseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,12 +77,10 @@ WSGI_APPLICATION = 'bota.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'botadatabase',
+        'NAME': 'botabase2',
 
         'USER' : 'root',
         'PASSWORD' : 'test',
-
-
     }
 }
 
