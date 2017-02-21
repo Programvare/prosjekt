@@ -37,3 +37,4 @@ def course(request, courseid):
     }
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
+#def putinqueue(reguest):
