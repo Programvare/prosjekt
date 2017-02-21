@@ -77,10 +77,12 @@ WSGI_APPLICATION = 'bota.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'botabase2',
+        'NAME': 'pciverse_bota',
 
-        'USER' : 'root',
-        'PASSWORD' : 'test',
+        'USER' : 'pciverse_bota',
+        'PASSWORD' : 'bota',
+        'HOST': 'mysql.stud.ntnu.no',
+
     }
 }
 
