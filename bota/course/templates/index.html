@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>Please select a user:</p>
-<form action="{% url 'user : selected'  %}method ="post"">
+<form action="method ="post"">
  {% csrf_token %}
   <select name="Users">
       {%  for user in user_list %}
