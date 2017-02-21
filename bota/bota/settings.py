@@ -127,4 +127,4 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = 'course'
+LOGIN_REDIRECT_URL = '/course'

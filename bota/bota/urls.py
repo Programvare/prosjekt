@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     url(r'^login/$',  auth_views.login,
-       {'template_name': 'registration/login.html'}),
+       {'template_name': 'admin/login.html'}),
     url(r'^admin/', admin.site.urls),
     url(r'^course', include('bota.course.urls')),
     url(r'^$',  auth_views.login,

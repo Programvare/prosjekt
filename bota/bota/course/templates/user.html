@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Courses</title>
+    <title>Select User</title>
 </head>
 <body>
-<p>here are your courses:</p>
-<ul>
-{% for entry in course%}
-    <li>{{ entry.CourseID }}</li>
-{% endfor %}
-</ul>
+<p>Please select a user:</p>
+<form action="method ="post"">
+ {% csrf_token %}
+  <select name="Users">
+      {%  for user in user_list %}
+        <option value="{{ user.id }}">{{ user.FirstName }}</option>
+      {%  endfor %}
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+
 </body>
 </html>
