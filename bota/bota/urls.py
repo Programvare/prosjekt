@@ -15,14 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
-from bota.views import index
-
+from django.contrib.auth import views as auth_views
+from . import views
 
 urlpatterns = [
+    url(r'^login/$',  auth_views.login,
+       {'template_name': 'registration/login.html'}),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index),
-    url(r'^course', include('course.urls')),
+    url(r'^course', include('bota.course.urls')),
+    url(r'^$',  auth_views.login,
+       {'template_name': 'registration/login.html'})
 
 
 ]

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'course.apps.CourseConfig',
+    'bota.course.apps.CourseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +55,10 @@ ROOT_URLCONF = 'bota.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            "bota/templates",
+            "bota/course/templates"
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +127,4 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = 'course'

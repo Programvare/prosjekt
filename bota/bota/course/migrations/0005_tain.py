@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             name='TAin',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('CourseID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='course.Course')),
+                ('CourseID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bota.course.Course')),
                 ('UserID', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

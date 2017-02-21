@@ -40,11 +40,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='takes',
             name='CourseID',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='course.User'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bota.course.User'),
         ),
         migrations.AddField(
             model_name='takes',
             name='UserID',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='course.Course'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bota.course.Course'),
         ),
     ]
