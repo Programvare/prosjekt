@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>Please select a user:</p>
-<form action="method ="post"">
+<form action="/inQueue"method ="post">{% csrf_token %}
  {% csrf_token %}
   <select name="Users">
       {%  for user in user_list %}

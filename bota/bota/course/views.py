@@ -1,10 +1,13 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import Takes, Course
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from bota.course import queue
 
-@login_required(login_url='/login/')
+
 def user(request):
 
     user_list = User.objects.all()
@@ -25,16 +28,25 @@ def index(request):
         'course' : course,
         'user' : user,
     }
-    template = loader.get_template('index.html')
+    template = loader.get_template('indexCourse.html')
     return HttpResponse(template.render(context, request))
 
-def course(request, courseid):
 
-    ccourse = courseid
+def course(request, courseid):
     #= Course.objects.get(CourseID=courseid)
     context = {
-        'ccourse': ccourse,
+        'ccourse': courseid,
     }
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
-#def putinqueue(reguest):
+
+
+def addMeToList(request, courseid):
+    queue.addToQueue(courseid, request.user)
+    context = {
+        'posision': queue.getPosision(request.user, courseid),
+        'ccourse': courseid,
+    }
+    template = loader.get_template('courseInQueue.html')
+    return HttpResponse(template.render(context, request))
+
