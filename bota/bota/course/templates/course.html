@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ ccourse }}</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}{{ ccourse }}{% endblock %}
+{% block content %}
 <h1>Welcome to {{ ccourse }}</h1>
 <p>Venter du på studass?</p>
 <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
     <input type="submit" value="Sett meg i kø">
 </form>
-</body>
-</html>
+{% endblock %}

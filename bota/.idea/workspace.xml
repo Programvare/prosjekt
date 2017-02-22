@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86438a4f-6280-4d4e-b6ef-9432d6c6d1b8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bota/course/templates/user.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/bota/course/templates/indexCourse.html" afterPath="$PROJECT_DIR$/bota/course/templates/mainCoursePage.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bota/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/queue.py" afterPath="$PROJECT_DIR$/bota/course/queue.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/urls.py" afterPath="$PROJECT_DIR$/bota/course/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/views.py" afterPath="$PROJECT_DIR$/bota/course/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/templates/course.html" afterPath="$PROJECT_DIR$/bota/course/templates/course.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/templates/courseInQueue.html" afterPath="$PROJECT_DIR$/bota/course/templates/courseInQueue.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/course/templates/mainCoursePage.html" afterPath="$PROJECT_DIR$/bota/course/templates/mainCoursePage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/templates/index.html" afterPath="$PROJECT_DIR$/bota/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/urls.py" afterPath="$PROJECT_DIR$/bota/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bota/views.py" afterPath="$PROJECT_DIR$/bota/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,27 +24,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bota/course/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -77,7 +61,6 @@
         <option value="$PROJECT_DIR$/course/templates/user.html" />
         <option value="$PROJECT_DIR$/bota/templates/registration_form.html" />
         <option value="$PROJECT_DIR$/bota/templates/registration_complete.html" />
-        <option value="$PROJECT_DIR$/bota/templates/base.html" />
         <option value="$PROJECT_DIR$/bota/templates/logged_out.html" />
         <option value="$PROJECT_DIR$/bota/templates/Main.html" />
         <option value="$PROJECT_DIR$/bota/templates/login.css" />
@@ -93,15 +76,17 @@
         <option value="$PROJECT_DIR$/bota/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/bota/course/templates/queue.py" />
         <option value="$PROJECT_DIR$/bota/course/templates/user.html" />
-        <option value="$PROJECT_DIR$/bota/course/templates/course.html" />
         <option value="$PROJECT_DIR$/bota/course/templates/courseinqueue.html" />
-        <option value="$PROJECT_DIR$/bota/course/templates/courseInQueue.html" />
         <option value="$PROJECT_DIR$/bota/course/urls.py" />
-        <option value="$PROJECT_DIR$/bota/course/queue.py" />
         <option value="$PROJECT_DIR$/bota/urls.py" />
-        <option value="$PROJECT_DIR$/bota/templates/index.html" />
         <option value="$PROJECT_DIR$/bota/views.py" />
         <option value="$PROJECT_DIR$/bota/course/views.py" />
+        <option value="$PROJECT_DIR$/bota/course/queue.py" />
+        <option value="$PROJECT_DIR$/bota/templates/base.html" />
+        <option value="$PROJECT_DIR$/bota/templates/index.html" />
+        <option value="$PROJECT_DIR$/bota/course/templates/course.html" />
+        <option value="$PROJECT_DIR$/bota/course/templates/mainCoursePage.html" />
+        <option value="$PROJECT_DIR$/bota/course/templates/courseInQueue.html" />
       </list>
     </option>
   </component>
@@ -157,6 +142,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bota" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bota" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bota" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bota" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -495,7 +498,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1924307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -673,9 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/tests.py" />
-    <entry file="file://$PROJECT_DIR$/bota/course/apps.py" />
-    <entry file="file://$PROJECT_DIR$/bota/course/admin.py" />
     <entry file="file://$PROJECT_DIR$/bota/course/migrations/0002_auto_20170220_1836.py" />
     <entry file="file://$PROJECT_DIR$/bota/course/migrations/0001_initial.py" />
     <entry file="file://$PROJECT_DIR$/bota/templates/registration_form.html" />
@@ -683,7 +683,6 @@
     <entry file="file://$PROJECT_DIR$/bota/templates/loggedin.html" />
     <entry file="file://$PROJECT_DIR$/bota/templates/logged_out.html" />
     <entry file="file://$PROJECT_DIR$/bota/templates/Main.html" />
-    <entry file="file://$PROJECT_DIR$/bota/templates/base.html" />
     <entry file="file://$PROJECT_DIR$/course/templates/base.html" />
     <entry file="file://$PROJECT_DIR$/bota/templates/login.css" />
     <entry file="file://$PROJECT_DIR$/bota/course/templates/login.html" />
@@ -695,14 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="123" column="0" lean-forward="true" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -723,53 +714,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/templates/mainCoursePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bota/course/templates/user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="54" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/templates/courseInQueue.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/templates/course.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/queue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/course/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#638#670#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,14 +729,6 @@
           <folding>
             <element signature="e#638#679#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bota/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -809,13 +750,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bota/course/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="561">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/queue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/templates/course.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/templates/mainCoursePage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bota/course/templates/courseInQueue.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
