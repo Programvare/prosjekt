@@ -17,8 +17,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'user', views.user, name='user'),
+    url(r'^$', views.courseMainPage, name='index'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
 ]

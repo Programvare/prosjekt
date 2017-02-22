@@ -19,8 +19,8 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    url(r'^login', auth_views.login,
-        {'template_name': 'admin/login.html'}),
+    url(r'^login', auth_views.login,{'template_name': 'admin/login.html'}),
+    url(r'^$', views.mainPage),
     url(r'^admin/', admin.site.urls),
     url(r'^course', include('bota.course.urls')),
 
