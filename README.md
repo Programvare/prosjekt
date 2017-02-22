@@ -1,3 +1,2 @@
-# prosjekt
-It's a prosjekt
-And this is a test :)
+# boTA
+Making learing better

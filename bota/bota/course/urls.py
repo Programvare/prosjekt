@@ -13,20 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
-from django.contrib import admin
-from django.contrib.auth import views as auth_views
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^login', auth_views.login,{'template_name': 'admin/login.html'}),
-    url(r'^$', views.mainPage),
-    url(r'^admin/', admin.site.urls),
-    url(r'^course', include('bota.course.urls')),
-
-
-
+    url(r'^$', views.courseMainPage, name='index'),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
 ]
-#url(r'^login_site$', views.showlogin),
-#url(r'^login$', views.login),
-#url(r'^$', views.showMainPage),

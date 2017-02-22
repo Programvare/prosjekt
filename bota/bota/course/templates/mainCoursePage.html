@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+<h3>Here are your courses:</h3>
+<ul>
+{% for entry in takes %}
+    {% if entry.UserID.id == currentUser.id %}
+        <li><a href="/course/{{ entry.CourseID }}">{{ entry.CourseID }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>
+{% endblock %}
