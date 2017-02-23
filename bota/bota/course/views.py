@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from .models import Takes, Course, TATime
+from .models import Takes, Course
 from bota.course import queue
 from django.contrib.auth.decorators import login_required
 
