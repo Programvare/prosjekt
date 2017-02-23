@@ -18,7 +18,7 @@ class TAin(models.Model):
     CourseID = models.ForeignKey(Course)
     UserID= models.ForeignKey(User)
 
-class TATime(models.Model):
+"""class TATime(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateField()
     start_time = models.CharField(max_length=200, help_text="E.g.: <em>hh:mm</em>.")
@@ -28,3 +28,4 @@ class TATime(models.Model):
 
     def __str__(self):
         return str(self.room) + ": " + str(self.start_time) + "-" + str(self.end_time) + ", " + str(self.date)
+"""
