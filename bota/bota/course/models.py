@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+#from bota.account import botaUser as User
 
 class Course(models.Model):
     CourseID = models.CharField(max_length=10)

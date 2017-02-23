@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from telnetlib import LOGOUT
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -57,7 +59,9 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             "bota/templates",
-            "bota/course/templates"
+            "bota/course/templates",
+            "bota/account/templates",
+
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -139,3 +143,4 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/course'
+LOGOUT_REDIRECT_URL = '/'
