@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from .models import Takes, Course
+from .models import Takes, Course, TAin
 from bota.course import queue
 from django.contrib.auth.decorators import login_required
 
@@ -10,6 +10,7 @@ def courseMainPage(request):
     context = {
         'currentUser' : request.user,
         'takes' : Takes.objects.all(),
+        'TAin' : TAin.objects.all(),
         'course' : Course.objects.all(),
     }
     template = loader.get_template('mainCoursePage.html')
@@ -24,6 +25,16 @@ def course(request, courseid):
     return HttpResponse(template.render(context, request))
 
 @login_required(login_url='/login/')
+def courseTA(request, courseid):
+    context = {
+        'ccourse': courseid,
+        'next' : queue.getNext(courseid),
+    }
+    template = loader.get_template('courseTA.html')
+    return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='/login/')
 def addMeToList(request, courseid):
     queue.addToQueue(request.user, courseid)
     context = {
@@ -32,6 +43,19 @@ def addMeToList(request, courseid):
     }
     template = loader.get_template('courseInQueue.html')
     return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='/login/')
+def removeFromCourse(request, courseid):
+    queue.removeFromQueue(courseid)
+    context = {
+        'ccourse': courseid,
+        'next' : queue.getNext(courseid),
+    }
+    template = loader.get_template('courseTA.html')
+    return HttpResponse(template.render(context, request))
+
+
 
 """def ta_time(request, courseid):
     try:

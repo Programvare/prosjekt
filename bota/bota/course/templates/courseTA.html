@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ ccourse }}{% endblock %}
+{% block content %}
+<h1>Welcome to {{ ccourse }}</h1>
+<p>Neste i køen er: {{ next }}</p>
+<form action="/course/{{ ccourse }}/rmQueue" method ="post">{% csrf_token %}
+    <input type="submit" value="Neste!">
+</form>
+{% endblock %}

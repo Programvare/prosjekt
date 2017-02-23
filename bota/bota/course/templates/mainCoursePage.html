@@ -9,4 +9,12 @@
     {% endif %}
 {% endfor %}
 </ul>
+ <h3>You are TA in:</h3>
+<ul>
+{% for entry in TAin %}
+    {% if entry.UserID.id == currentUser.id %}
+        <li><a href="/course/{{ entry.CourseID }}/TA">{{ entry.CourseID }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>
 {% endblock %}
