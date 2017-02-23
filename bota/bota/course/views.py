@@ -33,10 +33,12 @@ def addMeToList(request, courseid):
     template = loader.get_template('courseInQueue.html')
     return HttpResponse(template.render(context, request))
 
-def ta_time(request, course_id):
+"""def ta_time(request, courseid):
     try:
-        ta_time_list = TATime.objects.filter(course=course_id)
+        ta_time_list = TATime.objects.filter(course=courseid)
+        print(ta_time_list)
     except TATime.DoesNotExist:
         ta_time_list = []
     context = {'ta_time_list': ta_time_list}
     return render(request, 'course/ta_time.html', context)
+"""

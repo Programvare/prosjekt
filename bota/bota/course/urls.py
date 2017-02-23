@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^$', views.courseMainPage, name='index'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/ta_time)', views.ta_time, name='ta_time'),
+    """url(r'((?P<courseid>[A-Z]{3}\d+)/ta_time)', views.ta_time, name='ta_time'),"""
 ]
