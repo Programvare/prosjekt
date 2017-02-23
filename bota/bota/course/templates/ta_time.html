@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+<h1>{{ "TA Times" }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% if ta_time_list %}
+    <ul>
+    {% for time in ta_time_list %}
+        <li><a> {{ time }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No TA times are available.</p>
+{% endif %}
+{% endblock %}

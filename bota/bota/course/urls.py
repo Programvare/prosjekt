@@ -18,6 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.courseMainPage, name='index'),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
+    url(r'^(?P<course_id>[A-Z]+[0-9]+)/$)', views.course),
+    url(r'^(?P<course_id>[A-Z]+[0-9]+/inQueue)', views.addMeToList),
+    url(r'^(?P<course_id>[a-z]+[0-9]+)/ta_time/$', views.ta_time, name='ta_time'),
 ]
