@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^course', include('bota.course.urls')),
 
 ]
-#url(r'^login', auth_views.login,{'template_name': 'admin/login.html'}),
+
 #url(r'^login_site$', views.showlogin),
 #url(r'^login$', views.login),
 #url(r'^$', views.showMainPage),

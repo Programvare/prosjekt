@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
-from django.contrib.auth.views import login
-
+from django.template import RequestContext
+from django.template import loader
+from django.contrib.auth.views import login as auth_login
+from django.contrib.auth import authenticate
+from bota import views
 #Placeholder function.
 #Use decorators in front of views that require logins
 #https://docs.djangoproject.com/en/1.10/topics/auth/default/#the-login-required-decorator
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect, render_to_response
+
+from bota.course.models import Course
+
 
 class botaUserCreationForm(UserCreationForm):
 
@@ -35,12 +40,18 @@ def signup(request):
 
    return render(request, 'registration/signup.html', {'form': form})
 
-
-# This uses the contrib.auth.views.login
-# See: https://docs.djangoproject.com/en/1.10/topics/auth/default/#all-authentication-views
-# To see what it does. Notably automagically renders registration/login.html
-# The redirection after post is specified in "next" in URLS
-def custom_login(request):
-   login(request)
-
-#NOTE: logout method is autoredirection to some page, see URLS
+def login(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            auth_login(request, user)
+            if user.is_staff:
+                return redirect('/admin')
+            else:
+                return redirect('/course')
+        else:
+            return render(request, 'registration/login.html', {})
+    else:
+        return render(request, 'registration/login.html', {})

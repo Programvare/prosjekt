@@ -15,12 +15,14 @@ class Course(models.Model):
 class Takes(models.Model):
     CourseID = models.ForeignKey(Course)
     UserID= models.ForeignKey(User)
-
+    def __str__(self):
+        return str(self.UserID)+ " - " +  str(self.CourseID)
 
 class TAin(models.Model):
     CourseID = models.ForeignKey(Course)
     UserID = models.ForeignKey(User)
-
+    def __str__(self):
+        return str(self.UserID) + " - " + str(self.CourseID)
 
 """class TATime(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

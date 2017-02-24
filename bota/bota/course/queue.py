@@ -7,11 +7,19 @@ def addToQueue(user, course):
     else:
         dCourse[course] = [user]
 def removeFromQueue(course):
-    if course in dCourse:
-        dCourse[course].pop(0)
+    if course in dCourse and (dCourse.get(course)):
+        dCourse.get(course).pop(0)
 
 def getPosision(user, course):
     if course in dCourse and user in dCourse[course]:
-        return dCourse[course].index(user)+1
+        return dCourse[course].index(user)
     else:
         return 0;
+def getNext(course):
+    if(course in dCourse and dCourse.get(course)):
+        return dCourse.get(course)[0]
+    return ""
+def userInQueue(user, course):
+    if course in dCourse and user in dCourse[course]:
+        return True
+    return False
