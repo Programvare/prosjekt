@@ -2,8 +2,8 @@
 {% block title %}{{ ccourse }}{% endblock %}
 {% block content %}
 <h1>Welcome to {{ ccourse }}</h1>
-<p>Neste i køen er: {{ next }}</p>
+<p>The next in line is: {{ next }}</p>
 <form action="/course/{{ ccourse }}/rmQueue" method ="post">{% csrf_token %}
-    <input type="submit" value="Neste!">
+    <input type="submit" value="Next!">
 </form>
 {% endblock %}
