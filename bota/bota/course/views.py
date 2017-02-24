@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
 from .models import Takes, Course, TAin
 from bota.course import queue
@@ -19,8 +19,12 @@ def courseMainPage(request):
 @login_required(login_url='/login/')
 def course(request, courseid):
     context = {
+        'posision': queue.getPosision(request.user, courseid),
         'ccourse': courseid,
     }
+    if queue.userInQueue(request.user, courseid):
+        template = loader.get_template('courseInQueue.html')
+        return HttpResponse(template.render(context, request))
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
 
