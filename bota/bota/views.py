@@ -15,3 +15,7 @@ def mainPage(request):
 def adminPage(request):
     template = loader.get_template('admin/admin.html')
     return HttpResponse(template.render(request))
+
+def courseEditPage(request):
+    template = loader.get_template('admin/courses.html')
+    return HttpResponse(template.render(request))
