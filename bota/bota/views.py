@@ -10,3 +10,8 @@ def mainPage(request):
         return redirect('/course')
     template = loader.get_template('index.html')
     return HttpResponse(template.render(request))
+
+
+def adminPage(request):
+    template = loader.get_template('admin/admin.html')
+    return HttpResponse(template.render(request))
