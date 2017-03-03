@@ -16,17 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from . import views
+
+from bota import views
 
 urlpatterns = [
-    url(r'^login', auth_views.login,{'template_name': 'admin/login.html'}),
     url(r'^$', views.mainPage),
-    url(r'^admin/', admin.site.urls),
+    url(r'^', include('bota.account.urls')),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^course', include('bota.course.urls')),
 
-
-
 ]
+
 #url(r'^login_site$', views.showlogin),
 #url(r'^login$', views.login),
 #url(r'^$', views.showMainPage),

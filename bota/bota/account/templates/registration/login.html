@@ -112,14 +112,15 @@
 				<div class="loginmodal-container">
 					<h1>Login to Your Account</h1><br>
 
-				  <form id="login-form"  action="/login" method="post">{% csrf_token %}
+				  <form action="{% url 'login' %}" method="post" accept-charset="utf-8">
+                      {% csrf_token %}
 					<input type="text" name="username" placeholder="Username">
 					<input type="password" name="password" placeholder="Password">
 					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
 				  </form>
 
 				  <div class="login-help">
-					<a href="#">Register</a> - <a href="#">Forgot Password</a>
+					<a href="/signup">Register</a> - <a href="#">Forgot Password</a>
 				  </div>
 				</div>
 			</div>

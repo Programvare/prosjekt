@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %}{{ ccourse }}{% endblock %}
 {% block content %}
-<h1>Du er i kø for {{ ccourse }}</h1>
-<p>Du er nr: {{ posision }} i køen </p>
+<h1>You are in the queue for {{ ccourse }}</h1>
+    {% if posision == 0 %}
+        <p>It is your turn! </p>
+    {% elif posision == 1 %}
+        <p>You are next! </p>
+    {% else %}
+        <p>There are {{ posision }} students ahead of you </p>
+    {% endif %}
 {% endblock %}
