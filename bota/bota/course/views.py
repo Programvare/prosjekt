@@ -18,13 +18,16 @@ def courseMainPage(request):
 
 @login_required(login_url='/login/')
 def course(request, courseid):
+
     context = {
         'posision': queue.getPosision(request.user, courseid),
         'ccourse': courseid,
+        'hello': courseid,
     }
     if queue.userInQueue(request.user, courseid):
         template = loader.get_template('courseInQueue.html')
         return HttpResponse(template.render(context, request))
+
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
 
@@ -41,12 +44,15 @@ def courseTA(request, courseid):
 @login_required(login_url='/login/')
 def addMeToList(request, courseid):
     queue.addToQueue(request.user, courseid)
-    context = {
+    return course(request, courseid)
+    """context = {
         'posision': queue.getPosision(request.user, courseid),
         'ccourse': courseid,
+        'hello': courseid,
     }
     template = loader.get_template('courseInQueue.html')
     return HttpResponse(template.render(context, request))
+    """
 
 
 @login_required(login_url='/login/')
