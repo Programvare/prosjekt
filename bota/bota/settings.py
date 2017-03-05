@@ -61,6 +61,7 @@ TEMPLATES = [
             "bota/templates",
             "bota/course/templates",
             "bota/account/templates",
+            "bota/admin/templates",
 
             ],
         'APP_DIRS': True,
@@ -142,5 +143,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"), )
+
 
 LOGOUT_REDIRECT_URL = '/'

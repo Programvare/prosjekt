@@ -1,0 +1,20 @@
+{% extends "admin/baseAdmin.html" %}
+{%  block contentAdmin %}
+
+        <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+
+            <h1>Edit or add courses:</h1>
+            <a href="/admin/courses/addCourse" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: green; color:white; align-content: center; margin-bottom: 4px;">Add new course</div></a>
+            {% for course in courses %}
+                <div style="background-color: #ff7e1c; margin-bottom: 4px; padding:15px;" >
+                    <div style="width: 20%; float:right; position: relative; margin: 20px 20px 0 0">
+                        <a style=" text-decoration: none;" href="/admin/courses/{{ course }}/edit"><div style=" padding: 10px; background-color: #258000;  display: inline; color:white; align-content: center">Edit</div></a>
+                       <a style=" text-decoration: none;" href="/admin/courses/{{ course }}/del"><div style=" padding: 10px;  background-color: red; display: inline; color:white; align-content: center">Delete</div></a>
+                    </div>
+                    <h3 style="color: white">{{ course }} - {{ course.Name }}</h3>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{%  endblock %}
