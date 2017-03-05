@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.template import loader
 from django.http import HttpResponse
 from bota.course.models import Course
@@ -26,8 +26,18 @@ def delCourse(request, courseid):
 
 @login_required(login_url='/login/')
 def addCourse(request):
-    template = loader.get_template('admin/newCourse.html')
-    return HttpResponse(template.render(request))
+    if request.method == "POST":
+        courseID = request.POST.get("CourseID")
+        name = request.POST.get("Name")
+        term = request.POST.get("Term")
+        description = request.POST.get("Description")
+        c = Course(CourseID=courseID, Name=name, Term=term, Description=description)
+        c.save();
+        return redirect('admin/courses')
+
+    return render(request, 'admin/newCourse.html', {})
+
+
 
 @login_required(login_url='/login/')
 def editCourse(request):
