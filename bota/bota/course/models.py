@@ -7,11 +7,11 @@ class Course(models.Model):
     CourseID = models.CharField(max_length=10,
                                 help_text="Use upper case letters followed by 4 numbers: Example: TDT4100")
     Name = models.CharField(max_length=80)
-    Nickname = models.CharField(max_length=20, null=True, default="TBA",
+    Nickname = models.CharField(max_length=20, blank=True, default="",
                                 help_text="Please enter a nickname for the course if possible")
     Term = models.CharField(max_length=20,
                             help_text="Please use the following format: <season> <year>. Example: Spring 2017")
-    Description = models.CharField(max_length=45, null=True)
+    Description = models.CharField(max_length=45, blank=True, default="")
 
     def __str__(self):
         return self.CourseID
@@ -41,5 +41,19 @@ class TATime(models.Model):
     teaching_assistant = models.CharField(max_length=45)
     room = models.CharField(max_length=20)
 
+    # Used for admin view
     def __str__(self):
-        return str(self.date) + ": " + str(self.start_time) + "-" + str(self.end_time) + ", " + str(self.room)
+        return str(self.course) + ": " + str(self.date)
+
+    # Used in templates
+    def display_weekly(self):
+        weekdays = {"0": "Sunday", "1": "Monday", "2": "Tuesday", "3": "Wednesday", "4": "Thursday", "5": "Friday",
+                    "6": "Saturday"}
+        weekday = weekdays[self.date.strftime("%w")]
+
+        return weekday + ": " + self.start_time.strftime("%H:%M") + "-" \
+               + self.end_time.strftime("%H:%M") + " in room " + str(self.room)
+
+    def display_all(self):
+        return self.date.strftime("%d/%m-%y") + ": " + self.start_time.strftime("%H:%M") + "-" \
+               + self.end_time.strftime("%H:%M") + " in room " + str(self.room)
