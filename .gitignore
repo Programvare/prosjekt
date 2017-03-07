@@ -1,5 +1,4 @@
 .idea
 bota/.idea
 bota/db.sqlite3
-bota/bota/__pycache__
-bota/__pycache__
+*.pyc
