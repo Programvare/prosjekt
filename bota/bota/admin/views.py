@@ -2,14 +2,14 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.http import HttpResponse
 from bota.course.models import Course
+from django.contrib.admin.views.decorators import staff_member_required
 
-from django.contrib.auth.decorators import login_required
-
-
+@staff_member_required(login_url='/login/')
 def adminPage(request):
     template = loader.get_template('admin/admin.html')
     return HttpResponse(template.render(request))
 
+@staff_member_required(login_url='/login/')
 def courseEditPage(request):
 
     context = {
@@ -19,12 +19,12 @@ def courseEditPage(request):
     template = loader.get_template('admin/courses.html')
     return HttpResponse(template.render(context, request))
 
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/login/')
 def delCourse(request, courseid):
     Course.objects.filter(CourseID = courseid).delete()
     return redirect('/admin/courses')
 
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/login/')
 def addCourse(request):
     if request.method == "POST":
         courseID = request.POST.get("CourseID")
@@ -39,7 +39,7 @@ def addCourse(request):
 
 
 
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/login/')
 def editCourse(request):
     template = loader.get_template('admin/editCourse.html')
     return HttpResponse(template.render(request))

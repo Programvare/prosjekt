@@ -18,9 +18,11 @@
       <a class="navbar-brand" href="/">boTA</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/course">Courses</a></li>
-        <li><a href="/login">login</a></li>
-        <li><a href="/logout">logout</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="/logout">logout</a></li>
+            {% else %}
+            <li><a href="/login">login</a></li>
+        {% endif %}
     </ul>
   </div>
 </nav>
