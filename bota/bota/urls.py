@@ -22,8 +22,9 @@ from bota import views
 urlpatterns = [
     url(r'^$', views.mainPage),
     url(r'^', include('bota.account.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin1/', include(admin.site.urls)),
     url(r'^course', include('bota.course.urls')),
+    url(r'^admin', include('bota.admin.urls')),
 
 ]
 
