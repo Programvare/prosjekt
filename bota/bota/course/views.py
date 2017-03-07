@@ -10,10 +10,8 @@ import datetime
 @login_required(login_url='/login/')
 def courseMainPage(request):
     context = {
-        'currentUser': request.user,
-        'takes': Takes.objects.all(),
-        'TAin': TAin.objects.all(),
-        'course': Course.objects.all(),
+        'TAin': Course.objects.filter(id__in=TAin.objects.filter(UserID=request.user).values("CourseID")),
+        'courses': Course.objects.filter(id__in=Takes.objects.filter(UserID=request.user).values("CourseID")),
     }
     template = loader.get_template('mainCoursePage.html')
     return HttpResponse(template.render(context, request))
@@ -102,10 +100,18 @@ def taTimes(request, courseid):
 
 @login_required(login_url='/login/')
 def addTakes(request):
+    if not Takes.objects.filter(UserID=request.user).exists():
+        courses = Course.objects.all()
+    else:
+        courses = Course.objects.exclude(id__in=Takes.objects.filter(UserID=request.user).values("CourseID"))
     context = {
-        'courses' : Course.objects.all(),
+        'courses': courses
     }
     template = loader.get_template('addTakes.html')
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='/login/')
 def addTakesCourse(request, courseid):
-    #TOBEDONE
+    c = Takes(CourseID=Course.objects.get(CourseID=courseid), UserID=request.user)
+    c.save()
+    return redirect('/course')

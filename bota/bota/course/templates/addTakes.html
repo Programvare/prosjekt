@@ -2,6 +2,6 @@
 {% block title %}Add Course{% endblock %}
 {% block content %}
 {% for course in courses %}
-    <li><a href="/course/addTakes{{ course }}">{{ course }}</a></li>
+    <li><a href="/course/{{ course }}/addTakes">{{ course }}</a></li>
 {% endfor %}
 {% endblock %}
