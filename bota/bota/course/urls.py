@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'addTakes$', views.addTakes, name='takes'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/TA$)', views.courseTA),
     url(r'((?P<scourseid>[A-Z]{3}\d+)/$)', views.course),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/addCourse)', views.addTakesCourse),
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
     url(r'((?P<courseid>[A-Z]{3}\d+)/rmQueue)', views.removeFromCourse),
     url(r'((?P<courseid>[A-Z]{3}\d+)/taTimes)', views.taTimes),

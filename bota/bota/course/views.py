@@ -107,3 +107,5 @@ def addTakes(request):
     }
     template = loader.get_template('addTakes.html')
     return HttpResponse(template.render(context, request))
+def addTakesCourse(request, courseid):
+    #TOBEDONE
