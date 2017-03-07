@@ -1,0 +1,24 @@
+{% extends "admin/baseAdmin.html" %}
+{%  block contentAdmin %}
+    <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+
+            <h1>Add new course:</h1>
+            <form action="/admin/courses/addCourse" method="post">{% csrf_token %}
+                <label>CourseID:</label><br>
+                <input type="text" name="CourseID"><br>
+
+               <label>Name:</label><br>
+                <input type="text" name="Name"><br>
+
+                <label>Term:</label><br>
+                <input type="text" name="Term"><br>
+
+                <label>Description:</label><br>
+                <input type="text" name="Description"><br>
+
+                <button type="submit">Create!</button>
+            </form>
+
+    </div>
+
+{%  endblock %}
