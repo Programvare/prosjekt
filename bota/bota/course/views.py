@@ -99,3 +99,11 @@ def taTimes(request, courseid):
 
     template = loader.get_template('ta_time.html')
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='/login/')
+def addTakes(request):
+    context = {
+        'courses' : Course.objects.all(),
+    }
+    template = loader.get_template('addTakes.html')
+    return HttpResponse(template.render(context, request))

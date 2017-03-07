@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Add Course{% endblock %}
+{% block content %}
+{% for course in courses %}
+    <li><a href="/course/{{ course }}">{{ course }}</a></li>
+{% endfor %}
+{% endblock %}
