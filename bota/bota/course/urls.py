@@ -16,13 +16,19 @@ Including another URLconf
 from django.conf.urls import url
 from . import views
 
+app_name = 'course'
+
 urlpatterns = [
     url(r'^$', views.courseMainPage, name='index'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/TA$)', views.courseTA),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course, name='course'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
     url(r'((?P<courseid>[A-Z]{3}\d+)/rmQueue)', views.removeFromCourse),
-
+    #TODO: prob cant remove this, can we?
+    #NOTE: name allows reverse lookup in jinja, i.e. {% url 'name'% }
+    #url(r'((?P<courseid>[A-Z]{3}\d+)/course_position)', views.course_position, name='course_position'),
+    url(r'^course_position/$', views.course_position, name='course_position'),
 
 ]
+
 """url(r'((?P<courseid>[A-Z]{3}\d+)/ta_time)', views.ta_time, name='ta_time'),"""
