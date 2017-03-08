@@ -10,10 +10,8 @@ import datetime
 @login_required(login_url='/login/')
 def courseMainPage(request):
     context = {
-        'currentUser': request.user,
-        'takes': Takes.objects.all(),
-        'TAin': TAin.objects.all(),
-        'course': Course.objects.all(),
+        'TAin': Course.objects.filter(id__in=TAin.objects.filter(UserID=request.user).values("CourseID")),
+        'courses': Course.objects.filter(id__in=Takes.objects.filter(UserID=request.user).values("CourseID")),
     }
     template = loader.get_template('mainCoursePage.html')
     return HttpResponse(template.render(context, request))
@@ -99,3 +97,4 @@ def taTimes(request, courseid):
 
     template = loader.get_template('ta_time.html')
     return HttpResponse(template.render(context, request))
+

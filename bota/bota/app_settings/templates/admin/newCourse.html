@@ -1,0 +1,27 @@
+{% extends "admin/baseAdmin.html" %}
+{%  block contentAdmin %}
+    <div style="width: 80%; margin: 0px auto; height: 100%; padding-top:10px;">
+    <div style=" display: inline;  width:200px; background-color: blue">
+            <h1>Add new course:</h1>
+            <form action="/settings/courses/addCourse" method="post">{% csrf_token %}
+                <label>CourseID:</label><br>
+                <input type="text" name="CourseID" value="{{ Course.CourseID }}"><br>
+
+               <label>Name:</label><br>
+                <input type="text" name="Name" value="{{ Course.Name }}"><br>
+
+                <label>Term:</label><br>
+                <input type="text" name="Term" value="{{ Course.Term }}"><br>
+
+                <label>Description:</label><br>
+                <input type="text" name="Description" value="{{ Course.Description }}"><br>
+
+                <button type="submit">Save!</button>
+            </form>
+    </div>
+    <div style="display: inline; width:200px; background-color: white">
+
+    </div>
+    </div>
+
+{%  endblock %}
