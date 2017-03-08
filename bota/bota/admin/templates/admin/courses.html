@@ -4,10 +4,10 @@
         <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
 
             <h1>Edit or add courses:</h1>
-            <a href="/admin/courses/addCourse" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: green; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span>  Add new course</div></a>
+            <a href="/admin/courses/addCourse" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span>  Add new course</div></a>
             {% for course in courses %}
-                <div style="background-color: #ff7e1c; margin-bottom: 4px; padding:15px 0 15px 15px" >
-                    <div class="btn-group" style="float:right; position: relative; margin: 20px 20px 0 0">
+                <div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+                    <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">
                         <a class="btn btn-success" style=" text-decoration: none;" href="/admin/courses/{{ course }}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                         <a class="btn btn-danger" style=" text-decoration: none;" href="/admin/courses/{{ course }}/del"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>
