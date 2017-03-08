@@ -2,8 +2,10 @@
 {% block title %}Courses{% endblock %}
 {% block contentAdmin %}
     <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
-        {% if courses%}
+        {% if courses  %}
              <h3>Here are your courses:</h3>
+        {% else %}
+            <h3>You have no courses, you can add one under:</h3>
         {% endif %}
         <a href="course/addTakes" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span> Add new course</div></a>
         {% for course in courses %}
