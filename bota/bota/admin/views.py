@@ -40,6 +40,9 @@ def addCourse(request):
 
 
 @staff_member_required(login_url='/login/')
-def editCourse(request):
-    template = loader.get_template('admin/editCourse.html')
-    return HttpResponse(template.render(request))
+def editCourse(request, courseid):
+    context = {
+        'Course': Course.objects.get(CourseID=courseid),
+    }
+    template = loader.get_template('admin/newCourse.html')
+    return HttpResponse(template.render(context, request))
