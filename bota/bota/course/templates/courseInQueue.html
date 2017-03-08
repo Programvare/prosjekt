@@ -1,15 +1,9 @@
 {% extends "base.html" %}
-
-<!-- NOTE: load static required outside the base.html?
-TODO: remove static statement if inside html file
-Why inside? to use jinja templating url-->
 {% block script%}
-<!--{% load static %}-->
-<!--script src="{% static "course/test.js" %}"/></script-->
+
+<!--The script is inside the HTML file so that the Jinja2 tag {% url %} is resolved
+This is so we don't need to hardcode the url in-->
 <script>
-
-$( "#course_position_div" ).css( "border", "3px solid red" );
-
 $(document).ready(function() {
 console.log("started script");
 function refreshPos(){
@@ -27,9 +21,8 @@ setInterval(function(){refreshPos()}, 5000);
 </script>
 {% endblock %}
 
-
 {% block title %}{{ ccourse }}{% endblock %}
-{% block content %}
 
+{% block content %}
 {% include 'course_position_div.html' %}
 {% endblock %}
