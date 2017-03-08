@@ -3,7 +3,7 @@
     <div style="width: 80%; margin: 0px auto; height: 100%; padding-top:10px;">
     <div style=" display: inline;  width:200px; background-color: blue">
             <h1>Add new course:</h1>
-            <form action="/admin/courses/addCourse" method="post">{% csrf_token %}
+            <form action="/settings/courses/addCourse" method="post">{% csrf_token %}
                 <label>CourseID:</label><br>
                 <input type="text" name="CourseID" value="{{ Course.CourseID }}"><br>
 

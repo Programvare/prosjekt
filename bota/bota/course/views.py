@@ -98,20 +98,3 @@ def taTimes(request, courseid):
     template = loader.get_template('ta_time.html')
     return HttpResponse(template.render(context, request))
 
-@login_required(login_url='/login/')
-def addTakes(request):
-    if not Takes.objects.filter(UserID=request.user).exists():
-        courses = Course.objects.all()
-    else:
-        courses = Course.objects.exclude(id__in=Takes.objects.filter(UserID=request.user).values("CourseID"))
-    context = {
-        'courses': courses
-    }
-    template = loader.get_template('addTakes.html')
-    return HttpResponse(template.render(context, request))
-
-@login_required(login_url='/login/')
-def addTakesCourse(request, courseid):
-    c = Takes(CourseID=Course.objects.get(CourseID=courseid), UserID=request.user)
-    c.save()
-    return redirect('/course')

@@ -19,11 +19,9 @@ from bota.course import views
 urlpatterns = [
     url(r'^$', views.courseMainPage, name='index'),
     url(r'((?P<courseid>[A-Z]{3}\d+)/TA)', views.courseTA),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/addTakes)', views.addTakesCourse),
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
     url(r'((?P<courseid>[A-Z]{3}\d+)/rmQueue)', views.removeFromCourse),
     url(r'((?P<courseid>[A-Z]{3}\d+)/taTimes)', views.taTimes),
     url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course),
-    url(r'addTakes/$', views.addTakes, name='takes'),
 
 ]

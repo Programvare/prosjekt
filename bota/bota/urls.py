@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^', include('bota.account.urls')),
     url(r'^admin1/', include(admin.site.urls)),
     url(r'^course', include('bota.course.urls')),
-    url(r'^admin', include('bota.admin.urls')),
+    url(r'^settings', include('bota.app_settings.urls')),
 
 ]
 
