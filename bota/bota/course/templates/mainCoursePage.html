@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Courses{% endblock %}
 {% block content %}
+    {% if courses%}
 <h3>Here are your courses:</h3>
-<ul>
-{% for entry in takes %}
-    {% if entry.UserID.id == currentUser.id %}
-        <li><a href="/course/{{ entry.CourseID }}">{{ entry.CourseID }}</a></li>
     {% endif %}
+<ul>
+{% for entry in courses %}
+        <li><a href="/course/{{ entry.CourseID }}">{{ entry.CourseID }}</a></li>
 {% endfor %}
-</ul>
+    <a href="course/addTakes"><i>Add course</i></a>
+</ul>{% if TAin%}
  <h3>You are a TA in:</h3>
+    {% endif %}
 <ul>
 {% for entry in TAin %}
-    {% if entry.UserID.id == currentUser.id %}
         <li><a href="/course/{{ entry.CourseID }}/TA">{{ entry.CourseID }}</a></li>
-    {% endif %}
 {% endfor %}
 </ul>
 {% endblock %}
