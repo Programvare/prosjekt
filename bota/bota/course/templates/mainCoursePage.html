@@ -1,20 +1,23 @@
-{% extends "base.html" %}
+{% extends "admin/baseAdmin.html" %}
 {% block title %}Courses{% endblock %}
-{% block content %}
-    {% if courses%}
-<h3>Here are your courses:</h3>
-    {% endif %}
-<ul>
-{% for entry in courses %}
-        <li><a href="/course/{{ entry.CourseID }}">{{ entry.CourseID }}</a></li>
-{% endfor %}
-    <a href="course/addTakes"><i>Add course</i></a>
-</ul>{% if TAin%}
- <h3>You are a TA in:</h3>
-    {% endif %}
-<ul>
-{% for entry in TAin %}
-        <li><a href="/course/{{ entry.CourseID }}/TA">{{ entry.CourseID }}</a></li>
-{% endfor %}
-</ul>
+{% block contentAdmin %}
+    <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+        {% if courses%}
+             <h3>Here are your courses:</h3>
+        {% endif %}
+        <a href="course/addTakes" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span> Add new course</div></a>
+        {% for course in courses %}
+            <a style=" text-decoration: none;" href="/course/{{ course }}"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+                  <h3 style="color: white">{{ course }} - {{ course.Name }}</h3>
+            </div></a>
+        {% endfor %}
+        {% if TAin%}
+            <h3>You are a TA in:</h3>
+        {% endif %}
+        {% for courseTA in TAin %}
+            <a style=" text-decoration: none;" href="/course/{{ courseTA }}/TA"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+                <h3 style="color: white">{{ courseTA }} - {{ courseTA.Name }}</h3>
+        {% endfor %}
+    </div>
+
 {% endblock %}
