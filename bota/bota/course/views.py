@@ -34,11 +34,14 @@ def course_position(request):
     #The problem with having a separate view for a _div_ is that we can't have a fancy context-based url in urls.py
     #request.META gives the current url path. index [-2] should return the current courseid
     courseid = request.META['HTTP_REFERER'].split('/')[-2]
-    position = queue.userInQueue(request.user, courseid)
+    position = queue.getPosision(request.user, courseid)
+
+    print(courseid)
+    print(position)
 
     context = {
-        'posision': "lol",
-        'ccourse': "lold",
+        'posision': position,
+        'ccourse': courseid,
     }
 
     template = loader.get_template('course_position_div.html')
