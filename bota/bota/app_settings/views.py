@@ -17,7 +17,6 @@ def courseEditPage(request):
     context = {
         'courses': Course.objects.all(),
     }
-
     template = loader.get_template('admin/courses.html')
     return HttpResponse(template.render(context, request))
 
@@ -52,7 +51,9 @@ def editCourse(request, courseid):
     context = {
         'Course': Course.objects.get(CourseID=courseid),
     }
-    template = loader.get_template('admin/newCourse.html')
+
+
+    template = loader.get_template('admin/editCourse.html')
     return HttpResponse(template.render(context, request))
 
 @login_required(login_url='/login/')
