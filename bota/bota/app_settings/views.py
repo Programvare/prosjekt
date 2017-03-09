@@ -42,7 +42,7 @@ def addCourse(request):
         term = request.POST.get("Term")
         description = request.POST.get("Description")
 
-        if not Course.objects.get(CourseID=CourseID):
+        if len(Course.objects.filter(CourseID=CourseID))==0:
             c = Course(CourseID=CourseID, Name=name, Term=term, Nickname=nickname, Description=description)
             c.save();
             return redirect('settings/courses')
