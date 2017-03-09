@@ -1,0 +1,10 @@
+<div class="course_position_div">
+<h1>You are in the queue for {{ ccourse }}</h1>
+    {% if posision == 0 %}
+        <p>It is your turn! </p>
+    {% elif posision == 1 %}
+        <p>You are next in line! </p>
+    {% else %}
+        <p>There are {{ posision }} students ahead of you </p>
+{% endif %}
+</div>

@@ -46,9 +46,26 @@ def course(request, courseid):
     if queue.userInQueue(request.user, courseid):
         template = loader.get_template('courseInQueue.html')
         return HttpResponse(template.render(context, request))
+
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
 
+def course_position(request):
+    #The problem with having a separate view for a _div_ is that we can't have a fancy context-based url in urls.py
+    #request.META gives the current url path. index [-2] should return the current courseid
+    courseid = request.META['HTTP_REFERER'].split('/')[-2]
+    position = queue.getPosision(request.user, courseid)
+
+    print(courseid)
+    print(position)
+
+    context = {
+        'posision': position,
+        'ccourse': courseid,
+    }
+
+    template = loader.get_template('course_position_div.html')
+    return HttpResponse(template.render(context, request))
 
 @login_required(login_url='/login/')
 def courseTA(request, courseid):
@@ -64,12 +81,7 @@ def courseTA(request, courseid):
 @login_required(login_url='/login/')
 def addMeToList(request, courseid):
     queue.addToQueue(request.user, courseid)
-    context = {
-        'posision': queue.getPosision(request.user, courseid),
-        'ccourse': courseid,
-    }
-    template = loader.get_template('courseInQueue.html')
-    return HttpResponse(template.render(context, request))
+    return course(request, courseid)
 
 
 @login_required(login_url='/login/')

@@ -1,12 +1,35 @@
 {% extends "base.html" %}
+
+<!-- NOTE: load static required outside the base.html?
+TODO: remove static statement if inside html file
+Why inside? to use jinja templating url-->
+{% block script%}
+<!--{% load static %}-->
+<!--script src="{% static "course/test.js" %}"/></script-->
+<script>
+
+$( "#course_position_div" ).css( "border", "3px solid red" );
+
+$(document).ready(function() {
+console.log("started script");
+function refreshPos(){
+    console.log("refreshed");
+
+    $.ajax({
+        url: '{% url 'course:course_position' %}',
+        success: function(data) {
+        $('.course_position_div').html(data);
+    }
+    });
+}
+setInterval(function(){refreshPos()}, 5000);
+});
+</script>
+{% endblock %}
+
+
 {% block title %}{{ ccourse }}{% endblock %}
 {% block content %}
-<h1>You are in the queue for {{ ccourse }}</h1>
-    {% if posision == 0 %}
-        <p>It is your turn! </p>
-    {% elif posision == 1 %}
-        <p>You are next! </p>
-    {% else %}
-        <p>There are {{ posision }} students ahead of you </p>
-    {% endif %}
+
+{% include 'course_position_div.html' %}
 {% endblock %}
