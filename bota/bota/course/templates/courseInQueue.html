@@ -5,18 +5,30 @@
 This is so we don't need to hardcode the url in-->
 <script>
 $(document).ready(function() {
-console.log("started script");
-function refreshPos(){
-    console.log("refreshed");
+    console.log("started script");
+    var isAlerted = false;
+    var refreshTime = 5000;
+    var alertText = "It is your turn!";
 
-    $.ajax({
-        url: '{% url 'course:course_position' %}',
-        success: function(data) {
-        $('.course_position_div').html(data);
+    function refreshPos(){
+        console.log("refreshed div");
+        $.ajax({
+            url: '{% url 'course:course_position' %}',
+            success: function(data) {
+            $('.course_position_div').html(data);
+            }
+        });
+
+        if (!isAlerted) {
+            if ($('#pos0').text().length != 0) {
+                alert(alertText);
+                isAlerted = true;
+            };
+        };
     }
-    });
-}
-setInterval(function(){refreshPos()}, 5000);
+
+    setInterval(function(){refreshPos()}, refreshTime);
+
 });
 </script>
 {% endblock %}
@@ -25,4 +37,5 @@ setInterval(function(){refreshPos()}, 5000);
 
 {% block content %}
 {% include 'course_position_div.html' %}
+
 {% endblock %}
