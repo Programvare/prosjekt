@@ -2,9 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.http import HttpResponse
-from bota.course.models import Course
 from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin
+
+
 @login_required(login_url='/login/')
 def settingsPage(request):
     context = {'is_staff':request.user.is_staff}
@@ -33,16 +34,23 @@ def delTakesCourse(request, courseid):
 
 @staff_member_required(login_url='/login/')
 def addCourse(request):
+    context = {}
     if request.method == "POST":
-        courseID = request.POST.get("CourseID")
+        CourseID = request.POST.get("CourseID")
         name = request.POST.get("Name")
         term = request.POST.get("Term")
         description = request.POST.get("Description")
-        c = Course(CourseID=courseID, Name=name, Term=term, Description=description)
-        c.save();
-        return redirect('settings/courses')
 
-    return render(request, 'admin/newCourse.html', {})
+        if not Course.objects.get(CourseID=CourseID):
+            print("afdg")
+            c = Course(CourseID=CourseID, Name=name, Term=term, Description=description)
+            c.save();
+            return redirect('settings/courses')
+        context = {
+            'CourseIDError': "Course already exists",
+         }
+
+    return render(request, 'admin/newCourse.html',context)
 
 
 

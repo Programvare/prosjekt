@@ -1,2 +1,2 @@
 # boTA
-Making learing better
+Making learing better.
