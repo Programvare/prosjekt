@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 
 
 class Course(models.Model):
-    CourseID = models.CharField(max_length=10,
+    CourseID = models.CharField(max_length=10, unique=True,
                                 help_text="Use upper case letters followed by 4 numbers: Example: TDT4100")
     Name = models.CharField(max_length=80)
     Nickname = models.CharField(max_length=20, blank=True, default="",
                                 help_text="Please enter a nickname for the course if possible")
-    Term = models.CharField(max_length=20,
+    Term = models.CharField(max_length=20, blank=True,
                             help_text="Please use the following format: <season> <year>. Example: Spring 2017")
     Description = models.CharField(max_length=45, blank=True, default="")
 
