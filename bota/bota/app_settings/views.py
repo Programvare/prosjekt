@@ -38,16 +38,21 @@ def addCourse(request):
     if request.method == "POST":
         CourseID = request.POST.get("CourseID")
         name = request.POST.get("Name")
+        nickname = request.POST.get("Nickname")
         term = request.POST.get("Term")
         description = request.POST.get("Description")
 
         if not Course.objects.get(CourseID=CourseID):
-            print("afdg")
-            c = Course(CourseID=CourseID, Name=name, Term=term, Description=description)
+            c = Course(CourseID=CourseID, Name=name, Term=term, Nickname=nickname, Description=description)
             c.save();
             return redirect('settings/courses')
         context = {
             'CourseIDError': "Course already exists",
+            'CourseID': CourseID,
+            'name':name,
+            'term':term,
+            'nickname':nickname,
+            'description': description,
          }
 
     return render(request, 'admin/newCourse.html',context)
