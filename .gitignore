@@ -1,3 +1,4 @@
 .idea
 bota/.idea
 bota/db.sqlite3
+*.pyc

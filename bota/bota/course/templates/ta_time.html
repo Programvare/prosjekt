@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Courses{% endblock %}
 {% block content %}
-<h1>{{ "TA Times" }}</h1>
+
+<a href="/course/{{ ccourse }}/">Back to course page</a>
+
+<h2>TA times for course {{ ccourse }}:</h2>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if ta_time_list %}
     <ul>
     {% for time in ta_time_list %}
-        <li><a> {{ time }}</a></li>
+        <li>{{ time.display_all }}</li>
     {% endfor %}
     </ul>
 {% else %}

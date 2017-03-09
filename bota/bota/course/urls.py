@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from . import views
+from bota.course import views
 
 app_name = 'course'
 
@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
     url(r'((?P<courseid>[A-Z]{3}\d+)/rmQueue)', views.removeFromCourse),
     url(r'^course_position/$', views.course_position, name='course_position'),
-]
+    url(r'((?P<courseid>[A-Z]{3}\d+)/taTimes)', views.taTimes),
 
-"""url(r'((?P<courseid>[A-Z]{3}\d+)/ta_time)', views.ta_time, name='ta_time'),"""
+]

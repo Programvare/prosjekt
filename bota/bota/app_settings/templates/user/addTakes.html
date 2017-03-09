@@ -1,0 +1,17 @@
+{% extends "admin/baseAdmin.html" %}
+{% block title %}Add Course{% endblock %}
+{% block contentAdmin %}
+
+    <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+     <h3>Add courses:</h3>
+        {% for course in courses %}
+        <div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+            <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">
+                <a class="btn btn-success" style=" text-decoration: none;" href="/settings/{{ course }}/addTakes"><span class="glyphicon glyphicon-plus"></span> Add</a>
+            </div>
+              <h3 style="color: white">{{ course }} - {{ course.Name }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
