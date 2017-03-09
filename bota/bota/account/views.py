@@ -48,7 +48,7 @@ def login(request):
         if user.is_active:
             auth_login(request, user)
             if user.is_staff:
-                return redirect('/admin')
+                return redirect('/settings')
             else:
                 return redirect('/course')
         else:
