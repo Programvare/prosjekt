@@ -48,10 +48,18 @@ def addCourse(request):
 
 @staff_member_required(login_url='/login/')
 def editCourse(request, courseid):
+    course = Course.objects.get(CourseID=courseid)
     context = {
-        'Course': Course.objects.get(CourseID=courseid),
+        'Course': course,
     }
+    if request.method == "POST":
+        course.Name = courseid
+        course.Name = request.POST.get("Name")
+        course.Term = request.POST.get("Term")
+        course.Description = request.POST.get("Description")
 
+        course.save()
+        return redirect('settings/courses')
 
     template = loader.get_template('admin/editCourse.html')
     return HttpResponse(template.render(context, request))
