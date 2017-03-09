@@ -66,8 +66,9 @@ def editCourse(request, courseid):
         'Course': course,
     }
     if request.method == "POST":
-        course.Name = courseid
+        course.CourseID = courseid
         course.Name = request.POST.get("Name")
+        course.Nickname = request.POST.get("Nickname")
         course.Term = request.POST.get("Term")
         course.Description = request.POST.get("Description")
 
