@@ -61,7 +61,7 @@ TEMPLATES = [
             "bota/templates",
             "bota/course/templates",
             "bota/account/templates",
-            "bota/admin/templates",
+            "bota/app_settings/templates",
 
             ],
         'APP_DIRS': True,
