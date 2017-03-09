@@ -36,6 +36,8 @@ def course(request, courseid):
     template = loader.get_template('course.html')
     return HttpResponse(template.render(context, request))
 
+
+
 def course_position(request):
     #The problem with having a separate view for a _div_
     #is that we can't have a fancy context-based url in urls.py
