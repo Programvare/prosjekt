@@ -5,19 +5,19 @@
             <h1>Add new course:</h1>
             <form action="/settings/courses/addCourse" method="post">{% csrf_token %}
                 <label>CourseID:</label><i style="color:red"> {{ CourseIDError }}</i><br>
-                <input type="text" name="CourseID" placeholder="form: AAA0000" required pattern="[A-Z]{3}\d{4}"><br>
+                <input type="text" name="CourseID" value="{{ CourseID }}" placeholder="form: AAA0000" required pattern="[A-Z]{3}\d{4}"><br>
 
                <label>Name:</label><br>
-                <input type="text" name="Name" required><br>
+                <input type="text" name="Name" value="{{ name }}" required><br>
 
                 <label>Nickname:</label><br>
-                <input type="text" name="Nickname"><br>
+                <input type="text" value="{{ nickname }}" name="Nickname"><br>
 
                 <label>Term:</label><br>
-                <input type="text" name="Term"><br>
+                <input type="text" value="{{ term }}" name="Term"><br>
 
                 <label>Description:</label><br>
-                <input type="text" name="Description"><br>
+                <input type="text" value = "{{ description }}"name="Description"><br>
 
                 <button type="submit">Save</button>
             </form>
