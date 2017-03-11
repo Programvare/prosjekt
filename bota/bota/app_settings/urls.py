@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'((?P<courseid>[A-Z]{3}\d+)/delTakes)', views.delTakesCourse),
     url(r'courses/((?P<courseid>[A-Z]{3}\d+)/edit)', views.editCourse),
     url(r'((?P<courseid>[A-Z]{3}\d+)/addTakes)', views.addTakesCourse),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/addTa$)', views.AddTAToCourse),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/addTa/(?P<username>\w{0,50})/)', views.AddTAToCourseUser),
     url(r'editCourse', views.userEditCourses),
     url(r'courses/addCourse', views.addCourse),
     url(r'addTakes/$', views.addTakes, name='takes'),

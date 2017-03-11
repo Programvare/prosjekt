@@ -5,16 +5,11 @@ from django.template import RequestContext
 from django.template import loader
 from django.contrib.auth.views import login as auth_login
 from django.contrib.auth import authenticate
-from bota import views
-#Placeholder function.
-#Use decorators in front of views that require logins
-#https://docs.djangoproject.com/en/1.10/topics/auth/default/#the-login-required-decorator
+
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, render_to_response
-
-from bota.course.models import Course
 
 
 class botaUserCreationForm(UserCreationForm):

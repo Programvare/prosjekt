@@ -4,6 +4,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin
+from django.contrib.auth.models import User
 
 
 @login_required(login_url='/login/')
@@ -64,6 +65,7 @@ def editCourse(request, courseid):
     course = Course.objects.get(CourseID=courseid)
     context = {
         'Course': course,
+        'TAin':TAin.objects.filter(CourseID__CourseID= courseid)
     }
     if request.method == "POST":
         course.CourseID = courseid
@@ -104,3 +106,17 @@ def userEditCourses(request):
     }
     template = loader.get_template('user/courseSettings.html')
     return HttpResponse(template.render(context, request))
+@login_required(login_url='/login')
+def AddTAToCourse(request, courseid):
+    context = {
+         'courseid': courseid,
+         'tas': TAin.objects.filter(CourseID__CourseID=courseid),
+         'users': User.objects.all()
+    }
+    return render(request, 'admin/addTaToCourse.html', context)
+def AddTAToCourseUser(request, courseid, username):
+    course = Course.objects.get(CourseID=courseid)
+    user = User.objects.get(username=username)
+    ta = TAin(CourseID=course, UserID=user)
+    ta.save()
+    return redirect('/settings/courses/'+courseid+'/edit')
