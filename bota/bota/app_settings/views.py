@@ -106,17 +106,28 @@ def userEditCourses(request):
     }
     template = loader.get_template('user/courseSettings.html')
     return HttpResponse(template.render(context, request))
-@login_required(login_url='/login')
+
+@staff_member_required(login_url='/login/')
 def AddTAToCourse(request, courseid):
+    if not TAin.objects.filter(CourseID__CourseID=courseid).exists():
+        user = User.objects.all()
+    else:
+        user = User.objects.exclude(id__in=TAin.objects.filter(CourseID__CourseID=courseid).values("UserID"))
     context = {
          'courseid': courseid,
-         'tas': TAin.objects.filter(CourseID__CourseID=courseid),
-         'users': User.objects.all()
+         'tas': user,
     }
     return render(request, 'admin/addTaToCourse.html', context)
+
+@staff_member_required(login_url='/login/')
 def AddTAToCourseUser(request, courseid, username):
     course = Course.objects.get(CourseID=courseid)
     user = User.objects.get(username=username)
     ta = TAin(CourseID=course, UserID=user)
     ta.save()
+    return redirect('/settings/courses/'+courseid+'/edit')
+
+@staff_member_required(login_url='/login/')
+def rmTaFromCourse(request, courseid, username):
+    TAin.objects.get(CourseID__CourseID=courseid, UserID__username=username).delete()
     return redirect('/settings/courses/'+courseid+'/edit')

@@ -28,7 +28,10 @@
                     <span class="glyphicon glyphicon-plus">
                     </span>Add new TA </div></a>
                     {% for ta in TAin %}
-                        <div style="background-color: #3a5c80; margin-bottom: 4px; padding:2px 0 2px 15px; color:white;" ><h4>{{ ta.UserID }}</h4></div>
+                        <div style="background-color: #3a5c80; margin-bottom: 4px; padding:2px 0 2px 15px; color:white;" >
+                            <h4 style="float:left;">{{ ta.UserID }}</h4>
+                                <a class="btn btn-danger" style=" text-decoration: none; float:right;" href="/settings/courses/{{ Course }}/rmTa/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </div>
                     {% endfor %}
 
         </div>
