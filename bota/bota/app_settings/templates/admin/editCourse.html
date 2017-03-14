@@ -1,27 +1,42 @@
 {% extends "admin/baseAdmin.html" %}
 {%  block contentAdmin %}
-    <div style="width: 80%; margin: 0px auto; height: 100%; padding-top:10px;">
-    <div style=" display: inline;  width:200px; background-color: blue">
+    <div style="width:80%; margin: 0px auto; height: 100%; padding-top:10px; ">
+        <div style="display:inline-block;">
+    <div style=" float:left;  width:350px;">
             <h1>Edit {{ Course.CourseID }}:</h1>
             <form action="/settings/courses/{{ Course }}/edit" method="post">{% csrf_token %}
                <label>Name:</label><br>
-                <input type="text" name="Name" value="{{ Course.Name }}" required><br>
+                <input style=width:50%;" type="text" name="Name" value="{{ Course.Name }}" required><br>
 
                 <label>Nickname:</label><br>
-                <input type="text" value="{{ Course.Nickname }}" name="Nickname"><br>
+                <input style=width:50%;" type="text" value="{{ Course.Nickname }}" name="Nickname"><br>
 
                 <label>Term:</label><br>
-                <input type="text" name="Term" value="{{ Course.Term }}"><br>
+                <input style=width:50%;" type="text" name="Term" value="{{ Course.Term }}"><br>
 
                 <label>Description:</label><br>
-                <input type="text" name="Description" value="{{ Course.Description }}"><br>
+                <input style=width:50%;" type="text" name="Description" value="{{ Course.Description }}"><br>
 
-                <button type="submit">Save</button>
+                <button style="width: 50%; height:40px; margin:5px 0 0 0; background-color:#090080; border:0px; color:white;" type="submit">Save</button>
             </form>
     </div>
-    <div style="display: inline; width:200px; background-color: white">
-
     </div>
+        <div style="width:300px; background-color: white; float:right; position: relative">
+            <h1>Add new TA:</h1>
+            <a href="/settings/courses/{{ Course.CourseID }}/addTa" style=" text-decoration: none;">
+                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                        Add new TA
+                </div>
+            </a>
+            {% for ta in TAin %}
+                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
+                   <div style="float:left;"><h4>{{ ta.UserID }}</h4></div>
+                        <a class="btn btn-danger" style=" text-decoration: none; float:right;" href="/settings/courses/{{ Course }}/rmTa/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </div>
+            {% endfor %}
+
+        </div>
     </div>
 
 {%  endblock %}
