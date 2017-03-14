@@ -20,4 +20,17 @@
     <p>No times are available.</p>
 {% endif %}
 <p></p><a href="/course/{{ ccourse }}/taTimes">Display all TA times</a>
+<h3>Assignments</h3>
+{% if assignments %}
+    <p>Here are the assignments for course {{ ccourse }} this week:</p>
+    {% for assignment in assignments %}
+        <p>
+            <h5>{{ assignment.display_name }}</h5>
+            <p><small>{{ assignment.display_delivery_deadline }}</small></p>
+            <p><small>{{ assignment.display_demo_deadline }}</small></p>
+        </li>
+    {% endfor %}
+{% else %}
+    <p>No assignments.</p>
+{% endif %}
 {% endblock %}
