@@ -1,7 +1,11 @@
 {% extends "admin/baseAdmin.html" %}
 {%  block contentAdmin %}
     <div style="width: 100%; height: 100%; padding:4% 10% 0 10%;">
-        <hi>Pick a user:</hi>
+    {% if tas.count == 0 %}
+        <h3>You cant add more users</h3>
+    {% else %}
+        <h3>Pick a user:</h3>
+    {% endif %}
     {% for user in tas %}
         <a href="/settings/courses/{{ courseid }}/addTa/{{ user.username }}/" style=" text-decoration: none; color:white;"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
          <h1>{{ user.username }}</h1>

@@ -21,18 +21,20 @@
             </form>
     </div>
     </div>
-        <div style="width:300px; background-color: white; float:right;">
+        <div style="width:300px; background-color: white; float:right; position: relative">
             <h1>Add new TA:</h1>
             <a href="/settings/courses/{{ Course.CourseID }}/addTa" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
-                    <span class="glyphicon glyphicon-plus">
-                    </span>Add new TA </div></a>
-                    {% for ta in TAin %}
-                        <div style="background-color: #3a5c80; margin-bottom: 4px; padding:2px 0 2px 15px; color:white;" >
-                            <h4 style="float:left;">{{ ta.UserID }}</h4>
-                                <a class="btn btn-danger" style=" text-decoration: none; float:right;" href="/settings/courses/{{ Course }}/rmTa/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                        </div>
-                    {% endfor %}
+                    <span class="glyphicon glyphicon-plus"></span>
+                        Add new TA
+                </div>
+            </a>
+            {% for ta in TAin %}
+                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
+                   <div style="float:left;"><h4>{{ ta.UserID }}</h4></div>
+                        <a class="btn btn-danger" style=" text-decoration: none; float:right;" href="/settings/courses/{{ Course }}/rmTa/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </div>
+            {% endfor %}
 
         </div>
     </div>
