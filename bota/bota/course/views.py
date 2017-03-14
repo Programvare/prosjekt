@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from .models import Takes, Course, TAin, TATime
+from .models import Takes, Course, TAin, TATime, Assignment
 from bota.course import queue
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -12,6 +12,7 @@ def courseMainPage(request):
     context = {
         'TAin': Course.objects.filter(id__in=TAin.objects.filter(UserID=request.user).values("CourseID")),
         'courses': Course.objects.filter(id__in=Takes.objects.filter(UserID=request.user).values("CourseID")),
+        'assignments': get_all_student_assignments(request)
     }
     template = loader.get_template('mainCoursePage.html')
     return HttpResponse(template.render(context, request))
@@ -23,11 +24,14 @@ def course(request, courseid):
     tatimes = get_week_times(courseid)
     can_enter = check_can_enter(courseid)
 
+    assignments = get_all_course_assignments(courseid)
+
     context = {
         'posision': queue.getPosision(request.user, courseid),
         'ccourse': courseid,
         'tatimes': tatimes,
         'can_enter': can_enter,
+        'assignments': assignments,
     }
     if queue.userInQueue(request.user, courseid):
         template = loader.get_template('courseInQueue.html')
@@ -96,6 +100,7 @@ def taTimes(request, courseid):
     return HttpResponse(template.render(context, request))
 
 
+# Help functions #
 def get_all_times(courseid):
     # Get list of all ta times for course
     try:
@@ -130,3 +135,33 @@ def check_can_enter(courseid):
             if now.time() >= time.start_time and now.time() <= time.end_time:
                 can_enter = True
     return can_enter
+
+
+def get_all_course_assignments(courseid):
+    # Get list of all assignments for course
+    try:
+        all_assignments = Assignment.objects.filter(course__CourseID=courseid).order_by('delivery_deadline')
+    except Assignment.DoesNotExist:
+        all_assignments = []
+    # Remove "old" assignments from list
+    assignments = []
+    for assignment in all_assignments:
+        if assignment.demo_deadline >= datetime.datetime.today():
+            assignments.append(assignment)
+    return assignments
+
+
+def get_all_student_assignments(request):
+    # Get list of all assignments for student
+    assignments = []
+    try:
+        courses = Course.objects.filter(id__in=Takes.objects.filter(UserID=request.user).values("CourseID"))
+        for courseid in courses:
+            course_assignments = get_all_course_assignments(courseid)
+            for assignment in course_assignments:
+                assignments.append(assignment)
+    except Assignment.DoesNotExist:
+        assignments = []
+    return assignments
+
+
