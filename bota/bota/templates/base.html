@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
     </head>
 
     <body>
@@ -15,9 +16,9 @@
             <div class="navbar-header">
               <a class="navbar-brand" href="/">boTA</a>
             </div>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a id = href="/settings">settings</a>
+                    <a href="/settings">settings</a>
                 </li>
                     {% if request.user.is_authenticated %}
                         <li>
@@ -32,6 +33,7 @@
           </div>
         </nav>
 
+
         <div class="container-fluid" style="margin-top:60px;">
         {% block content %}
 
@@ -41,7 +43,7 @@
         <!--This is a block for page exclusive scripts/js or CSS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{% static "js/bootstrap.js" %}"></script>
-
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         {% block script %}{% endblock %}
     </body>
 </html>
