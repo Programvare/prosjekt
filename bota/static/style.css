@@ -2,7 +2,7 @@
 Base admin
  */
 
-#MainWindowAdmin {
+.MainWindow {
     width: 900px;
     background-color: white;
     margin: 0 auto;
@@ -12,18 +12,9 @@ Base admin
     font-family: Helvetica
 }
 
-#MainContainer {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-}
-
-#editCourseWindow {
+.mainContainer {
     width:80%;
     margin: 0px auto;
     height: 100%;
     padding-top:10px;
-}
-#testsmal {
-    font-size: 5px;
 }

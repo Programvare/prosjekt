@@ -1,13 +1,12 @@
-{% extends "admin/baseAdmin.html" %}
+{% extends "contentFrameBase.html" %}
 {% block title %}Courses{% endblock %}
 {% block contentAdmin %}
-    <div style="width: 95%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
         <div style="display:inline-block;">
     <div style=" float:left;  width:500px;">
         {% if courses  %}
              <h3>Here are your courses:</h3>
         {% else %}
-            <h3>You have no courses, you can add one under <a href="settings/editCourse">settings:</a></h3>
+            <h3>You have no courses, you can add one under <a href="settings/editCourse">settings</a></h3>
         {% endif %}
         {% for course in courses %}
             <a style=" text-decoration: none;" href="/course/{{ course }}"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
@@ -38,5 +37,4 @@
                 </li>
             {% endfor %}
         </div>
-    </div>
 {% endblock %}

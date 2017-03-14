@@ -1,7 +1,6 @@
-{% extends "admin/baseAdmin.html" %}
+{% extends "contentFrameBase.html" %}
 {%  block contentAdmin %}
-    <div style="width: 100%; height: 100%; padding:4% 10% 0 10%; display: inline-block;">
-        <div style="width:40%; float:left;">
+        <div>
             <h1>Add new course:</h1>
             <form action="/settings/courses/addCourse" method="post">{% csrf_token %}
                 <label>CourseID:</label><i style="color:red"> {{ CourseIDError }}</i><br>
@@ -22,7 +21,5 @@
                 <button style="margin:5px 0 0 0; "type="submit">Save</button>
             </form>
         </div>
-
-    </div>
 
 {%  endblock %}
