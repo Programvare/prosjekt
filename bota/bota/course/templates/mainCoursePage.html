@@ -1,7 +1,9 @@
 {% extends "admin/baseAdmin.html" %}
 {% block title %}Courses{% endblock %}
 {% block contentAdmin %}
-    <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+    <div style="width: 95%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
+        <div style="display:inline-block;">
+    <div style=" float:left;  width:500px;">
         {% if courses  %}
              <h3>Here are your courses:</h3>
         {% else %}
@@ -18,7 +20,23 @@
         {% for courseTA in TAin %}
             <a style=" text-decoration: none;" href="/course/{{ courseTA }}/TA"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
                 <h3 style="color: white">{{ courseTA }} - {{ courseTA.Name }}</h3>
+            </div></a>
         {% endfor %}
     </div>
-
+    </div>
+        <div style="width:300px; background-color: white; float:right; position: relative">
+            {% if assignments %}
+                <h3>Here are your assignments:</h3>
+            {% else %}
+                <h3>You have no assignments</h3>
+            {% endif %}
+            {% for assignment in assignments %}
+                <li>
+                    <h5>{{ assignment.display_course }}: {{ assignment.display_name }}</h5>
+                    <p><small>{{ assignment.display_delivery_deadline }}</small></p>
+                    <p><small>{{ assignment.display_demo_deadline }}</small></p>
+                </li>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
