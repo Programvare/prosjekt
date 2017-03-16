@@ -1,36 +1,39 @@
 {% extends "base.html" %}
 {% block title %}{{ ccourse }}{% endblock %}
 {% block content %}
-<h1>Welcome to {{ ccourse }}</h1>
-<p>Are you waiting for a TA?</p>
-{% if can_enter %}
-<form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
-    <input type="submit" value="Put me in the queue!">
-</form>
-{% else %}
-<p>There are no TAs currently available, check TA times below for availability</p>
-{% endif %}
-<h3>TA times</h3>
-{% if tatimes %}
-    <p>Here are the TA times for course {{ ccourse }} this week:</p>
-    {% for time in tatimes %}
-        <li>{{ time.display_weekly }}</li>
-    {% endfor %}
-{% else %}
-    <p>No times are available.</p>
-{% endif %}
-<p></p><a href="/course/{{ ccourse }}/taTimes">Display all TA times</a>
-<h3>Assignments</h3>
-{% if assignments %}
-    <p>Here are the assignments for course {{ ccourse }} this week:</p>
-    {% for assignment in assignments %}
-        <p>
-            <h5>{{ assignment.display_name }}</h5>
-            <p><small>{{ assignment.display_delivery_deadline }}</small></p>
-            <p><small>{{ assignment.display_demo_deadline }}</small></p>
-        </li>
-    {% endfor %}
-{% else %}
-    <p>No assignments.</p>
-{% endif %}
+    <h1>Welcome to {{ ccourse }}</h1>
+    <p>Are you waiting for a TA?</p>
+
+    {% if can_enter %}
+    <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
+        <input type="submit" value="Put me in the queue!">
+    </form>
+    {% else %}
+    <p>There are no TAs currently available, check TA times below for availability</p>
+    {% endif %}
+
+    <h3>TA times</h3>
+    {% if tatimes %}
+        <p>Here are the TA times for course {{ ccourse }} this week:</p>
+        {% for time in tatimes %}
+            <li>{{ time.display_weekly }}</li>
+        {% endfor %}
+    {% else %}
+        <p>No times are available.</p>
+    {% endif %}
+
+    <a href="/course/{{ ccourse }}/taTimes">Display all TA times</a>
+    <h3>Assignments</h3>
+    {% if assignments %}
+        <p>Here are the assignments for course {{ ccourse }} this week:</p>
+
+        {% for assignment in assignments %}
+                <h5>{{ assignment.display_name }}</h5>
+                <p><small>{{ assignment.display_delivery_deadline }}</small></p>
+                <p><small>{{ assignment.display_demo_deadline }}</small></p>
+        {% endfor %}
+
+    {% else %}
+        <p>No assignments.</p>
+    {% endif %}
 {% endblock %}
