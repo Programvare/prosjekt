@@ -64,10 +64,11 @@ def courseTA_next(request):
     #is that we can't have a fancy context-based url in urls.py
     #request.META gives the current url path. index [-2] should return the current courseid
     courseid = request.META['HTTP_REFERER'].split('/')[-2]
+    next_queue = queue.getNext(courseid)
+    print(next_queue)
 
-    print(queue.getNext(courseid))
     context = {
-        'next': queue.getNext(courseid),
+        'next': "hei",
         'ccourse': courseid,
     }
 
