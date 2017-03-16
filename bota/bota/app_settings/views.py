@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin, Assignment
 from django.contrib.auth.models import User
+import datetime
 
 
 @login_required(login_url='/login/')
@@ -136,7 +137,7 @@ def rmTaFromCourse(request, courseid, username):
 @staff_member_required(login_url='/login/')
 def rmAs(request, courseid, id):
     Assignment.objects.get(id=id).delete()
-    return redirect('/settings/editCourse/'+courseid+'/')
+    return redirect('/settings/courses/'+courseid+'/edit')
 
 @staff_member_required(login_url='/login/')
 def addAs(request, courseid):
@@ -148,7 +149,7 @@ def addAs(request, courseid):
         demo_deadline = request.POST.get("demo_deadline")
         a = Assignment(course=Course.objects.get(CourseID=courseid), name=name, description=description, delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
         a.save();
-        return redirect('settings/courses/'+courseid+'/editCourse')
+        return redirect('/settings/courses/'+courseid+'/edit')
     return render(request, 'admin/newAs.html',context)
 
 @staff_member_required(login_url='/login/')
