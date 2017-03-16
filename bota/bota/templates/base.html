@@ -26,8 +26,9 @@
 
               <a class="navbar-brand" href="/">BoTA</a>
             </div>
-            {% if not request.user.is_staff %}
+
           <div class="collapse navbar-collapse" id="mynavbar">
+          {% if not request.user.is_staff %}
               <ul class="nav navbar-nav">
                 <li>
                     <a href="/course" class = "navbar-elements"><span class="glyphicon glyphicon-education"></span> My Courses</a>
