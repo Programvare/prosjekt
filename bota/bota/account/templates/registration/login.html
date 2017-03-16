@@ -5,8 +5,8 @@
 					<h1>Login to Your Account</h1><br>
 
 				  <form action="{% url 'login' %}" method="post" accept-charset="utf-8">{% csrf_token %}
-					<input type="text" name="username" placeholder="Username">
-					<input type="password" name="password" placeholder="Password">
+					<input class="form-control" type="text" name="username" placeholder="Username">
+					<input class="form-control" type="password" name="password" placeholder="Password">
 					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
 				  </form>
 

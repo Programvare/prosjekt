@@ -1,0 +1,42 @@
+/*base */
+
+.navbar-elements {
+    font-size: 12px;
+}
+/*
+Base admin
+ */
+
+.MainWindow {
+    width: 70%;
+    background-color: white;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    box-shadow: 0px 0px 5px #888888;
+    font-family: Helvetica
+}
+
+.mainContainer {
+    width:80%;
+    margin: 0px auto;
+    position: relative;
+    padding-top:10px;'
+    text-align:center;
+    overflow: auto;
+
+}
+
+/* Form information and info pages */
+.gridDiv {
+    width:300px;
+    vertical-align:top;
+    display:inline-block;
+}
+.gridDivCourse{
+    width:100%;
+    vertical-align:top;
+    display:inline-block;
+}
+.errorLabel {
+    color:red;
+}

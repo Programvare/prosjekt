@@ -1,16 +1,15 @@
-{% extends "admin/baseAdmin.html" %}
+{% extends "contentFrameBase.html" %}
 {%  block contentAdmin %}
-        <div style="width: 80%; background-color: white; margin: 0px auto; height: 100%; padding-top:10px;">
             <h1>You can:</h1>
             {% if is_staff %}
-                <a href="/settings/courses" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Add, edit and remove courses</div></a>
-                <a style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Promote users to admin</div></a>
+                <a href="/settings/courses" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Add, edit or remove courses</div></a>
+                <a style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Promote user to admin</div></a>
                 <a style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Edit your account</div></a>
             {% else %}
              <a href="/settings/editCourse" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Add or remove courses</div></a>
             <a style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Edit your account</div></a>
             {% endif %}
-        </div>
+
 {%  endblock %}
 
 
