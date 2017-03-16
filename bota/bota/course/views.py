@@ -56,6 +56,21 @@ def course_position(request):
     template = loader.get_template('course_position_div.html')
     return HttpResponse(template.render(context, request))
 
+def courseTA_next(request):
+    #The problem with having a separate view for a _div_
+    #is that we can't have a fancy context-based url in urls.py
+    #request.META gives the current url path. index [-2] should return the current courseid
+    courseid = request.META['HTTP_REFERER'].split('/')[-2]
+
+    print(queue.getNext(courseid))
+    context = {
+        'next': queue.getNext(courseid),
+        'ccourse': courseid,
+    }
+
+    template = loader.get_template('courseTA_next_div.html')
+    return HttpResponse(template.render(context, request))
+
 
 @login_required(login_url='/login/')
 def courseTA(request, courseid):
