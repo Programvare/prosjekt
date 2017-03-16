@@ -65,10 +65,9 @@ def courseTA_next(request):
     #request.META gives the current url path. index [-2] should return the current courseid
     courseid = request.META['HTTP_REFERER'].split('/')[-2]
     next_queue = queue.getNext(courseid)
-    print(next_queue)
 
     context = {
-        'next': "hei",
+        'next': next_queue,
         'ccourse': courseid,
     }
 
