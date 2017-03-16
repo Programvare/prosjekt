@@ -1,7 +1,11 @@
 {% extends "contentFrameBase.html" %}
 {% block title %}Add Course{% endblock %}
 {% block contentAdmin %}
-     <h3>Add courses:</h3>
+    {% if courses %}
+        <h3>Add courses:</h3>
+    {% else %}
+        <h3>There are no more courses available :/</h3>
+    {% endif %}
         {% for course in courses %}
         <div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
             <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">

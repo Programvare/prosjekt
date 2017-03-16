@@ -26,19 +26,25 @@
 
               <a class="navbar-brand" href="/">BoTA</a>
             </div>
-
+            {% if not request.user.is_staff %}
           <div class="collapse navbar-collapse" id="mynavbar">
+              <ul class="nav navbar-nav">
+                <li>
+                    <a href="/course" class = "navbar-elements"><span class="glyphicon glyphicon-education"></span> My Courses</a>
+                </li>
+            </ul>
+          {% endif %}
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/settings"><span class="glyphicon glyphicon-wrench"></span> settings</a>
+                    <a href="/settings" class = "navbar-elements"><span class="glyphicon glyphicon-wrench"></span> settings</a>
                 </li>
                     {% if request.user.is_authenticated %}
                         <li>
-                            <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+                            <a href="/logout" class = "navbar-elements"><span class="glyphicon glyphicon-log-out"></span> logout</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="/login"><span class="glyphicon glyphicon-log-in"></span> login</a>
+                            <a href="/login" class = "navbar-elements"><span class="glyphicon glyphicon-log-in"></span> login</a>
                         </li>
                     {% endif %}
             </ul>
