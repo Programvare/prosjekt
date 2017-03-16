@@ -1,13 +1,39 @@
 {% extends "base.html" %}
+{% block script%}
+
+<!--The script is inside the HTML file so that the Jinja2 tag "url" is resolved
+This is so we don't need to hardcode the url in-->
+<script>
+$(document).ready(function() {
+    console.log("started script");
+    var refreshTime = 5000;
+
+    function refreshNext(){
+        console.log("refreshed div");
+        $.ajax({
+            url: '{% url 'course:course_next' %}',
+            success: function(data) {
+            $('.courseTA_next_div').html(data);
+            }
+        });
+
+    }
+
+    setInterval(function(){refreshNext()}, refreshTime);
+
+});
+</script>
+{% endblock %}
 {% block title %}{{ ccourse }}{% endblock %}
 {% block content %}
+
 <h1>Welcome to {{ ccourse }}</h1>
-    {% if next == "" %}
-        <p>No one is in queue</p>
-    {% else %}
-        <p>The next in line is: <b>{{ next }}</b></p>
-    {% endif %}
+
+{% include 'courseTA_next_div.html' %}
+
+
 <form action="/course/{{ ccourse }}/rmQueue" method ="post">{% csrf_token %}
-    <input type="submit" value="Next!">
+        <input type="submit" value="Next!">
 </form>
+
 {% endblock %}
