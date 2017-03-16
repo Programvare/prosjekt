@@ -4492,79 +4492,72 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-right: 0;
   }
 }.navbar-default {
-  background-color: #090080;
-  border-color: #0c0660;
+  background-color: #ffffff;
+  border-color: #5b8cbf;
 }
 .navbar-default .navbar-brand {
-  color: #fbfbfd;
+  color: #3a5c80;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #b7b7bf;
+  color: #3a5c80;
 }
 .navbar-default .navbar-text {
-  color: #fbfbfd;
+  color: #3a5c80;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #fbfbfd;
+  color: #3a5c80;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #b7b7bf;
-  background-color: #0c0660;
+  color: #3a5c80;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #b7b7bf;
-  background-color: #0c0660;
+  color: #3a5c80;
+  background-color: #5b8cbf;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #b7b7bf;
-  background-color: #0c0660;
+  color: #3a5c80;
+  background-color: #5b8cbf;
 }
 .navbar-default .navbar-toggle {
-  border-color: #0c0660;
+  border-color: #5b8cbf;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #0c0660;
+  background-color: #5b8cbf;
 }
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: #fbfbfd;
+  background-color: #3a5c80;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #fbfbfd;
+  border-color: #3a5c80;
 }
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-  color: #fbfbfd;
-  background-color: #b7b7bf;
+.navbar-default .navbar-link {
+  color: #3a5c80;
+}
+.navbar-default .navbar-link:hover {
+  color: #3a5c80;
 }
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #fbfbfd;
+    color: #3a5c80;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-    color: #b7b7bf;
+    color: #3a5c80;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #b7b7bf;
-    background-color: #0c0660;
-  }
-  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
-  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
-  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-    color: #ccc;
-    background-color: transparent;
+    color: #3a5c80;
+    background-color: #5b8cbf;
   }
 }
 .navbar-default .navbar-link {
