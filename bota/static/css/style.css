@@ -18,3 +18,11 @@ Base admin
     height: 100%;
     padding-top:10px;
 }
+
+/* Form information and info pages */
+.gridDiv {
+    width:300px;
+}
+.errorLabel {
+    color:red;
+}
