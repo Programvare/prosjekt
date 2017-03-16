@@ -35,5 +35,22 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
+            <div class = "gridDiv">
+            <h2>Add assignment: </h2>
+            <a href="/settings/courses/{{ Course.CourseID }}/addAs" style=" text-decoration: none;">
+                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+                    <span class="glyphicon glyphicon-plus"></span> Add new assignment
+                </div>
+            </a>
+
+            {% for item in assignment %}
+                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
+                   <h4 style="float:left">{{ item.name }}</h4>
+                    <div class="btn-group btn-group-sm" style="float:right;">
+                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ item.course }}/editAs/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ item.course }}/rmAs/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
 {%  endblock %}

@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
-from bota.course.models import Takes, Course, TAin
+from bota.course.models import Takes, Course, TAin, Assignment
 from django.contrib.auth.models import User
 
 
@@ -64,6 +64,7 @@ def addCourse(request):
 def editCourse(request, courseid):
     course = Course.objects.get(CourseID=courseid)
     context = {
+        'assignment': Assignment.objects.filter(course__CourseID=courseid),
         'Course': course,
         'TAin':TAin.objects.filter(CourseID__CourseID= courseid)
     }
@@ -131,3 +132,36 @@ def AddTAToCourseUser(request, courseid, username):
 def rmTaFromCourse(request, courseid, username):
     TAin.objects.get(CourseID__CourseID=courseid, UserID__username=username).delete()
     return redirect('/settings/courses/'+courseid+'/edit')
+
+@staff_member_required(login_url='/login/')
+def rmAs(request, courseid, id):
+    Assignment.objects.get(id=id).delete()
+    return redirect('/settings/editCourse/'+courseid+'/')
+
+@staff_member_required(login_url='/login/')
+def addAs(request, courseid):
+    context = {'courseid':courseid}
+    if request.method == "POST":
+        name = request.POST.get("Name")
+        description = request.POST.get("description")
+        delivery_deadline = request.POST.get("delivery_deadline")
+        demo_deadline = request.POST.get("demo_deadline")
+        a = Assignment(course=Course.objects.get(CourseID=courseid), name=name, description=description, delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
+        a.save();
+        return redirect('settings/courses/'+courseid+'/editCourse')
+    return render(request, 'admin/newAs.html',context)
+
+@staff_member_required(login_url='/login/')
+def editAs(request, id, courseid):
+
+    context = {'As':Assignment.objects.get(id=id),
+               'courseid':courseid,}
+    if request.method == "POST":
+        name = request.POST.get("Name")
+        description = request.POST.get("description")
+        delivery_deadline = request.POST.get("delivery_deadline")
+        demo_deadline = request.POST.get("demo_deadline")
+        a = Assignment(course=Course.objects.get(CourseID=courseid), name=name, description=description, delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
+        a.save();
+        return redirect('settings/courses')
+    return render(request, 'admin/editAs.html',context)
