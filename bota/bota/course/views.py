@@ -22,6 +22,7 @@ def courseMainPage(request):
 def course(request, courseid):
 
     tatimes = get_week_times(courseid)
+    all_ta_times = get_all_times_after_week(courseid)
     can_enter = check_can_enter(courseid)
 
     assignments = get_all_course_assignments(courseid)
@@ -32,7 +33,9 @@ def course(request, courseid):
         'tatimes': tatimes,
         'can_enter': can_enter,
         'assignments': assignments,
+        'all_ta_times': all_ta_times
     }
+
     if queue.userInQueue(request.user, courseid):
         template = loader.get_template('courseInQueue.html')
         return HttpResponse(template.render(context, request))
@@ -87,6 +90,8 @@ def removeFromCourse(request, courseid):
     return HttpResponse(template.render(context, request))
 
 
+"""
+Removed and placed in div
 @login_required(login_url='/login/')
 def taTimes(request, courseid):
     all_tatimes = get_all_times(courseid)
@@ -98,7 +103,7 @@ def taTimes(request, courseid):
 
     template = loader.get_template('ta_time.html')
     return HttpResponse(template.render(context, request))
-
+"""
 
 # Help functions #
 def get_all_times(courseid):
@@ -111,6 +116,18 @@ def get_all_times(courseid):
     tatimes = []
     for time in all_tatimes:
         if time.date >= datetime.date.today():
+            tatimes.append(time)
+    return tatimes
+
+def get_all_times_after_week(courseid):
+    try:
+        all_tatimes = TATime.objects.filter(course__CourseID=courseid).order_by('date')
+    except TATime.DoesNotExist:
+        all_tatimes = []
+    # Remove "old" times from list
+    tatimes = []
+    for time in all_tatimes:
+        if time.date >= datetime.date.today() + datetime.timedelta(days=7):
             tatimes.append(time)
     return tatimes
 
