@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block title %}{{ ccourse }}{% endblock %}
+
+{% block script %}
+    <script>
+        $("#tatimes").hide();
+        $("#display").click(function(){
+            $("#tatimes").toggle();
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
     <h1>Welcome to {{ ccourse }}</h1>
     <p>Are you waiting for a TA?</p>
@@ -21,8 +31,10 @@
     {% else %}
         <p>No times are available.</p>
     {% endif %}
-
-    <a href="/course/{{ ccourse }}/taTimes">Display all TA times</a>
+    <button id="display" type="button">All TA times</button>
+        <div id="tatimes">
+            {% include "ta_time.html"%}
+        </div>
     <h3>Assignments</h3>
     {% if assignments %}
         <p>Here are the assignments for course {{ ccourse }} this week:</p>
