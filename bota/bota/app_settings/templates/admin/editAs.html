@@ -2,9 +2,9 @@
 {%  block contentAdmin %}
         <div class = "gridDiv">
 
-            <h1>Add new Assignment:</h1>
+            <h1>Edit Assignment:</h1>
 
-            <form action="/settings/courses/{{ courseid }}/addAs/" method="post">{% csrf_token %}
+            <form action="/settings/courses/{{ courseid }}/editAs/{{ As.id}}/" method="post">{% csrf_token %}
                 <label >Name:</label>
                 <input type="text" class="form-control"  name="Name" value="{{ As.name }}" required>
 
@@ -12,14 +12,13 @@
                 <input type="text" class="form-control"  value="{{ As.description }}" name="description">
 
                 <label>delivery_deadline:</label>
-                <input type="text" class="form-control"  value="{{ As.delivery_deadline }}" name="delivery_deadline">
+                <input  type="datetime-local" type="text" class="form-control"  value="{{ delivery_deadline }}" name="delivery_deadline"required>
 
                 <label>demo_deadline:</label>
-                <input type="text" class="form-control"  value = "{{ As.demo_deadline }}"name="demo_deadline">
+                <input  type="datetime-local" type="text" class="form-control"  value = "{{ demo_deadline }}"name="demo_deadline" required>
 
                 <button class = "btn btn-default" style=" margin:5px 0 0 0; "type="submit">Save</button>
             </form>
 
         </div>
-
 {%  endblock %}
