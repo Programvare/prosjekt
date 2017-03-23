@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "contentFrameBase.html" %}
 {% block script%}
 
 <!--The script is inside the HTML file so that the Jinja2 tag "url" is resolved
@@ -25,15 +25,14 @@ $(document).ready(function() {
 </script>
 {% endblock %}
 {% block title %}{{ ccourse }}{% endblock %}
-{% block content %}
+{% block contentAdmin %}
 
-<h1>Welcome to {{ ccourse }}</h1>
+        <div align="center">
+                <h1>{{ ccourse }} - {{ course_model.Name }}</h1>
+                <h3>Queue:</h3>
+        </div>
 
-{% include 'courseTA_next_div.html' %}
 
-
-<form action="/course/{{ ccourse }}/rmQueue" method ="post">{% csrf_token %}
-        <input type="submit" value="Next!">
-</form>
+        {% include 'courseTA_next_div.html' %}
 
 {% endblock %}

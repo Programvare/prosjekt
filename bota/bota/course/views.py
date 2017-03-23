@@ -27,8 +27,11 @@ def course(request, courseid):
 
     assignments = get_all_course_assignments(courseid)
 
+    course_model = Course.objects.get(CourseID=courseid)
+
     context = {
         'posision': queue.getPosision(request.user, courseid),
+        'course_model': course_model,
         'ccourse': courseid,
         'tatimes': tatimes,
         'can_enter': can_enter,
@@ -54,6 +57,7 @@ def course_position(request):
     context = {
         'posision': position,
         'ccourse': courseid,
+        'course_model': Course.objects.get(CourseID=courseid),
     }
 
     template = loader.get_template('course_position_div.html')
@@ -69,6 +73,7 @@ def courseTA_next(request):
     context = {
         'next': next_queue,
         'ccourse': courseid,
+        'course_model': Course.objects.get(CourseID=courseid),
     }
 
     template = loader.get_template('courseTA_next_div.html')
@@ -79,7 +84,8 @@ def courseTA_next(request):
 def courseTA(request, courseid):
     context = {
         'ccourse': courseid,
-        'next' : queue.getNext(courseid),
+        'next': queue.getNext(courseid),
+        'course_model': Course.objects.get(CourseID=courseid),
     }
     template = loader.get_template('courseTA.html')
     return HttpResponse(template.render(context, request))
@@ -99,7 +105,8 @@ def removeFromCourse(request, courseid):
     queue.removeFromQueue(courseid)
     context = {
         'ccourse': courseid,
-        'next' : queue.getNext(courseid),
+        'next': queue.getNext(courseid),
+        'course_model': Course.objects.get(CourseID=courseid),
     }
     template = loader.get_template('courseTA.html')
     return HttpResponse(template.render(context, request))

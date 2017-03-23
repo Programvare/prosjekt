@@ -1,14 +1,12 @@
 <!--NOTE: jQuery can't select #id elements for some reason. Use class instead-->
-<div class="course_position_div">
-<h1>You are in the queue for {{ ccourse }}</h1>
+<div class="course_position_div" align="center">
 
     {% if posision == 0 %}
-       <div id="pos0"> <p>It is your turn! </p></div>
-
+       <div id="pos0"> <p style="font-size:30px">It is your turn! </p></div>
     {% elif posision == 1 %}
-        <p>You are next in line! </p>
+        <p style="font-size:30px">There is {{ posision }} student ahead of you </p>
     {% else %}
-        <p>There are {{ posision }} students ahead of you </p>
-{% endif %}
+        <p style="font-size:30px">There are {{ posision }} students ahead of you </p>
+    {% endif %}
 </div>
 

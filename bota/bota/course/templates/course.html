@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "contentFrameBase.html" %}
 {% block title %}{{ ccourse }}{% endblock %}
 
 {% block script %}
@@ -10,42 +10,53 @@
     </script>
 {% endblock %}
 
-{% block content %}
-    <h1>Welcome to {{ ccourse }}</h1>
-    <p>Are you waiting for a TA?</p>
+{% block contentAdmin %}
 
-    {% if can_enter %}
-    <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
-        <input type="submit" value="Put me in the queue!">
-    </form>
-    {% else %}
-    <p>There are no TAs currently available, check TA times below for availability</p>
-    {% endif %}
+    <h1>{{ ccourse }} - {{ course_model.Name }}</h1>
 
-    <h3>TA times</h3>
-    {% if tatimes %}
-        <p>Here are the TA times for course {{ ccourse }} this week:</p>
-        {% for time in tatimes %}
-            <li>{{ time.display_weekly }}</li>
-        {% endfor %}
-    {% else %}
-        <p>No times are available.</p>
-    {% endif %}
-    <button id="display" type="button">All TA times</button>
-        <div id="tatimes">
-            {% include "ta_time.html"%}
-        </div>
-    <h3>Assignments</h3>
-    {% if assignments %}
-        <p>Here are the assignments for course {{ ccourse }} this week:</p>
+    <div class ="gridDivCourse" align="center">
+        <h4>Are you waiting for a TA?</h4>
 
-        {% for assignment in assignments %}
-                <h5>{{ assignment.display_name }}</h5>
-                <p><small>{{ assignment.display_delivery_deadline }}</small></p>
-                <p><small>{{ assignment.display_demo_deadline }}</small></p>
-        {% endfor %}
+        {% if can_enter %}
+        <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
+            <input type="submit" value="Put me in the queue!">
+        </form>
+        {% else %}
+        <p>There are no TAs currently available, check TA times below for availability</p>
+        {% endif %}
+    </div>
 
-    {% else %}
-        <p>No assignments.</p>
-    {% endif %}
+    <div class ="gridDivCourse">
+        <h4>TA times:</h4>
+        {% if tatimes %}
+            <p>Here are the TA times this week:
+            {% for time in tatimes %}
+                <li>{{ time.display_weekly }}</li>
+            {% endfor %}
+            </p>
+        {% else %}
+            <p>No times are available.</p>
+        {% endif %}
+        <button id="display" type="button">All TA times</button>
+            <div id="tatimes">
+                {% include "ta_time.html"%}
+            </div>
+    </div>
+
+    <div class ="gridDivCourse">
+        <h4>Assignments:</h4>
+        {% if assignments %}
+            <p>Here are the assignments for course {{ ccourse }} this week:</p>
+
+            {% for assignment in assignments %}
+                    <h5>{{ assignment.display_name }}</h5>
+                    <p><small>{{ assignment.display_delivery_deadline }}</small></p>
+                    <p><small>{{ assignment.display_demo_deadline }}</small></p>
+            {% endfor %}
+
+        {% else %}
+            <p>No assignments.</p>
+        {% endif %}
+    </div>
+
 {% endblock %}
