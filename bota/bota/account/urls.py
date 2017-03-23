@@ -1,11 +1,9 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
-from . import views
+from bota import views
 
-#URLS FOR LOGGING IN/SIGNUP
-#Custom login uses auth_views.login
 urlpatterns = [
-    url(r'^login/$',views.login,  name="login"),
+    url(r'^login/$', views.login, name="login"),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
 ]
