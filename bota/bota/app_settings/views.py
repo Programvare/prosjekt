@@ -200,7 +200,7 @@ def edit_ta_time(request, id, courseid):
     context = {'tat': tat,
                'date' : str(tat.date),
                'start_time' : str(tat.start_time),
-               'end_time:' : str(tat.end_time),
+               'end_time' : str(tat.end_time),
                'teaching_assistant' : tat.teaching_assistant,
                'room' :tat.room,
                'courseid' : courseid,
@@ -215,3 +215,9 @@ def edit_ta_time(request, id, courseid):
         tat.save()
         return redirect('/settings/courses/' + courseid + '/edit')
     return render(request, 'admin/edit_ta_time.html', context)
+
+
+@staff_member_required(login_url='/login/')
+def rm_ta_time(request, courseid, id):
+    TATime.objects.get(id=id).delete()
+    return redirect('/settings/courses/'+courseid+'/edit')

@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'((?P<courseid>[A-Z]{3}\d+)/addAs/)', views.addAs),
     url(r'((?P<courseid>[A-Z]{3}\d+)/rmAs/(?P<id>\w{0,50})/)', views.rmAs),
     url(r'((?P<courseid>[A-Z]{3}\d+)/add_ta_time/)', views.add_ta_time),
+    url(r'((?P<courseid>[A-Z]{3}\d+)/rm_ta_time/(?P<id>\w{0,50})/)', views.rm_ta_time),
     url(r'((?P<courseid>[A-Z]{3}\d+)/edit_ta_time/(?P<id>\w{0,50})/)', views.edit_ta_time),
     url(r'editCourse', views.userEditCourses),
     url(r'courses/addCourse', views.addCourse),
