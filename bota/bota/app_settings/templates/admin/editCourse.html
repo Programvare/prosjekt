@@ -35,6 +35,24 @@
                 </div>
             {% endfor %}
         </div>
+        <div class = "gridDiv">
+            <h2>Add Ta Time: </h2>
+            <a href="/settings/courses/{{ Course.CourseID }}/add_ta_time" style=" text-decoration: none;">
+                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+                    <span class="glyphicon glyphicon-plus"></span> Add new TA Time
+                </div>
+            </a>
+
+            {% for time in ta_times %}
+                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
+                   <h4 style="float:left">{{ time.date }}</h4>
+                    <div class="btn-group btn-group-sm" style="float:right;">
+                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ time.course }}/edit_ta_time/{{ time.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ item.course }}/rmAs/{{ time.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
             <div class = "gridDiv">
             <h2>Add assignment: </h2>
             <a href="/settings/courses/{{ Course.CourseID }}/addAs" style=" text-decoration: none;">
@@ -53,4 +71,5 @@
                 </div>
             {% endfor %}
             </div>
+
 {%  endblock %}

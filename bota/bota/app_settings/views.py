@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.template import loader
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
-from bota.course.models import Takes, Course, TAin, Assignment
+from bota.course.models import Takes, Course, TAin, Assignment, TATime
 from django.contrib.auth.models import User
 
 
@@ -66,7 +66,8 @@ def editCourse(request, courseid):
     context = {
         'assignment': Assignment.objects.filter(course__CourseID=courseid),
         'Course': course,
-        'TAin':TAin.objects.filter(CourseID__CourseID= courseid)
+        'TAin':TAin.objects.filter(CourseID__CourseID= courseid),
+        'ta_times':TATime.objects.filter(course__CourseID= courseid)
     }
     if request.method == "POST":
         course.CourseID = courseid
@@ -172,3 +173,45 @@ def editAs(request, id, courseid):
         a.save();
         return redirect('/settings/courses/'+courseid+'/edit')
     return render(request, 'admin/editAs.html',context)
+
+@staff_member_required(login_url='/login/')
+def add_ta_time(request,courseid):
+    context = {'courseid': courseid}
+    if request.method == "POST":
+        course = Course.objects.get(CourseID=courseid)
+        date = request.POST.get("date")
+        start_time = request.POST.get("start_time")
+        end_time = request.POST.get("end_time")
+        teaching_assistant = request.POST.get("teaching_assistant")
+        room = request.POST.get("room")
+        tat = TATime(course=course,
+                     date=date,
+                     start_time = start_time,
+                     end_time = end_time,
+                     teaching_assistant = teaching_assistant,
+                     room = room)
+        tat.save()
+        return redirect('/settings/courses/' + courseid + '/edit')
+    return render(request, 'admin/new_ta_time.html',context)
+
+@staff_member_required(login_url='/login/')
+def edit_ta_time(request, id, courseid):
+    tat = TATime.objects.get(id = id)
+    context = {'tat': tat,
+               'date' : str(tat.date),
+               'start_time' : str(tat.start_time),
+               'end_time:' : str(tat.end_time),
+               'teaching_assistant' : tat.teaching_assistant,
+               'room' :tat.room,
+               'courseid' : courseid,
+               'id':tat.id}
+    if request.method == "POST":
+        tat.course = Course.objects.get(CourseID=courseid)
+        tat.date = request.POST.get("date")
+        tat.start_time = request.POST.get("start_time")
+        tat.end_time = request.POST.get("end_time")
+        tat.teaching_assistant = request.POST.get("teaching_assistant")
+        tat.room = request.POST.get("room")
+        tat.save()
+        return redirect('/settings/courses/' + courseid + '/edit')
+    return render(request, 'admin/edit_ta_time.html', context)
