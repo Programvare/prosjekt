@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
-from bota import views
+from . import views
 
 urlpatterns = [
     url(r'^login/$', views.login, name="login"),

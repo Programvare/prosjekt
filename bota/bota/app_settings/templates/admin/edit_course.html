@@ -2,42 +2,42 @@
 {%  block contentAdmin %}
         <div class = "gridDiv">
 
-                <h2>Edit {{ Course.CourseID }}:</h2>
+                <h2>Edit {{ course.CourseID }}:</h2>
 
-                <form action="/settings/courses/{{ Course }}/edit" method="post">{% csrf_token %}
+                <form action="/settings/courses/{{ course }}/edit" method="post">{% csrf_token %}
                    <label>Name:</label>
-                    <input class="form-control"   style="width:50%;" type="text" name="Name" value="{{ Course.Name }}" required>
+                    <input class="form-control"   style="width:50%;" type="text" name="name" value="{{ course.Name }}" required>
 
                     <label>Nickname:</label>
-                    <input class="form-control"  style="width:50%;" type="text" value="{{ Course.Nickname }}" name="Nickname">
+                    <input class="form-control"  style="width:50%;" type="text" value="{{ course.Nickname }}" name="nickname">
 
                     <label>Term:</label>
-                    <input class="form-control"  style="width:50%;" type="text" name="Term" value="{{ Course.Term }}">
+                    <input class="form-control"  style="width:50%;" type="text" name="term" value="{{ course.Term }}">
 
                     <label>Description:</label>
-                    <input class="form-control"  style="width:50%;" type="text" name="Description" value="{{ Course.Description }}">
+                    <input class="form-control"  style="width:50%;" type="text" name="description" value="{{ course.Description }}">
 
                     <button class="form-control"  style="width: 50%; height:40px; margin:5px 0 0 0; background-color:#090080; border:0px; color:white;" type="submit">Save</button>
                 </form>
         </div>
         <div class = "gridDiv">
             <h2>Add new TA:</h2>
-            <a href="/settings/courses/{{ Course.CourseID }}/addTa" style=" text-decoration: none;">
+            <a href="/settings/courses/{{ course.CourseID }}/add_ta" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
                     <span class="glyphicon glyphicon-plus"></span> Add new TA
                 </div>
             </a>
 
-            {% for ta in TAin %}
+            {% for ta in ta_in %}
                 <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
                    <div style="float:left;"><h4>{{ ta.UserID }}</h4></div>
-                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ Course }}/rmTa/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ course.CourseID }}/rm_ta/{{ ta.UserID }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                 </div>
             {% endfor %}
         </div>
         <div class = "gridDiv">
             <h2>Add Ta Time: </h2>
-            <a href="/settings/courses/{{ Course.CourseID }}/add_ta_time" style=" text-decoration: none;">
+            <a href="/settings/courses/{{ course.CourseID }}/add_ta_time" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
                     <span class="glyphicon glyphicon-plus"></span> Add new TA Time
                 </div>
@@ -55,7 +55,7 @@
             </div>
             <div class = "gridDiv">
             <h2>Add assignment: </h2>
-            <a href="/settings/courses/{{ Course.CourseID }}/addAs" style=" text-decoration: none;">
+            <a href="/settings/courses/{{ course.CourseID }}/add_as" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
                     <span class="glyphicon glyphicon-plus"></span> Add new assignment
                 </div>
@@ -65,8 +65,8 @@
                 <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
                    <h4 style="float:left">{{ item.name }}</h4>
                     <div class="btn-group btn-group-sm" style="float:right;">
-                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ item.course }}/editAs/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ item.course }}/rmAs/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ item.course }}/edit_as/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ item.course }}/rm_as/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>
                 </div>
             {% endfor %}

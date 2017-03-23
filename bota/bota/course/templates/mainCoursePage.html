@@ -5,7 +5,7 @@
                     {% if courses  %}
                          <h3>Here are your courses:</h3>
                     {% else %}
-                        <h3>You have no courses, you can add one under <a href="settings/editCourse">settings</a></h3>
+                        <h3>You have no courses, you can add one under <a href="settings/edit_course">settings</a></h3>
                     {% endif %}
                     {% for course in courses %}
                         <a style=" text-decoration: none;" href="/course/{{ course }}"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >

@@ -1,24 +1,28 @@
 from django.conf.urls import url
-
 from bota.app_settings import views
 
 urlpatterns = [
     url(r'^$', views.settingsPage),
-    url(r'courses$', views.courseEditPage),
-    url(r'courses/((?P<courseid>[A-Z]{3}\d+)/del)', views.delCourse),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/delTakes)', views.delTakesCourse),
-    url(r'courses/((?P<courseid>[A-Z]{3}\d+)/edit$)', views.editCourse),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/addTakes)', views.addTakesCourse),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/addTa$)', views.AddTAToCourse),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/addTa/(?P<username>\w{0,50})/)', views.AddTAToCourseUser),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/rmTa/(?P<username>\w{0,50})/)', views.rmTaFromCourse),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/editAs/(?P<id>\w{0,50})/)', views.editAs),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/addAs/)', views.addAs),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/rmAs/(?P<id>\w{0,50})/)', views.rmAs),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/add_ta_time/)', views.add_ta_time),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/rm_ta_time/(?P<id>\w{0,50})/)', views.rm_ta_time),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/edit_ta_time/(?P<id>\w{0,50})/)', views.edit_ta_time),
-    url(r'editCourse', views.userEditCourses),
-    url(r'courses/addCourse', views.addCourse),
-    url(r'addTakes/$', views.addTakes, name='takes'),
+
+    url(r'courses$', views.list_courses),
+
+    url(r'courses/add_course', views.add_course),
+    url(r'courses/((?P<course_id>[A-Z]{3}\d+)/edit$)', views.edit_course),
+    url(r'courses/((?P<course_id>[A-Z]{3}\d+)/rm_course)', views.rm_course),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/add_ta$)', views.add_ta_to_course),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/add_ta/(?P<username>\w{0,50})/)', views.add_ta_to_course_user),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/rm_ta/(?P<username>\w{0,50})/)', views.rm_ta_from_course),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/edit_as/(?P<as_id>\w{0,50})/)', views.edit_as),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/add_as/)', views.add_as),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/rm_as/(?P<as_id>\w{0,50})/)', views.rm_as),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/add_ta_time/)', views.add_ta_time),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/rm_ta_time/(?P<ta_id>\w{0,50})/)', views.rm_ta_time),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/edit_ta_time/(?P<ta_id>\w{0,50})/)', views.edit_ta_time),
+
+    url(r'add_takes/$', views.add_takes),
+    url(r'edit_course$', views.user_list_courses),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/add_takes)', views.add_takes_course),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/rm_takes)', views.rm_takes_course),
+
+
 ]

@@ -1,4 +1,5 @@
 {% extends "contentFrameBase.html" %}
+
 {%  block contentAdmin %}
     {% if tas.count == 0 %}
         <h3>You cant add more users</h3>
@@ -6,7 +7,7 @@
         <h3>Pick a user:</h3>
     {% endif %}
     {% for user in tas %}
-        <a href="/settings/courses/{{ courseid }}/addTa/{{ user.username }}/" style=" text-decoration: none; color:white;"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+        <a href="/settings/courses/{{ course_id }}/add_ta/{{ user.username }}/" style=" text-decoration: none; color:white;"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
          <h1>{{ user.username }}</h1>
          </div>
         </a>
