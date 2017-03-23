@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin, Assignment
 from django.contrib.auth.models import User
-import datetime
 
 
 @login_required(login_url='/login/')
@@ -77,7 +76,7 @@ def editCourse(request, courseid):
         course.Description = request.POST.get("Description")
 
         course.save()
-        return redirect('settings/courses')
+        return redirect('/settings/courses/' + courseid + '/edit')
 
     template = loader.get_template('admin/editCourse.html')
     return HttpResponse(template.render(context, request))
@@ -154,15 +153,22 @@ def addAs(request, courseid):
 
 @staff_member_required(login_url='/login/')
 def editAs(request, id, courseid):
-
-    context = {'As':Assignment.objects.get(id=id),
+    As = Assignment.objects.get(id=id)
+    context = {'As':As,
+               'delivery_deadline':str(As.delivery_deadline.date()) + "T" + str(As.delivery_deadline.time()),
+               'demo_deadline':str(As.demo_deadline.date()) + "T" + str(As.demo_deadline.time()),
                'courseid':courseid,}
     if request.method == "POST":
         name = request.POST.get("Name")
         description = request.POST.get("description")
         delivery_deadline = request.POST.get("delivery_deadline")
         demo_deadline = request.POST.get("demo_deadline")
-        a = Assignment(course=Course.objects.get(CourseID=courseid), name=name, description=description, delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
+        a = Assignment.objects.get(id=id);
+        a.course = Course.objects.get(CourseID=courseid)
+        a.name = name
+        a.description = description
+        a.delivery_deadline = delivery_deadline
+        a.demo_deadline = demo_deadline
         a.save();
-        return redirect('settings/courses')
+        return redirect('/settings/courses/'+courseid+'/edit')
     return render(request, 'admin/editAs.html',context)
