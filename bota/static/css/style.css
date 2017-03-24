@@ -6,34 +6,29 @@
 /*
 Base admin
  */
-
-@media screen and (max-width: 800px) {
     .MainWindow {
+        width: 70%;
+        background-color: white;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        box-shadow: 0px 0px 5px #888888;
+        font-family: Helvetica;
+}
+
+    .mainContainer {
+        width:80%;
+        margin: 0px auto;
+        position: relative;
+        padding-top:10px;'
+        text-align:center;
+        overflow: auto;
 
     }
-}
-.MainWindow {
-    width: 70%;
-    background-color: white;
-    margin: 0 auto;
-    padding-bottom: 40px;
-    box-shadow: 0px 0px 5px #888888;
-    font-family: Helvetica
-}
 
-.mainContainer {
-    width:80%;
-    margin: 0px auto;
-    position: relative;
-    padding-top:10px;'
-    text-align:center;
-    overflow: auto;
-
-}
 
 /* Form information and info pages */
 .gridDiv-sm {
-    width:300px;
+    width:400px;
     padding:0px 2% 0px 2%;
     vertical-align:top;
     display:inline-block;
@@ -80,7 +75,7 @@ Base admin
 
 
 /*
-Div with buttons
+Edit page course
  */
 .add-button {
     padding: 10px;
@@ -93,7 +88,8 @@ Div with buttons
 .entry-row {
     background-color: #3a5c80;
     margin-bottom: 4px;
-    height: 50px;
+    height:100%;
+    min-height: 50px;
     padding: 3% 3% 3% 3%;
     color:white;
 }
@@ -112,4 +108,29 @@ Div with buttons
     background-color:#090080;
     border:0px;
     color:white;
+}
+
+@media screen and (max-width: 600px) {
+    .mainContainer {
+        border:0px;
+        width:100%;
+    }
+    .MainWindow {
+        width: 100%;
+        box-shadow: none;
+    }
+    .gridDiv-sm {
+        width:100%
+    }
+}
+@media screen and (min-width: 601px) {
+    .MainWindow {
+        width: 70%;
+        box-shadow: 0px 0px 5px #888888;
+}
+
+    .mainContainer {
+        width:80%;
+    }
+
 }
