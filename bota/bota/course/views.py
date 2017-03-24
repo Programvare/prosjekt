@@ -36,8 +36,6 @@ def course(request, course_id):
         'all_ta_times': all_ta_times
     }
 
-    print(ta_times)
-
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
@@ -57,7 +55,8 @@ def course_position(request):
     }
     return render(request, 'course_position_div.html', context)
 
-def courseTA_next(request):
+
+def course_ta_next(request):
     #The problem with having a separate view for a _div_
     #is that we can't have a fancy context-based url in urls.py
     #request.META gives the current url path. index [-2] should return the current courseid
