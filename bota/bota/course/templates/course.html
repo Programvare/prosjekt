@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ ccourse }}{% endblock %}
+{% block title %}{{ course_id }}{% endblock %}
 
 {% block script %}
     <script>
@@ -11,11 +11,11 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome to {{ ccourse }}</h1>
+    <h1>Welcome to {{ course_id }}</h1>
     <p>Are you waiting for a TA?</p>
 
     {% if can_enter %}
-    <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
+    <form action="/course/{{ course_id }}/in_queue" method ="post">{% csrf_token %}
         <input type="submit" value="Put me in the queue!">
     </form>
     {% else %}
@@ -24,7 +24,7 @@
 
     <h3>TA times</h3>
     {% if tatimes %}
-        <p>Here are the TA times for course {{ ccourse }} this week:</p>
+        <p>Here are the TA times for course {{ course_id }} this week:</p>
         {% for time in tatimes %}
             <li>{{ time.display_weekly }}</li>
         {% endfor %}
@@ -37,7 +37,7 @@
         </div>
     <h3>Assignments</h3>
     {% if assignments %}
-        <p>Here are the assignments for course {{ ccourse }} this week:</p>
+        <p>Here are the assignments for course {{ course_id }} this week:</p>
 
         {% for assignment in assignments %}
                 <h5>{{ assignment.display_name }}</h5>

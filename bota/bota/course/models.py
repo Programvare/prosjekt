@@ -1,36 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from bota.account import botaUser as User
 
 
 class Course(models.Model):
-    CourseID = models.CharField(max_length=10, unique=True,
+    course_id = models.CharField(max_length=10, unique=True,
                                 help_text="Use upper case letters followed by 4 numbers: Example: TDT4100")
-    Name = models.CharField(max_length=80)
-    Nickname = models.CharField(max_length=20, blank=True, default="",
+    name = models.CharField(max_length=80)
+    nickname = models.CharField(max_length=20, blank=True, default="",
                                 help_text="Please enter a nickname for the course if possible")
-    Term = models.CharField(max_length=20, blank=True,
+    term = models.CharField(max_length=20, blank=True,
                             help_text="Please use the following format: <season> <year>. Example: Spring 2017")
-    Description = models.CharField(max_length=45, blank=True, default="")
+    description = models.CharField(max_length=45, blank=True, default="")
 
     def __str__(self):
-        return self.CourseID
+        return self.course_id
 
 
 class Takes(models.Model):
-    CourseID = models.ForeignKey(Course)
-    UserID = models.ForeignKey(User)
+    course = models.ForeignKey(Course)
+    user_id = models.ForeignKey(User)
 
     def __str__(self):
-        return str(self.UserID) + " - " + str(self.CourseID)
+        return str(self.user_id) + " - " + str(self.course)
 
 
 class TAin(models.Model):
-    CourseID = models.ForeignKey(Course)
-    UserID = models.ForeignKey(User)
+    course = models.ForeignKey(Course)
+    user_id = models.ForeignKey(User)
 
     def __str__(self):
-        return str(self.UserID) + " - " + str(self.CourseID)
+        return str(self.user_id) + " - " + str(self.course)
 
 
 class TATime(models.Model):
@@ -81,5 +80,5 @@ class Assignment(models.Model):
         return "Demonstration deadline: " + self.demo_deadline.strftime("%H:%M, %d/%m-%y")
 
     def display_course(self):
-        return str(self.course.CourseID)
+        return str(self.course.course_id)
 

@@ -1,7 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.template import loader
-from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin, Assignment, TATime
 from django.contrib.auth.models import User
@@ -11,7 +9,9 @@ def settingsPage(request):
     context = {'is_staff': request.user.is_staff}
     return render(request, 'settings.html', context)
 
-#Staff account
+"""
+Staff account
+"""
 
 
 @staff_member_required(login_url='/login/')
@@ -32,8 +32,8 @@ def add_course(request):
         term = request.POST.get("term")
         description = request.POST.get("description")
 
-        if len(Course.objects.filter(CourseID=course_id)) == 0:
-            c = Course(CourseID=course_id, Name=name, Term=term, Nickname=nickname, Description=description)
+        if len(Course.objects.filter(course_id=course_id)) == 0:
+            c = Course(course_id=course_id, name=name, term=term, nickname=nickname, description=description)
             c.save()
             return redirect('settings/courses')
 
@@ -51,19 +51,19 @@ def add_course(request):
 
 @staff_member_required(login_url='/login/')
 def edit_course(request, course_id):
-    course = Course.objects.get(CourseID=course_id)
+    course = Course.objects.get(course_id=course_id)
     context = {
-        'assignment': Assignment.objects.filter(course__CourseID=course_id),
+        'assignment': Assignment.objects.filter(course__course_id=course_id),
         'course': course,
-        'ta_in': TAin.objects.filter(CourseID__CourseID=course_id),
-        'ta_times': TATime.objects.filter(course__CourseID=course_id),
+        'ta_in': TAin.objects.filter(course__course_id=course_id),
+        'ta_times': TATime.objects.filter(course__course_id=course_id),
     }
     if request.method == "POST":
-        course.CourseID = course_id
-        course.Name = request.POST.get("name")
-        course.Nickname = request.POST.get("nickname")
-        course.Term = request.POST.get("term")
-        course.Description = request.POST.get("description")
+        course.course_id = course_id
+        course.name = request.POST.get("name")
+        course.nickname = request.POST.get("nickname")
+        course.term = request.POST.get("term")
+        course.description = request.POST.get("description")
         course.save()
         return redirect('/settings/courses/' + course_id + '/edit')
     return render(request, 'admin/edit_course.html', context)
@@ -71,16 +71,16 @@ def edit_course(request, course_id):
 
 @staff_member_required(login_url='/login/')
 def rm_course(request, course_id):
-    Course.objects.filter(CourseID=course_id).delete()
+    Course.objects.filter(course_id=course_id).delete()
     return redirect('/settings/courses')
 
 
 @staff_member_required(login_url='/login/')
 def add_ta_to_course(request, course_id):
-    if not TAin.objects.filter(CourseID__CourseID=course_id).exists():
+    if not TAin.objects.filter(course__course_id=course_id).exists():
         user = User.objects.all()
     else:
-        user = User.objects.exclude(id__in=TAin.objects.filter(CourseID__CourseID=course_id).values("UserID"))
+        user = User.objects.exclude(id__in=TAin.objects.filter(course__course_id=course_id).values("user_id"))
     context = {
          'course_id': course_id,
          'tas': user,
@@ -90,16 +90,16 @@ def add_ta_to_course(request, course_id):
 
 @staff_member_required(login_url='/login/')
 def add_ta_to_course_user(request, course_id, username):
-    course = Course.objects.get(CourseID=course_id)
+    course = Course.objects.get(course_id=course_id)
     user = User.objects.get(username=username)
-    ta = TAin(CourseID=course, UserID=user)
+    ta = TAin(course=Course.objects.get(course_id=course), user_id=user)
     ta.save()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 
 @staff_member_required(login_url='/login/')
 def rm_ta_from_course(request, course_id, username):
-    TAin.objects.get(CourseID__CourseID=course_id, UserID__username=username).delete()
+    TAin.objects.get(course__course_id=course_id, user_id__username=username).delete()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 
@@ -117,7 +117,7 @@ def add_as(request, course_id):
         description = request.POST.get("description")
         delivery_deadline = request.POST.get("delivery_deadline")
         demo_deadline = request.POST.get("demo_deadline")
-        a = Assignment(course=Course.objects.get(CourseID=course_id), name=name, description=description,
+        a = Assignment(course=Course.objects.get(course_id=course_id), name=name, description=description,
                        delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
         a.save()
         return redirect('/settings/courses/'+course_id+'/edit')
@@ -137,7 +137,7 @@ def edit_as(request, as_id, course_id):
         description = request.POST.get("description")
         delivery_deadline = request.POST.get("delivery_deadline")
         demo_deadline = request.POST.get("demo_deadline")
-        a.course = Course.objects.get(CourseID=course_id)
+        a.course = Course.objects.get(course_id=course_id)
         a.name = name
         a.description = description
         a.delivery_deadline = delivery_deadline
@@ -151,7 +151,7 @@ def edit_as(request, as_id, course_id):
 def add_ta_time(request, course_id):
     context = {'course_id': course_id}
     if request.method == "POST":
-        course = Course.objects.get(CourseID=course_id)
+        course = Course.objects.get(course_id=course_id)
         date = request.POST.get("date")
         start_time = request.POST.get("start_time")
         end_time = request.POST.get("end_time")
@@ -180,7 +180,7 @@ def edit_ta_time(request, ta_id, course_id):
                'course_id': course_id,
                'ta_id': tat.id}
     if request.method == "POST":
-        tat.course = Course.objects.get(CourseID=course_id)
+        tat.course = Course.objects.get(course_id=course_id)
         tat.date = request.POST.get("date")
         tat.start_time = request.POST.get("start_time")
         tat.end_time = request.POST.get("end_time")
@@ -196,29 +196,30 @@ def rm_ta_time(request, course_id, ta_id):
     TATime.objects.get(id=ta_id).delete()
     return redirect('/settings/courses/'+course_id+'/edit')
 
-
-#User
+"""
+User
+"""
 
 
 @login_required(login_url='/login/')
 def add_takes(request):
-    if not Takes.objects.filter(UserID=request.user).exists():
+    if not Takes.objects.filter(user_id=request.user).exists():
         courses = Course.objects.all()
     else:
-        courses = Course.objects.exclude(id__in=Takes.objects.filter(UserID=request.user).values("CourseID"))
+        courses = Course.objects.exclude(id__in=Takes.objects.filter(user_id=request.user).values("course_id"))
     context = {'courses': courses}
     return render(request, 'user/add_takes_course.html', context)
 
 
 @login_required(login_url='/login/')
 def rm_takes_course(request, course_id):
-    Takes.objects.filter(CourseID__CourseID=course_id).filter(UserID=request.user).delete()
+    Takes.objects.filter(course__course_id=course_id).filter(user_id=request.user).delete()
     return redirect('/settings/edit_course')
 
 
 @login_required(login_url='/login/')
 def add_takes_course(request, course_id):
-    c = Takes(CourseID=Course.objects.get(CourseID=course_id), UserID=request.user)
+    c = Takes(course=Course.objects.get(course_id=course_id), user_id=request.user)
     c.save()
     return redirect('/settings/edit_course')
 
@@ -226,8 +227,7 @@ def add_takes_course(request, course_id):
 @login_required(login_url='/login/')
 def user_list_courses(request):
     context = {
-        'TAin': Course.objects.filter(id__in=TAin.objects.filter(UserID=request.user).values("CourseID")),
-        'courses': Course.objects.filter(id__in=Takes.objects.filter(UserID=request.user).values("CourseID")),
+        'courses': Course.objects.filter(id__in=Takes.objects.filter(user_id=request.user).values("course_id")),
     }
     return render(request, 'user/list_of_courses.html', context)
 

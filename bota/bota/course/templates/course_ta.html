@@ -24,15 +24,15 @@ $(document).ready(function() {
 });
 </script>
 {% endblock %}
-{% block title %}{{ ccourse }}{% endblock %}
+{% block title %}{{ course_id }}{% endblock %}
 {% block content %}
 
-<h1>Welcome to {{ ccourse }}</h1>
+<h1>Welcome to {{ course_id }}</h1>
 
-{% include 'courseTA_next_div.html' %}
+{% include 'course_ta_next_div.html' %}
 
 
-<form action="/course/{{ ccourse }}/rmQueue" method ="post">{% csrf_token %}
+<form action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
         <input type="submit" value="Next!">
 </form>
 
