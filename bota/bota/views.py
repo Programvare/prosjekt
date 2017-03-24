@@ -3,7 +3,8 @@ from django.shortcuts import redirect
 from django.template import loader
 from django.http import HttpResponse
 
-def mainPage(request):
+
+def main_page(request):
     if request.user.is_authenticated():
         if request.user.is_staff:
             return redirect('/settings')

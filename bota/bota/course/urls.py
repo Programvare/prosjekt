@@ -19,12 +19,13 @@ from bota.course import views
 app_name = 'course'
 
 urlpatterns = [
-    url(r'^$', views.courseMainPage, name='index'),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/TA$)', views.courseTA),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/$)', views.course, name='course'),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/inQueue)', views.addMeToList),
-    url(r'((?P<courseid>[A-Z]{3}\d+)/rmQueue)', views.removeFromCourse),
+    url(r'^$', views.course_main_page, name='index'),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/ta$)', views.course_ta),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/$)', views.course, name='course'),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/in_queue)', views.add_me_to_list),
+    url(r'((?P<course_id>[A-Z]{3}\d+)/rm_queue)', views.rm_from_course),
     url(r'^course_position/$', views.course_position, name='course_position'),
+    url(r'^course_next/$', views.courseTA_next, name='course_next'),
 
 
 ]

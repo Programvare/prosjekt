@@ -1,4 +1,4 @@
-{% extends "contentFrameBase.html" %}
+{% extends "border_frame.html" %}
 {% block title %}Courses{% endblock %}
 {% block contentAdmin %}
         {% if courses  %}
@@ -6,13 +6,13 @@
         {% else %}
             <h3>You have no courses, you can add one under:</h3>
         {% endif %}
-        <a href="settings/addTakes" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span> Add new course</div></a>
+        <a href="settings/add_takes/" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-plus"></span> Add new course</div></a>
         {% for course in courses %}
             <a style=" text-decoration: none;" href="/course/{{ course }}"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
                 <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">
-                    <a class="btn btn-danger" style=" text-decoration: none;" href="/settings/{{ course }}/delTakes"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    <a class="btn btn-danger" style=" text-decoration: none;" href="/settings/{{ course }}/rm_takes"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                 </div>
-                  <h3 style="color: white">{{ course }} - {{ course.Name }}</h3>
+                  <h3 style="color: white">{{ course }} - {{ course.name }}</h3>
             </div></a>
         {% endfor %}
 

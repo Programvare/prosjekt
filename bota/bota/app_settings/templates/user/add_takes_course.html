@@ -1,4 +1,4 @@
-{% extends "contentFrameBase.html" %}
+{% extends "border_frame.html" %}
 {% block title %}Add Course{% endblock %}
 {% block contentAdmin %}
     {% if courses %}
@@ -9,9 +9,9 @@
         {% for course in courses %}
         <div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
             <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">
-                <a class="btn btn-success" style=" text-decoration: none;" href="/settings/{{ course }}/addTakes"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a class="btn btn-success" style=" text-decoration: none;" href="/settings/{{ course }}/add_takes"><span class="glyphicon glyphicon-plus"></span> Add</a>
             </div>
-              <h3 style="color: white">{{ course }} - {{ course.Name }}</h3>
+              <h3 style="color: white">{{ course }} - {{ course.name }}</h3>
         </div>
         {% endfor %}
 
