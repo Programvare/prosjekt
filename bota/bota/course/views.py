@@ -24,7 +24,7 @@ def course(request, course_id):
 
     assignments = get_all_course_assignments(course_id)
 
-    course_model = Course.objects.get(CourseID=courseid)
+    course_model = Course.objects.get(course_id=course_id)
 
     context = {
         'course_model': course_model,
@@ -49,7 +49,7 @@ def course_position(request):
     position = queue.get_position(request.user, course_id)
 
     context = {
-        'course_model': Course.objects.get(CourseID=courseid),
+        'course_model': Course.objects.get(course_id=course_id),
         'position': position,
         'course_id': course_id,
     }
@@ -64,7 +64,7 @@ def courseTA_next(request):
 
     context = {
         'next': next_queue,
-        'course_model': Course.objects.get(CourseID=courseid),
+        'course_model': Course.objects.get(course_id=course_id),
         'course_id': course_id,
     }
     return render(request, 'course_ta_next_div.html', context)
@@ -75,7 +75,7 @@ def course_ta(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
-        'course_model': Course.objects.get(CourseID=courseid),
+        'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)
 
@@ -93,7 +93,7 @@ def rm_from_course(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
-        'course_model': Course.objects.get(CourseID=courseid),
+        'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)
 

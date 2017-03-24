@@ -1,5 +1,5 @@
-{% extends "contentFrameBase.html" %}
-{% block title %}{{ ccourse }}{% endblock %}
+{% extends "border_frame.html" %}
+{% block title %}{{ course_id }}{% endblock %}
 
 {% block script %}
     <script>
@@ -12,13 +12,13 @@
 
 {% block contentAdmin %}
 
-    <h1>{{ ccourse }} - {{ course_model.Name }}</h1>
+    <h1 style="text-align:center">{{ course_id }} - {{ course_model.name }}</h1>
 
     <div class ="gridDivCourse" align="center">
         <h4>Are you waiting for a TA?</h4>
 
         {% if can_enter %}
-        <form action="/course/{{ ccourse }}/inQueue" method ="post">{% csrf_token %}
+        <form action="/course/{{ course_id }}/in_queue" method ="post">{% csrf_token %}
             <input type="submit" value="Put me in the queue!">
         </form>
         {% else %}
@@ -28,9 +28,9 @@
 
     <div class ="gridDivCourse">
         <h4>TA times:</h4>
-        {% if tatimes %}
+        {% if ta_times %}
             <p>Here are the TA times this week:
-            {% for time in tatimes %}
+            {% for time in ta_times %}
                 <li>{{ time.display_weekly }}</li>
             {% endfor %}
             </p>
@@ -46,7 +46,7 @@
     <div class ="gridDivCourse">
         <h4>Assignments:</h4>
         {% if assignments %}
-            <p>Here are the assignments for course {{ ccourse }} this week:</p>
+            <p>Here are the assignments for this week:</p>
 
             {% for assignment in assignments %}
                     <h5>{{ assignment.display_name }}</h5>

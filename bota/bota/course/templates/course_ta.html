@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "border_frame.html" %}
 {% block script%}
 
 <!--The script is inside the HTML file so that the Jinja2 tag "url" is resolved
@@ -13,7 +13,7 @@ $(document).ready(function() {
         $.ajax({
             url: '{% url 'course:course_next' %}',
             success: function(data) {
-            $('.courseTA_next_div').html(data);
+            $('.course_ta_next_div').html(data);
             }
         });
 
@@ -25,15 +25,14 @@ $(document).ready(function() {
 </script>
 {% endblock %}
 {% block title %}{{ course_id }}{% endblock %}
-{% block content %}
+{% block contentAdmin %}
 
-<h1>Welcome to {{ course_id }}</h1>
+        <div align="center">
+                <h1>{{ course_id }} - {{ course_model.name }}</h1>
+                <h3>Queue:</h3>
+        </div>
 
-{% include 'course_ta_next_div.html' %}
+        {% include 'course_ta_next_div.html' %}
 
-
-<form action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
-        <input type="submit" value="Next!">
-</form>
 
 {% endblock %}

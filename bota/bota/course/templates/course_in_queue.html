@@ -1,4 +1,4 @@
-{% extends "contentFrameBase.html" %}
+{% extends "border_frame.html" %}
 {% block script%}
 
 <!--The script is inside the HTML file so that the Jinja2 tag "url" is resolved
@@ -38,7 +38,7 @@ $(document).ready(function() {
 {% block contentAdmin %}
 
     <div align="center">
-        <h1>{{ ccourse }} - {{ course_model.Name }}</h1>
+        <h1>{{ course_id }} - {{ course_model.name }}</h1>
         <h3>Queue:</h3>
     </div>
 
