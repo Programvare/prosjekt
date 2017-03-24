@@ -24,16 +24,17 @@ def course(request, course_id):
 
     assignments = get_all_course_assignments(course_id)
 
+    course_model = Course.objects.get(course_id=course_id)
+
     context = {
-        'position': queue.get_position(request.user, course_id),
+        'course_model': course_model,
         'course_id': course_id,
+        'position': queue.get_position(request.user, course_id),
         'ta_times': ta_times,
         'can_enter': can_enter,
         'assignments': assignments,
         'all_ta_times': all_ta_times
     }
-
-    print(ta_times)
 
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
@@ -48,12 +49,14 @@ def course_position(request):
     position = queue.get_position(request.user, course_id)
 
     context = {
+        'course_model': Course.objects.get(course_id=course_id),
         'position': position,
         'course_id': course_id,
     }
     return render(request, 'course_position_div.html', context)
 
-def courseTA_next(request):
+
+def course_ta_next(request):
     #The problem with having a separate view for a _div_
     #is that we can't have a fancy context-based url in urls.py
     #request.META gives the current url path. index [-2] should return the current courseid
@@ -62,6 +65,7 @@ def courseTA_next(request):
 
     context = {
         'next': next_queue,
+        'course_model': Course.objects.get(course_id=course_id),
         'course_id': course_id,
     }
     return render(request, 'course_ta_next_div.html', context)
@@ -72,6 +76,7 @@ def course_ta(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)
 
@@ -89,6 +94,7 @@ def rm_from_course(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)
 
@@ -124,6 +130,7 @@ def get_all_times(course_id):
             ta_times.append(time)
     return ta_times
 
+
 def get_all_times_after_week(course_id):
     try:
         all_ta_times = TATime.objects.filter(course__course_id=course_id).order_by('date')
@@ -132,7 +139,7 @@ def get_all_times_after_week(course_id):
     # Remove "old" times from list
     ta_times = []
     for time in all_ta_times:
-        if time.date >= datetime.date.today() + datetime.timedelta(days=7):
+        if time.date.isocalendar()[1] == datetime.date.today().isocalendar()[1] + 1:
             ta_times.append(time)
     return ta_times
 

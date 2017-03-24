@@ -1,9 +1,14 @@
 <!--NOTE: jQuery can't select #id elements for some reason. Use class instead-->
-<div class="courseTA_next_div">
+<div class="course_ta_next_div" align="center">
     {% if next == "" %}
         <p>No one is in queue</p>
     {% else %}
-        <p>The next in line is: <b>{{ next }}</b></p>
+        <p>Currently helping: </p>
+        <p><b style="font-size:50px">{{ next }}</b></p>
+
+        <form action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
+        <input type="submit" value="Next student!">
+        </form>
     {% endif %}
 </div>
 
