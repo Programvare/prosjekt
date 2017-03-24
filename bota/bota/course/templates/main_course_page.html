@@ -31,13 +31,15 @@
             {% else %}
                 <h3>You have no assignments</h3>
             {% endif %}
-            {% for assignment in assignments %}
-                <li>
-                    <h5>{{ assignment.display_course }}: {{ assignment.display_name }}</h5>
-                    <p><small>{{ assignment.display_delivery_deadline }}</small></p>
-                    <p><small>{{ assignment.display_demo_deadline }}</small></p>
-                </li>
-            {% endfor %}
+            <ul>
+                {% for assignment in assignments %}
+                    <li>
+                        <h5>{{ assignment.display_course }}: {{ assignment.display_name }}</h5>
+                        <p><small>{{ assignment.display_delivery_deadline }}</small></p>
+                        <p><small>{{ assignment.display_demo_deadline }}</small></p>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     {% endblock %}
