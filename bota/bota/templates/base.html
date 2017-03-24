@@ -54,11 +54,11 @@
         </nav>
 
 
-        <div id="main_content" class="container-fluid" style="margin-top:60px;">
+        <div class="container-fluid" style="margin-top:60px;">
         {% block content %}
 
         {% endblock %}
-        </div>
+        </div >
 
         <!--This is a block for page exclusive scripts/js or CSS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -66,11 +66,10 @@
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
         <script>
-        $("#main_content").find("ul").addClass("list-group");
-        $("#main_content").find("li").addClass("list-group-item");
-
-
-
+        $(".main-container").find("ul").addClass("list-group");
+        $(".main-container").find("li").addClass("list-group-item");
+        $(".main-container").find("button").addClass("btn btn-default");
+        $(".main-container").find("input").addClass("btn btn-default");
         </script>
 
         {% block script %}{% endblock %}

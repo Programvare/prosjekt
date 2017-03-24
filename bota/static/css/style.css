@@ -72,6 +72,11 @@ Base admin
     margin-bottom: 4px;
     padding:15px 0 15px 15px;
 }
+.btn-container-xl {
+    float:right;
+    position: relative;
+    margin: 12px 15px 0 0;
+}
 
 
 /*
