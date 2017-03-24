@@ -7,6 +7,11 @@
 Base admin
  */
 
+@media screen and (max-width: 800px) {
+    .MainWindow {
+
+    }
+}
 .MainWindow {
     width: 70%;
     background-color: white;
@@ -29,6 +34,12 @@ Base admin
 /* Form information and info pages */
 .gridDiv-sm {
     width:300px;
+    padding:0px 2% 0px 2%;
+    vertical-align:top;
+    display:inline-block;
+}
+.gridDiv-m {
+    width:400px;
     vertical-align:top;
     display:inline-block;
 }
@@ -40,7 +51,6 @@ Base admin
 .errorLabel {
     color:red;
 }
-
 .new-entry-input {
     width:100%;
     max-width: 400px;
@@ -48,12 +58,58 @@ Base admin
 .new-entry-button {
     margin:5px 0 0 0;
 }
-.list-elements-a {
+
+.list-elements-a{
     text-decoration: none;
     color:white;
+}
+.list-elements-a:hover{
+    text-decoration: none;
+    color: white;
 }
 .list-elements-xl {
     background-color: #3a5c80;
     margin-bottom: 4px;
     padding:15px 0 15px 15px;
+}
+.list-elements-xl:hover {
+    background-color: #284e80;
+    margin-bottom: 4px;
+    padding:15px 0 15px 15px;
+}
+
+
+/*
+Div with buttons
+ */
+.add-button {
+    padding: 10px;
+    background-color: #090080;
+    color:white;
+    align-content: center;
+    margin-bottom: 4px;
+}
+
+.entry-row {
+    background-color: #3a5c80;
+    margin-bottom: 4px;
+    height: 50px;
+    padding: 3% 3% 3% 3%;
+    color:white;
+}
+.button-container {
+    float:right;
+    text-decoration: none;
+}
+.text-container {
+    float:left;
+}
+
+.btn-save {
+    width: 50%;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color:#090080;
+    border:0px;
+    color:white;
 }
