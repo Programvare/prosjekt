@@ -5,7 +5,7 @@
             <a href="/settings/courses/add_course"><div class="add-button"><span class="glyphicon glyphicon-plus"></span>  Add new course</div></a>
             {% for course in courses %}
                 <div class="list-elements-xl">
-                    <div class="btn-group" style="float:right; position: relative; margin: 12px 15px 0 0">
+                    <div class="btn-container-xl btn-group">
                         <a class="btn btn-success" style=" text-decoration: none;" href="/settings/courses/{{ course }}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                         <a class="btn btn-danger" style=" text-decoration: none;" href="/settings/courses/{{ course }}/rm_course"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>

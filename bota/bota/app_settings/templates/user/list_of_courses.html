@@ -12,7 +12,7 @@
         {% for course in courses %}
             <a href="/course/{{ course }}">
                 <div class="list-elements-xl">
-                    <div style="float:right; position: relative; margin: 12px 15px 0 0" btn-group">
+                    <div class="btn-container-xl btn-group">
                         <a class="btn btn-danger" href="/settings/{{ course }}/rm_takes"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>
                     <h3 style="color:white;">{{ course }} - {{ course.name }}</h3>
