@@ -2,7 +2,9 @@
 <div class="course_position_div" align="center">
 
     {% if position == 0 %}
-       <div id="pos0"> <p style="font-size:30px">It is your turn! </p></div>
+       <div class="pos0">
+           <p style="font-size:30px">It is your turn! </p>
+       </div>
     {% elif position == 1 %}
         <p style="font-size:30px">There is {{ position }} student ahead of you </p>
     {% else %}

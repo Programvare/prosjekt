@@ -4,9 +4,9 @@
     <head>
         <title>Bota -{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
     </head>
 
     <body>
@@ -54,7 +54,7 @@
         </nav>
 
 
-        <div class="container-fluid" style="margin-top:60px;">
+        <div id="main_content" class="container-fluid" style="margin-top:60px;">
         {% block content %}
 
         {% endblock %}
@@ -64,6 +64,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="{% static "js/bootstrap.js" %}"></script>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script>
+        $("#main_content").find("ul").addClass("list-group");
+        $("#main_content").find("li").addClass("list-group-item");
+
+
+
+        </script>
+
         {% block script %}{% endblock %}
     </body>
 </html>

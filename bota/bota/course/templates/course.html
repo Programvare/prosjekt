@@ -47,12 +47,16 @@
         <h4>Assignments:</h4>
         {% if assignments %}
             <p>Here are the assignments for this week:</p>
-
+            <ul>
             {% for assignment in assignments %}
+                <li>
                     <h5>{{ assignment.display_name }}</h5>
-                    <p><small>{{ assignment.display_delivery_deadline }}</small></p>
-                    <p><small>{{ assignment.display_demo_deadline }}</small></p>
+                    <small>{{ assignment.display_delivery_deadline }}</small>
+                    <small>{{ assignment.display_demo_deadline }}</small>
+                </li>
             {% endfor %}
+
+            </ul>
 
         {% else %}
             <p>No assignments.</p>

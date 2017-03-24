@@ -1,72 +1,72 @@
 {% extends "border_frame.html" %}
 {%  block contentAdmin %}
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
 
                 <h2>Edit {{ course.course_id }}:</h2>
 
                 <form action="/settings/courses/{{ course }}/edit" method="post">{% csrf_token %}
                    <label>Name:</label>
-                    <input class="form-control"   style="width:50%;" type="text" name="name" value="{{ course.name }}" required>
+                    <input class="form-control" type="text" name="name" value="{{ course.name }}" required>
 
                     <label>Nickname:</label>
-                    <input class="form-control"  style="width:50%;" type="text" value="{{ course.nickname }}" name="nickname">
+                    <input class="form-control" type="text" value="{{ course.nickname }}" name="nickname">
 
                     <label>Term:</label>
-                    <input class="form-control"  style="width:50%;" type="text" name="term" value="{{ course.term }}">
+                    <input class="form-control" type="text" name="term" value="{{ course.term }}">
 
                     <label>Description:</label>
-                    <input class="form-control"  style="width:50%;" type="text" name="description" value="{{ course.description }}">
+                    <input class="form-control" type="text" name="description" value="{{ course.description }}">
 
-                    <button class="form-control"  style="width: 50%; height:40px; margin:5px 0 0 0; background-color:#090080; border:0px; color:white;" type="submit">Save</button>
+                    <button class="form-control btn-save" type="submit">Save</button>
                 </form>
         </div>
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
             <h2>Add new TA:</h2>
-            <a href="/settings/courses/{{ course.course_id }}/add_ta" style=" text-decoration: none;">
-                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+            <a href="/settings/courses/{{ course.course_id }}/add_ta">
+                <div class="add-button">
                     <span class="glyphicon glyphicon-plus"></span> Add new TA
                 </div>
             </a>
 
             {% for ta in ta_in %}
-                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
-                   <div style="float:left;"><h4>{{ ta.user_id }}</h4></div>
-                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ course.course_id }}/rm_ta/{{ ta.user_id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <div class="entry-row" >
+                   <div class="text-container" ><h4>{{ ta.user_id }}</h4></div>
+                        <a class="button-container btn btn-danger btn-sm" href="/settings/courses/{{ course.course_id }}/rm_ta/{{ ta.user_id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                 </div>
             {% endfor %}
         </div>
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
             <h2>Add Ta Time: </h2>
-            <a href="/settings/courses/{{ course.course_id }}/add_ta_time" style=" text-decoration: none;">
-                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+            <a href="/settings/courses/{{ course.course_id }}/add_ta_time">
+                <div class="add-button">
                     <span class="glyphicon glyphicon-plus"></span> Add new TA Time
                 </div>
             </a>
 
             {% for time in ta_times %}
-                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
-                   <h4 style="float:left">{{ time.date }}</h4>
-                    <div class="btn-group btn-group-sm" style="float:right;">
-                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ time.course }}/edit_ta_time/{{ time.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ time.course }}/rm_ta_time/{{ time.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <div class="entry-row" >
+                   <h4 class="text-container">{{ time.date }}</h4>
+                    <div class="button-container btn-group btn-group-sm">
+                        <a class="btn btn-success btn-sm"  href="/settings/courses/{{ time.course }}/edit_ta_time/{{ time.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm"  href="/settings/courses/{{ time.course }}/rm_ta_time/{{ time.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>
                 </div>
             {% endfor %}
             </div>
-            <div class = "gridDiv">
+            <div class = "gridDiv-sm">
             <h2>Add assignment: </h2>
-            <a href="/settings/courses/{{ course.course_id }}/add_as" style=" text-decoration: none;">
-                <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
+            <a href="/settings/courses/{{ course.course_id }}/add_as">
+                <div class="add-button">
                     <span class="glyphicon glyphicon-plus"></span> Add new assignment
                 </div>
             </a>
 
             {% for item in assignment %}
-                <div style="background-color: #3a5c80; margin-bottom: 4px; height: 50px;  padding: 3% 3% 3% 3%; color:white;" >
-                   <h4 style="float:left">{{ item.name }}</h4>
-                    <div class="btn-group btn-group-sm" style="float:right;">
-                        <a class="btn btn-success btn-sm" style=" text-decoration: none;" href="/settings/courses/{{ item.course }}/edit_as/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                        <a class="btn btn-danger btn-sm" style=" text-decoration: none; float:right;" href="/settings/courses/{{ item.course }}/rm_as/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <div class="entry-row">
+                   <h4 class="text-container">{{ item.name }}</h4>
+                    <div class="button-container btn-group btn-group-sm">
+                        <a class="btn btn-success btn-sm" href="/settings/courses/{{ item.course }}/edit_as/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm"  href="/settings/courses/{{ item.course }}/rm_as/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                     </div>
                 </div>
             {% endfor %}
