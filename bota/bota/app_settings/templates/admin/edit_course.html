@@ -1,6 +1,6 @@
 {% extends "border_frame.html" %}
 {%  block contentAdmin %}
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
 
                 <h2>Edit {{ course.course_id }}:</h2>
 
@@ -20,7 +20,7 @@
                     <button class="form-control"  style="width: 50%; height:40px; margin:5px 0 0 0; background-color:#090080; border:0px; color:white;" type="submit">Save</button>
                 </form>
         </div>
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
             <h2>Add new TA:</h2>
             <a href="/settings/courses/{{ course.course_id }}/add_ta" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
@@ -35,7 +35,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class = "gridDiv">
+        <div class = "gridDiv-sm">
             <h2>Add Ta Time: </h2>
             <a href="/settings/courses/{{ course.course_id }}/add_ta_time" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">
@@ -53,7 +53,7 @@
                 </div>
             {% endfor %}
             </div>
-            <div class = "gridDiv">
+            <div class = "gridDiv-sm">
             <h2>Add assignment: </h2>
             <a href="/settings/courses/{{ course.course_id }}/add_as" style=" text-decoration: none;">
                 <div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;">

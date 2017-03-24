@@ -1,23 +1,23 @@
 {% extends "border_frame.html" %}
 {%  block contentAdmin %}
-        <div class = "gridDiv">
+        <div class = "gridDiv-xl">
 
             <h1>Edit Assignment:</h1>
 
             <form action="/settings/courses/{{ course_id }}/edit_as/{{ assignment.id}}/" method="post">{% csrf_token %}
                 <label >Name:</label>
-                <input type="text" class="form-control"  name="name" value="{{ assignment.name }}" required>
+                <input type="text" class="new-entry-input form-control"  name="name" value="{{ assignment.name }}" required>
 
                 <label>description:</label>
-                <input type="text" class="form-control"  value="{{ assignment.description }}" name="description">
+                <input type="text" class="new-entry-input form-control"  value="{{ assignment.description }}" name="description">
 
                 <label>delivery_deadline:</label>
-                <input  type="datetime-local" type="text" class="form-control"  value="{{ delivery_deadline }}" name="delivery_deadline"required>
+                <input  type="datetime-local" type="text" class="new-entry-input form-control"  value="{{ delivery_deadline }}" name="delivery_deadline"required>
 
                 <label>demo_deadline:</label>
-                <input  type="datetime-local" type="text" class="form-control"  value = "{{ demo_deadline }}"name="demo_deadline" required>
+                <input  type="datetime-local" type="text" class="new-entry-input form-control"  value = "{{ demo_deadline }}"name="demo_deadline" required>
 
-                <button class = "btn btn-default" style=" margin:5px 0 0 0; "type="submit">Save</button>
+                <button class = "btn btn-default new-entry-button" type="submit">Save</button>
             </form>
 
         </div>

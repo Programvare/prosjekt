@@ -7,9 +7,10 @@
         <h3>Pick a user:</h3>
     {% endif %}
     {% for user in tas %}
-        <a href="/settings/courses/{{ course_id }}/add_ta/{{ user.username }}/" style=" text-decoration: none; color:white;"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
-         <h1>{{ user.username }}</h1>
-         </div>
+        <a class="list-elements-a" href="/settings/courses/{{ course_id }}/add_ta/{{ user.username }}/">
+            <div class = "list-elements-xl" >
+                <h1>{{ user.username }}</h1>
+            </div>
         </a>
     {% endfor %}
 {%  endblock %}

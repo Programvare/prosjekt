@@ -27,16 +27,33 @@ Base admin
 }
 
 /* Form information and info pages */
-.gridDiv {
+.gridDiv-sm {
     width:300px;
     vertical-align:top;
     display:inline-block;
 }
-.gridDivCourse{
+.gridDiv-xl{
     width:100%;
     vertical-align:top;
     display:inline-block;
 }
 .errorLabel {
     color:red;
+}
+
+.new-entry-input {
+    width:100%;
+    max-width: 400px;
+}
+.new-entry-button {
+    margin:5px 0 0 0;
+}
+.list-elements-a {
+    text-decoration: none;
+    color:white;
+}
+.list-elements-xl {
+    background-color: #3a5c80;
+    margin-bottom: 4px;
+    padding:15px 0 15px 15px;
 }
