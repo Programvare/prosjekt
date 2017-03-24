@@ -129,6 +129,7 @@ def get_all_times(course_id):
             ta_times.append(time)
     return ta_times
 
+
 def get_all_times_after_week(course_id):
     try:
         all_ta_times = TATime.objects.filter(course__course_id=course_id).order_by('date')
@@ -137,7 +138,7 @@ def get_all_times_after_week(course_id):
     # Remove "old" times from list
     ta_times = []
     for time in all_ta_times:
-        if time.date >= datetime.date.today() + datetime.timedelta(days=7):
+        if time.date.isocalendar()[1] == datetime.date.today().isocalendar()[1] + 1:
             ta_times.append(time)
     return ta_times
 
