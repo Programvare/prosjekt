@@ -6,18 +6,18 @@
 
             <form action="/settings/courses/{{ course_id }}/add_as/" method="post">{% csrf_token %}
                 <label >Name:</label>
-                <input type="text" class="form-control"  name="name" value="{{ assignment.name }}" required>
+                <input type="text" class="new-entry-input form-control"  name="name" value="{{ assignment.name }}" required>
 
                 <label>description:</label>
-                <input type="text" class="form-control"  value="{{ assignment.description }}" name="description">
+                <input type="text" class="new-entry-input form-control"  value="{{ assignment.description }}" name="description">
 
                 <label>delivery_deadline:</label>
-                <input  type="datetime-local" type="text" class="form-control"  value="{{ assignment.delivery_deadline }}" name="delivery_deadline"required>
+                <input  type="datetime-local" type="text" class="new-entry-input form-control"  value="{{ assignment.delivery_deadline }}" name="delivery_deadline"required>
 
                 <label>demo_deadline:</label>
-                <input  type="datetime-local" type="text" class="form-control"  value = "{{ assignment.demo_deadline }}"name="demo_deadline" required>
+                <input  type="datetime-local" type="text" class="new-entry-input form-control"  value = "{{ assignment.demo_deadline }}"name="demo_deadline" required>
 
-                <button class = "btn btn-default" style=" margin:5px 0 0 0; "type="submit">Save</button>
+                <button class = "new-entry-button btn btn-default" type="submit">Save</button>
             </form>
 
         </div>
