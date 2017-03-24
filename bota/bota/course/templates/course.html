@@ -23,11 +23,13 @@
     {% endif %}
 
     <h3>TA times</h3>
-    {% if tatimes %}
+    {% if ta_times %}
         <p>Here are the TA times for course {{ course_id }} this week:</p>
-        {% for time in tatimes %}
-            <li>{{ time.display_weekly }}</li>
-        {% endfor %}
+        <ul>
+            {% for time in ta_times %}
+                <li>{{ time.display_weekly }}</li>
+            {% endfor %}
+        </ul>
     {% else %}
         <p>No times are available.</p>
     {% endif %}
@@ -43,7 +45,7 @@
                 <h5>{{ assignment.display_name }}</h5>
                 <p><small>{{ assignment.display_delivery_deadline }}</small></p>
                 <p><small>{{ assignment.display_demo_deadline }}</small></p>
-        {% endfor %}
+        {% engfor %}
 
     {% else %}
         <p>No assignments.</p>

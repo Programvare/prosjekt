@@ -33,6 +33,8 @@ def course(request, course_id):
         'all_ta_times': all_ta_times
     }
 
+    print(ta_times)
+
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
