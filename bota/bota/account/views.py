@@ -39,3 +39,10 @@ def login(request):
             return render(request, 'registration/login.html', {})
     else:
         return render(request, 'registration/login.html', {})
+
+
+def change_password(request):
+    return render(request, 'registration/change_password.html')
+
+def promote_user(request):
+    return render(request, 'list_users.html')

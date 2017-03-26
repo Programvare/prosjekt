@@ -6,21 +6,21 @@
 
             <form action="/settings/courses/{{ course_id }}/add_ta_time/" method="post">{% csrf_token %}
                 <label >Date:</label>
-                <input type="date" class="form-control"  name="date" required>
+                <input type="date" class="new-entry-input form-control"  name="date" required>
 
                 <label>Start Time:</label>
-                <input type="time" class="form-control" name="start_time">
+                <input type="time" class="new-entry-input form-control" name="start_time">
 
                 <label>End Time:</label>
-                <input  type="time" class="form-control" name="end_time" required>
+                <input  type="time" class="new-entry-input form-control" name="end_time" required>
 
                 <label>TA Name:</label>
-                <input  type="text" class="form-control" name="teaching_assistant" required>
+                <input  type="text" class="new-entry-input form-control" name="teaching_assistant" required>
 
                 <label>Room:</label>
-                <input  type="text" class="form-control" name="room" required>
+                <input  type="text" class="new-entry-input form-control" name="room" required>
 
-                <button class = "btn btn-default" style=" margin:5px 0 0 0; "type="submit">Save</button>
+                <button class = "new-entry-button btn btn-default" type="submit">Save</button>
             </form>
 
         </div>

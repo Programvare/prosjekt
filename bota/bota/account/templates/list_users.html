@@ -1,13 +1,14 @@
 {% extends "border_frame.html" %}
 
 {%  block contentAdmin %}
+    <i>TO BE MADE</i>
     {% if tas.count == 0 %}
         <h3>You cant add more users</h3>
     {% else %}
         <h3>Pick a user:</h3>
     {% endif %}
-    {% for user in tas %}
-        <a class="list-elements-a" href="/settings/courses/{{ course_id }}/add_ta/{{ user.username }}/">
+    {% for user in users %}
+        <a class="list-elements-a" href="/settings/">
             <div class = "list-elements-xl" >
                 <h1>{{ user.username }}</h1>
             </div>
