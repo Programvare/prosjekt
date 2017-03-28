@@ -1,6 +1,7 @@
 {% extends "border_frame.html" %}
 
-{%  block contentAdmin %}
+{% block title %}Courses{% endblock %}
+{%  block frame %}
             <h1>Edit or add courses:</h1>
             <a href="/settings/courses/add_course"><div class="add-button"><span class="glyphicon glyphicon-plus"></span>  Add new course</div></a>
             {% for course in courses %}

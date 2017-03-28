@@ -1,3 +1,12 @@
+/*variables*/
+:root {
+    --main-color: #00508e;
+    --main-color-hoover: #0a5a8e;
+    --btn-color: #090080;
+}
+
+
+
 /*base */
 
 .navbar-elements {
@@ -25,6 +34,16 @@ Base admin
 
     }
 
+    .settings {
+        padding: 10px;
+        background-color: var(--main-color);
+        color:white;
+        align-content: center;
+        margin-bottom: 4px;
+    }
+    .settings:hover {
+        background-color: var(--main-color-hoover);
+    }
 
 /* Form information and info pages */
 .gridDiv-sm {
@@ -63,12 +82,12 @@ Base admin
     color: white;
 }
 .list-elements-xl {
-    background-color: #3a5c80;
+    background-color: var(--main-color);
     margin-bottom: 4px;
     padding:15px 0 15px 15px;
 }
 .list-elements-xl:hover {
-    background-color: #284e80;
+    background-color: var(--main-color);
     margin-bottom: 4px;
     padding:15px 0 15px 15px;
 }
@@ -84,14 +103,14 @@ Edit page course
  */
 .add-button {
     padding: 10px;
-    background-color: #090080;
+    background-color: var(--btn-color);
     color:white;
     align-content: center;
     margin-bottom: 4px;
 }
 
 .entry-row {
-    background-color: #3a5c80;
+    background-color: var(--main-color);
     margin-bottom: 4px;
     height:100%;
     min-height: 50px;
@@ -110,7 +129,7 @@ Edit page course
     width: 50%;
     height:40px;
     margin:5px 0 0 0;
-    background-color:#090080;
+    background-color: var(--btn-color);
     border:0px;
     color:white;
 }

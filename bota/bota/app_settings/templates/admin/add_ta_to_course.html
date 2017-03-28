@@ -1,6 +1,6 @@
 {% extends "border_frame.html" %}
-
-{%  block contentAdmin %}
+{% block title %}New TA{% endblock %}
+{%  block frame %}
     {% if tas.count == 0 %}
         <h3>You cant add more users</h3>
     {% else %}

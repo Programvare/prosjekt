@@ -1,6 +1,6 @@
 {% extends "border_frame.html" %}
-
-{%  block contentAdmin %}
+{% block title %}Promote user{% endblock %}
+{%  block frame %}
     {% if users.count == 0 %}
         <h3>There are no more users to promote :/</h3>
     {% else %}
