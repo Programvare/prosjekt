@@ -6,7 +6,7 @@
 /*
 Base admin
  */
-    .main-frame {
+    .MainWindow {
         width: 70%;
         background-color: white;
         margin: 0 auto;
@@ -15,7 +15,7 @@ Base admin
         font-family: Helvetica;
 }
 
-    .main-container {
+    .mainContainer {
         width:80%;
         margin: 0px auto;
         position: relative;
@@ -116,11 +116,11 @@ Edit page course
 }
 
 @media screen and (max-width: 600px) {
-    .main-container {
+    .mainContainer {
         border:0px;
         width:100%;
     }
-    .main-frame {
+    .MainWindow {
         width: 100%;
         box-shadow: none;
     }
@@ -129,12 +129,12 @@ Edit page course
     }
 }
 @media screen and (min-width: 601px) {
-    .main-frame {
+    .MainWindow {
         width: 70%;
         box-shadow: 0px 0px 5px #888888;
 }
 
-    .main-container {
+    .mainContainer {
         width:80%;
     }
 
