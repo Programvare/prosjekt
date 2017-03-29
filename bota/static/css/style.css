@@ -120,21 +120,30 @@ Base admin
     width: 200px;
     height:40px;
     margin:5px 0 0 0;
-    background-color: var(--main-color);
+    background-color: var(--btn-color);
     border:0px;
     color:white;
+}
+.btn-enqueue:hover{
+    background-color: var(--main-color-hoover);
 }
 .btn-tatimes {
     width: 100px;
     margin:5px 0 0 0;
 }
+.btn-tatimes:hover{
+    background-color: #eeeeee;
+}
 .btn-dequeue {
     width: 130px;
     height:40px;
     margin:5px 0 0 0;
-    background-color: var(--main-color);
+    background-color: var(--btn-color);
     border:0px;
     color:white;
+}
+.btn-dequeue:hover{
+    background-color: var(--main-color-hoover);
 }
 
 
