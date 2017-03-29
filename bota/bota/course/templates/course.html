@@ -16,7 +16,8 @@
 
     <div align="center" style="padding: 5px">
         <h4>Are you waiting for a TA?</h4>
-
+        <!--NOTE: Should this to be auto-updated?-->
+        <small>Current length of queue: {{ queue_length }}</small>
         {% if can_enter %}
         <form action="/course/{{ course_id }}/in_queue" method ="post">{% csrf_token %}
             <button  class="form-control btn-enqueue" type="submit" >Put me in the queue!</button>

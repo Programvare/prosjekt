@@ -33,7 +33,8 @@ def course(request, course_id):
         'ta_times': ta_times,
         'can_enter': can_enter,
         'assignments': assignments,
-        'all_ta_times': all_ta_times
+        'all_ta_times': all_ta_times,
+        'queue_length': queue.get_length(course_id),
     }
 
     if queue.user_in_queue(request.user, course_id):
@@ -63,7 +64,6 @@ def course_ta_next(request):
     course_id = request.META['HTTP_REFERER'].split('/')[-2]
     next_queue = queue.get_next(course_id)
     queue_length = queue.get_length(course_id)
-    print(queue_length)
 
     context = {
         'next': next_queue,
