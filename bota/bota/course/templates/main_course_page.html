@@ -1,6 +1,6 @@
 {% extends "border_frame.html" %}
 {% block title %}Courses{% endblock %}
-{% block contentAdmin  %}
+{% block frame  %}
         <div class="gridDivCourse">
                     {% if courses  %}
                          <h3>Student courses:</h3>
@@ -19,7 +19,7 @@
                         <h3>TA courses:</h3>
                     {% endif %}
                     {% for course_ta in ta_in %}
-                        <a style=" text-decoration: none;" href="/course/{{ course_ta }}/ta"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
+                        <a style="text-decoration: none;" href="/course/{{ course_ta }}/ta"><div style="background-color: #3a5c80; margin-bottom: 4px; padding:15px 0 15px 15px" >
                             <h3 style="color: white">{{ course_ta }} - {{ course_ta.name }}</h3>
                         </div></a>
                     {% endfor %}

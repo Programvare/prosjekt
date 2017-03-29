@@ -1,14 +1,14 @@
 {% extends "border_frame.html" %}
-{%  block contentAdmin %}
+{% block title %}Settings{% endblock %}
+{%  block frame %}
             <h1>You can:</h1>
             {% if is_staff %}
-                <a href="/settings/courses" style=" text-decoration: none;"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Add, edit or remove courses</div></a>
-                <a href="/promote_user"><div class="add-button"><span class="glyphicon glyphicon-cog"></span> Promote user to admin</div></a>
+                <a href="/settings/courses" class="list-elements-a"><div class="settings"><span class="glyphicon glyphicon-cog"></span> Add, edit or remove courses</div></a>
+                <a href="/promote_user" class="list-elements-a"><div class="settings"><span class="glyphicon glyphicon-cog"></span> Promote user to admin</div></a>
             {% else %}
-             <a href="/settings/edit_course"><div style=" padding: 10px;  background-color: #090080; color:white; align-content: center; margin-bottom: 4px;"><span class="glyphicon glyphicon-cog"></span> Add or remove courses</div></a>
+             <a href="/settings/edit_course" class="list-elements-a"><div class="settings"><span class="glyphicon glyphicon-cog"></span> Add or remove courses</div></a>
             {% endif %}
-            <a href="/change_password"><div class="add-button"><span class="glyphicon glyphicon-cog"></span> Change password</div></a>
+            <a href="/change_password/" class="list-elements-a"><div class="settings"><span class="glyphicon glyphicon-cog"></span> Change password</div></a>
 
 {%  endblock %}
-
 
