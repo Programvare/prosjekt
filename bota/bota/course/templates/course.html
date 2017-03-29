@@ -16,14 +16,14 @@
 
     <div align="center" style="padding: 5px">
         <h4>Are you waiting for a TA?</h4>
+        {% if can_enter %}
         <!--NOTE: Should this to be auto-updated?-->
         <small>Current length of queue: {{ queue_length }}</small>
-        {% if can_enter %}
         <form action="/course/{{ course_id }}/in_queue" method ="post">{% csrf_token %}
             <button  class="form-control btn-enqueue" type="submit" >Put me in the queue!</button>
         </form>
         {% else %}
-        <p>There are no TAs currently available, check TA times below for availability</p>
+        <small>There are no TAs currently available, check TA times below for availability</small>
         {% endif %}
     </div>
 
