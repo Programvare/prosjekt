@@ -34,4 +34,6 @@ def user_in_queue(user, course):
 
 
 def get_length(course):
-    return len(dCourse[course])
+    if course in dCourse:
+        return len(dCourse[course])
+    return 0
