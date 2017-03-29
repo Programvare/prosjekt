@@ -18,7 +18,7 @@ def get_position(user, course):
     if course in dCourse and user in dCourse[course]:
         return dCourse[course].index(user)
     else:
-        return 0;
+        return 0
 
 
 def get_next(course):
@@ -31,3 +31,7 @@ def user_in_queue(user, course):
     if course in dCourse and user in dCourse[course]:
         return True
     return False
+
+
+def get_length(course):
+    return len(dCourse[course])

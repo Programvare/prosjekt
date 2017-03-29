@@ -1,9 +1,15 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if all_ta_times %}
+    <ul class="list-group">
     {% for time in all_ta_times %}
-        <li>{{ time.display_all }}</li>
+
+            <li class="list-group-item">
+                <h5 class="list-group-item-heading">{{ time.display_all_time }}</h5>
+                <small class="list-group-item-text">{{ time.display_room }}<br />{{ time.display_ta }}</small>
+            </li>
     {% endfor %}
+    </ul>
 {% else %}
     <p>No TA times are available.</p>
 {% endif %}

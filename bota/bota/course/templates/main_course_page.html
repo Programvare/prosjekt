@@ -25,21 +25,24 @@
                     {% endfor %}
         </div>
 
-        <div class ="gridDiv">
+        <div class ="gridDiv-left">
             {% if assignments %}
                 <h3>Assignments:</h3>
             {% else %}
                 <h3>You have no assignments</h3>
             {% endif %}
-            <ul>
+                <ul class="list-group">
                 {% for assignment in assignments %}
-                    <li>
-                        <h5>{{ assignment.display_course }}: {{ assignment.display_name }}</h5>
-                        <small>{{ assignment.display_delivery_deadline }}</small>
-                        <small>{{ assignment.display_demo_deadline }}</small>
-                    </li>
+
+                        <li class="list-group-item">
+                            <h5 class="list-group-item-heading">{{ assignment.display_course }}:
+                                {{ assignment.display_name }}</h5>
+                            <small class="list-group-item-text">{{ assignment.display_delivery_deadline }}
+                                <br />{{ assignment.display_demo_deadline }}</small>
+                        </li>
+
                 {% endfor %}
-            </ul>
+                </ul>
         </div>
     </div>
     {% endblock %}
