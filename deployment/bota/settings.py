@@ -155,6 +155,6 @@ STATIC_ROOT = 'bota'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( os.path.join('static'), )
+STATICFILES_DIRS = ( os.path.join('bota/static'), )
 
 LOGOUT_REDIRECT_URL = '/'
