@@ -1,0 +1,18 @@
+{% extends "border_frame.html" %}
+
+{% block title %}Courses{% endblock %}
+{%  block frame %}
+            <h1>Edit or add courses:</h1>
+            <a href="/settings/courses/add_course"><div class="add-button"><span class="glyphicon glyphicon-plus"></span>  Add new course</div></a>
+            {% for course in courses %}
+                <div class="list-elements-xl">
+                    <div class="btn-container-xl btn-group">
+                        <a class="btn btn-success" style=" text-decoration: none;" href="/settings/courses/{{ course }}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger" style=" text-decoration: none;" href="/settings/courses/{{ course }}/rm_course"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                    <h3 style="color: white">{{ course }} - {{ course.name }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+
+{%  endblock %}

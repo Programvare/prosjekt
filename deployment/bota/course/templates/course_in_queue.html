@@ -1,0 +1,49 @@
+{% extends "border_frame.html" %}
+{% block script%}
+
+<!--The script is inside the HTML file so that the Jinja2 tag "url" is resolved
+This is so we don't need to hardcode the url in-->
+<script>
+$(document).ready(function() {
+    console.log("started script");
+    var isAlerted = false;
+    var refreshTime = 2000;
+    var alertText = "It is your turn! You will be redirected to the main course page.";
+
+    function refreshPos(){
+        console.log("refreshed div");
+        $.ajax({
+            url: '{% url 'course:course_position' %}',
+            success: function(data) {
+            $('.course_position_div').html(data);
+            }
+        });
+
+        if (!isAlerted) {
+            if ($('.pos0').text().length != 0) {
+                alert(alertText);
+                isAlerted = true;
+                console.log("got here");
+                window.location.href = '/course';
+            };
+        };
+    }
+
+    setInterval(function(){refreshPos()}, refreshTime);
+
+});
+</script>
+{% endblock %}
+
+{% block title %}{{ course_id }}{% endblock %}
+
+{% block frame %}
+
+    <div align="center">
+        <h1>{{ course_id }} - {{ course_model.name }}</h1>
+        <h3>Queue:</h3>
+    </div>
+
+    {% include 'course_position_div.html' %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+
+            <h1>Login to Your Account</h1><br>
+
+              <form action="{% url 'login' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+                <input class="form-control" type="text" name="username" placeholder="Username">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+              </form>
+
+              <div class="login-help">
+                <a href="/signup">Sign up</a>
+              </div>
+        </div>
+    </div>
+{% endblock %}
+

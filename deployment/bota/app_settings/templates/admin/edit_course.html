@@ -1,0 +1,76 @@
+{% extends "border_frame.html" %}
+{% block title %}Edit course{% endblock %}
+{%  block frame %}
+        <div class = "gridDiv-sm">
+
+                <h2>Edit {{ course.course_id }}:</h2>
+
+                <form action="/settings/courses/{{ course }}/edit" method="post">{% csrf_token %}
+                   <label>Name:</label>
+                    <input class="form-control" type="text" name="name" value="{{ course.name }}" required>
+
+                    <label>Nickname:</label>
+                    <input class="form-control" type="text" value="{{ course.nickname }}" name="nickname">
+
+                    <label>Term:</label>
+                    <input class="form-control" type="text" name="term" value="{{ course.term }}">
+
+                    <label>Description:</label>
+                    <input class="form-control" type="text" name="description" value="{{ course.description }}">
+
+                    <button class="form-control btn-save" type="submit">Save</button>
+                </form>
+        </div>
+        <div class = "gridDiv-sm">
+            <h2>Add new TA:</h2>
+            <a href="/settings/courses/{{ course.course_id }}/add_ta">
+                <div class="add-button">
+                    <span class="glyphicon glyphicon-plus"></span> Add new TA
+                </div>
+            </a>
+
+            {% for ta in ta_in %}
+                <div class="entry-row" >
+                   <div class="text-container" ><h4>{{ ta.user_id }}</h4></div>
+                        <a class="button-container btn btn-danger btn-sm" href="/settings/courses/{{ course.course_id }}/rm_ta/{{ ta.user_id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class = "gridDiv-sm">
+            <h2>Add Ta Time: </h2>
+            <a href="/settings/courses/{{ course.course_id }}/add_ta_time">
+                <div class="add-button">
+                    <span class="glyphicon glyphicon-plus"></span> Add new TA Time
+                </div>
+            </a>
+
+            {% for time in ta_times %}
+                <div class="entry-row" >
+                   <h4 class="text-container">{{ time.date }}</h4>
+                    <div class="button-container btn-group btn-group-sm">
+                        <a class="btn btn-success btn-sm"  href="/settings/courses/{{ time.course }}/edit_ta_time/{{ time.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm"  href="/settings/courses/{{ time.course }}/rm_ta_time/{{ time.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class = "gridDiv-sm">
+            <h2>Add assignment: </h2>
+            <a href="/settings/courses/{{ course.course_id }}/add_as">
+                <div class="add-button">
+                    <span class="glyphicon glyphicon-plus"></span> Add new assignment
+                </div>
+            </a>
+
+            {% for item in assignment %}
+                <div class="entry-row">
+                   <h4 class="text-container">{{ item.name }}</h4>
+                    <div class="button-container btn-group btn-group-sm">
+                        <a class="btn btn-success btn-sm" href="/settings/courses/{{ item.course }}/edit_as/{{ item.id}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a class="btn btn-danger btn-sm"  href="/settings/courses/{{ item.course }}/rm_as/{{ item.id }}/"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+{%  endblock %}
