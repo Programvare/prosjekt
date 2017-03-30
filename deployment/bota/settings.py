@@ -27,7 +27,7 @@ SECRET_KEY = 'ala_fiz=7j(xua@t2vb&uqj3zxg0ki2+7i8uc1437_^n3nor5l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botaapp.heroku.com', 'localhost']
+ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost']
 
 
 # Application definition
