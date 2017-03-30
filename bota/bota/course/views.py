@@ -33,7 +33,8 @@ def course(request, course_id):
         'ta_times': ta_times,
         'can_enter': can_enter,
         'assignments': assignments,
-        'all_ta_times': all_ta_times
+        'all_ta_times': all_ta_times,
+        'queue_length': queue.get_length(course_id),
     }
 
     if queue.user_in_queue(request.user, course_id):
@@ -62,9 +63,11 @@ def course_ta_next(request):
     #request.META gives the current url path. index [-2] should return the current courseid
     course_id = request.META['HTTP_REFERER'].split('/')[-2]
     next_queue = queue.get_next(course_id)
+    queue_length = queue.get_length(course_id)
 
     context = {
         'next': next_queue,
+        'queue_length': queue_length,
         'course_model': Course.objects.get(course_id=course_id),
         'course_id': course_id,
     }
@@ -76,6 +79,7 @@ def course_ta(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
         'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)
@@ -94,6 +98,7 @@ def rm_from_course(request, course_id):
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
         'course_model': Course.objects.get(course_id=course_id),
     }
     return render(request, 'course_ta.html', context)

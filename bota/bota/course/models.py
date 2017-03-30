@@ -57,6 +57,23 @@ class TATime(models.Model):
         return self.date.strftime("%d/%m-%y") + ": " + self.start_time.strftime("%H:%M") + "-" \
                + self.end_time.strftime("%H:%M") + " in room " + str(self.room)
 
+    def display_week_time(self):
+        weekdays = {"0": "Sunday", "1": "Monday", "2": "Tuesday", "3": "Wednesday", "4": "Thursday", "5": "Friday",
+                    "6": "Saturday"}
+        weekday = weekdays[self.date.strftime("%w")]
+
+        return weekday + ": " + self.start_time.strftime("%H:%M") + "-" + self.end_time.strftime("%H:%M")
+
+    def display_all_time(self):
+        return self.date.strftime("%d/%m-%y") + ": " + self.start_time.strftime("%H:%M") + "-" \
+               + self.end_time.strftime("%H:%M")
+
+    def display_room(self):
+        return "Room: " + str(self.room)
+
+    def display_ta(self):
+        return "TA: " + str(self.teaching_assistant)
+
 
 class Assignment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
