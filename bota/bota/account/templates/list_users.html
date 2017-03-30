@@ -1,14 +1,13 @@
 {% extends "border_frame.html" %}
-
-{%  block contentAdmin %}
-    <i>TO BE MADE</i>
-    {% if tas.count == 0 %}
-        <h3>You cant add more users</h3>
+{% block title %}Promote user{% endblock %}
+{%  block frame %}
+    {% if users.count == 0 %}
+        <h3>There are no more users to promote :/</h3>
     {% else %}
         <h3>Pick a user:</h3>
     {% endif %}
     {% for user in users %}
-        <a class="list-elements-a" href="/settings/">
+        <a class="list-elements-a" href="/promote_user/{{ user }}">
             <div class = "list-elements-xl" >
                 <h1>{{ user.username }}</h1>
             </div>

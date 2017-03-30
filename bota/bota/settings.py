@@ -144,7 +144,7 @@ USE_TZ = False
 
 import os.path
 
-STATIC_ROOT = ''
+STATIC_ROOT = 'bota'
 
 STATIC_URL = '/static/'
 
