@@ -132,6 +132,7 @@ class QueueTests(TestCase):
 
     course1 = Course(course_id="AAA0000", name="name1")
     course2 = Course(course_id="BBB1111", name="name2")
+    course3 = Course(course_id="CCC2222", name="name3")
     user1 = User(username='test_user1', password='test_password1')
     user2 = User(username='test_user2', password='test_password2')
 
@@ -158,4 +159,17 @@ class QueueTests(TestCase):
         self.assertIs(user_in_queue(self.user2, self.course1.course_id), True)
         # queue for course2 is empty
         self.assertIs(user_in_queue(self.user1, self.course2.course_id), False)
+
+    def test_get_position(self):
+        # user2 in queue for course1
+        self.assertEqual(get_position(self.user2, self.course1.course_id), 1)
+        # queue for course3 doesn't yet exist
+        self.assertEqual(get_position(self.user1, self.course3.course_id), 0)
+
+    def test_get_length(self):
+        # queue for course3 doesn't yet exist
+        self.assertEqual(get_length(self.course3.course_id), 0)
+        # queue for course1 has 2 users
+        self.assertEqual(get_length(self.course1.course_id), 2)
+
 
