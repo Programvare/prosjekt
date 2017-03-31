@@ -2,3 +2,4 @@
 bota/.idea
 bota/db.sqlite3
 *.pyc
+bota/.coverage
