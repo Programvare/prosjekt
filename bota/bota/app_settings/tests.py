@@ -35,7 +35,7 @@ class RequestPageTests(TestCase):
         self.assertEqual(302, request.status_code)
         self.assertEqual('/login/', request.url[:7])
 
-        request = client.get('/settings/courses/TDT4140/edit/')
+        request = client.get('/settings/courses/TDT4140/edit')
         self.assertEqual(302, request.status_code)
         self.assertEqual('/login/', request.url[:7])
 
@@ -43,7 +43,7 @@ class RequestPageTests(TestCase):
         self.assertEqual(302, request.status_code)
         self.assertEqual('/login/', request.url[:7])
 
-        request = client.get('/settings/TDT4140/add_ta/')
+        request = client.get('/settings/TDT4140/add_ta')
         self.assertEqual(302, request.status_code)
         self.assertEqual('/login/', request.url[:7])
 
