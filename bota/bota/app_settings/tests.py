@@ -8,7 +8,7 @@ class RequestPageTests(TestCase):
     def setUp(self):
         course = Course.objects.create(course_id="TDT4140", name="Programvare utvikling", nickname="pu",
                                        description="testing", term="spring")
-        Assignment.objects.create(course=course, description="testing", name="Øving 1",
+        Assignment.objects.create(course=course, description="testing", name="Oving 1",
                                   delivery_deadline="1990-05-04 22:15", demo_deadline="1990-05-04 22:15")
         User.objects.create_user(username='testuser', password='4epape?Huf+V')
         User.objects.create_user(username='testadmin', password='4epape?Huf+V', is_staff='True')
@@ -260,10 +260,10 @@ class RequestPageTests(TestCase):
         """
         client = Client()
         client.login(username='testadmin', password='4epape?Huf+V')
-        client.post('/settings/courses/TDT4140/add_as/', {'description': 'testing', 'name': 'Øving 2',
+        client.post('/settings/courses/TDT4140/add_as/', {'description': 'testing', 'name': 'Oving 2',
                                                                  'delivery_deadline': '1990-05-04 22:15',
                                                                  'demo_deadline': '1990-05-04 22:15'})
-        self.assertEqual(True, Assignment.objects.filter(name="Øving 2").exists())
+        self.assertEqual(True, Assignment.objects.filter(name="Oving 2").exists())
 
     def test_edit_as(self):
         """
@@ -273,11 +273,11 @@ class RequestPageTests(TestCase):
         client.login(username='testadmin', password='4epape?Huf+V')
 
         # checks that the correct course is eddited
-        client.post('/settings/courses/TDT4140/edit_as/1/', {'description': 'testing 1', 'name': 'Øving 2',
+        client.post('/settings/courses/TDT4140/edit_as/1/', {'description': 'testing 1', 'name': 'Oving 2',
                                                                  'delivery_deadline': '1991-05-04 22:15',
                                                                  'demo_deadline': '1991-05-04 22:15'})
         assignment = Assignment.objects.get(id="1")
-        self.assertEqual(assignment.name, 'Øving 2')
+        self.assertEqual(assignment.name, 'Oving 2')
         self.assertEqual(assignment.description, 'testing 1')
         self.assertEqual(assignment.delivery_deadline.year, 1991)
         self.assertEqual(assignment.demo_deadline.year, 1991)
