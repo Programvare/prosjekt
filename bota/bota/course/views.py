@@ -15,7 +15,6 @@ def course_main_page(request):
     return render(request, 'main_course_page.html', context)
 
 
-@login_required(login_url='/login/')
 def course(request, course_id):
 
     ta_times = get_week_times(course_id)
@@ -41,7 +40,7 @@ def course(request, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
 
-@login_required(login_url='/login/')
+
 def course_position(request):
     #The problem with having a separate view for a _div_
     #is that we can't have a fancy context-based url in urls.py
@@ -55,6 +54,7 @@ def course_position(request):
         'course_id': course_id,
     }
     return render(request, 'course_position_div.html', context)
+
 
 @login_required(login_url='/login/')
 def course_ta_next(request):
