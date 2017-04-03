@@ -14,7 +14,6 @@ def course_main_page(request):
     }
     return render(request, 'main_course_page.html', context)
 
-
 @login_required(login_url='/login/')
 def course(request, course_id):
 
@@ -43,6 +42,12 @@ def course(request, course_id):
 
 @login_required(login_url='/login/')
 def course_ta(request, course_id):
+
+    username = request.user.username
+
+    if not TAin.objects.filter(course__course_id=course_id, user_id__username=username).exists():
+        return course(request, course_id)
+
     context = {
         'course_id': course_id,
         'next': queue.get_next(course_id),
