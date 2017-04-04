@@ -315,7 +315,23 @@ class RequestPageTests(TestCase):
         self.assertEqual(False, TATime.objects.filter(id='1').exists())
 
         request = client.get('/settings/courses/TDT4140/rm_ta_time/1/')
-        self.assertEqual(False, TATime.objects.filter(id="1").exists())
+        self.assertEqual(False, TATime.objects.filter(id='1').exists())
         self.assertEqual(302, request.status_code)
         self.assertEqual('/settings/courses/TDT4140/edit', request.url)
 
+    def test_add_takes(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+
+    def test_rm_takes_course(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+
+    def test_add_takes_course(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+
+    def test_user_list_courses(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+        
