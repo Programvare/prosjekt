@@ -4,11 +4,12 @@ from .models import Course, TATime, Assignment, TAin, Takes
 from django.contrib.auth.models import User
 from .queue import *
 from .views import *
+
+
 # Test models.py
 
 
 class CourseMethodTests(TestCase):
-
     course_id = "AAA0000"
     name = "name"
     course = Course(course_id=course_id, name=name)
@@ -20,7 +21,6 @@ class CourseMethodTests(TestCase):
 
 
 class TakesMethodTests(TestCase):
-
     course = Course(course_id="AAA0000", name="name")
     user = User(username='test_user', password='test_password')
     takes = Takes(course=course, user_id=user)
@@ -32,7 +32,6 @@ class TakesMethodTests(TestCase):
 
 
 class TAinMethodTests(TestCase):
-
     course = Course(course_id="AAA0000", name="name")
     user = User(username='test_user', password='test_password')
     ta_in = TAin(course=course, user_id=user)
@@ -44,7 +43,6 @@ class TAinMethodTests(TestCase):
 
 
 class TATimeMethodTests(TestCase):
-
     course = Course(course_id="AAA0000", name="name")
     date = datetime.date(2000, 1, 1)  # Weekday: Saturday
     start_time = datetime.time(0, 1)
@@ -91,7 +89,6 @@ class TATimeMethodTests(TestCase):
 
 
 class AssignmentMethodTests(TestCase):
-
     course = Course(course_id="AAA0000", name="name")
     name = 'name'
     description = 'description'
@@ -125,11 +122,10 @@ class AssignmentMethodTests(TestCase):
         check = "AAA0000"
         self.assertEqual(test, check)
 
+
 # Test queue.py
 
-
 class QueueTests(TestCase):
-
     course1 = Course(course_id="AAA0000", name="name1")
     course2 = Course(course_id="BBB1111", name="name2")
     course3 = Course(course_id="CCC2222", name="name3")
@@ -173,26 +169,22 @@ class QueueTests(TestCase):
         self.assertEqual(get_length(self.course1.course_id), 2)
 
 
-# Test views.py
-
-
 class TestViews(TestCase):
     def setUp(self):
-
         course = Course.objects.create(course_id="TDT4140", name="Programvareutvikling", nickname="pu",
                                        description="testing", term="spring")
 
         Assignment.objects.create(course=course, description="testing", name="Oving 1",
                                   delivery_deadline="1990-05-04 22:15", demo_deadline="1990-05-04 22:15")
 
-        #Normal user
+        # Normal user
         User.objects.create_user(username='course_user', password='4epape?Huf+V')
 
-        #TA user
+        # TA user
         ta_user_object = User.objects.create_user(username='course_ta', password='4epape?Huf+V')
         TAin.objects.create(course=course, user_id=ta_user_object)
 
-        #Admin user
+        # Admin user
         User.objects.create_user(username='course_admin', password='4epape?Huf+V', is_staff='True')
 
     def test_call_view_denies_anonymous(self):
@@ -257,7 +249,7 @@ class TestViews(TestCase):
         self.assertEqual(200, request.status_code)
 
         user_client.logout()
-        
+
     def test_get_pages_ta(self):
         """
          Checks that ta has access. Note: TA is otherwise standard user
@@ -269,7 +261,6 @@ class TestViews(TestCase):
         request = ta_client.get('/course/TDT4140/ta')
         self.assertEqual(200, request.status_code)
         self.assertTemplateUsed(request, 'course_ta.html')
-
 
         ta_client.logout()
 
@@ -320,13 +311,12 @@ class TestViews(TestCase):
         self.assertEqual(200, request.status_code)
 
 
-class TestViewHelper(TestCase):
+class TestViewHelperTATimes(TestCase):
     def setUp(self):
         new_course = Course.objects.create(course_id="AAA0000", name="name")
 
-        date_month = datetime.date.today()+ datetime.timedelta(days=20)
-        date_month = date_month
         date_week = datetime.date.today()
+        date_month = date_week + datetime.timedelta(days=20)
 
         start_time = datetime.time(0, 1)
         end_time = datetime.time(23, 59)
@@ -334,86 +324,68 @@ class TestViewHelper(TestCase):
         room = 'room'
 
         TATime.objects.create(
-            course=new_course, date=date_month, start_time=start_time, end_time=end_time, teaching_assistant=ta, room=room)
+            course=new_course, date=date_month, start_time=start_time, end_time=end_time, teaching_assistant=ta,
+            room=room)
 
         TATime.objects.create(
-            course=new_course, date=date_week, start_time=start_time, end_time=end_time, teaching_assistant=ta, room=room)
+            course=new_course, date=date_week, start_time=start_time, end_time=end_time, teaching_assistant=ta,
+            room=room)
 
     def test_get_all_times(self):
-
         self.assertEqual(get_all_times("Fake_ID").__len__(), 0)
         self.assertEqual(get_all_times("AAA0000").__len__(), 2)
 
     def test_get_all_times_after_week(self):
         self.assertEqual(get_all_times_after_week("Fake_ID").__len__(), 0)
         self.assertEqual(get_all_times_after_week("AAA0000").__len__(), 1)
+
+    def test_get_week_times(self):
+        self.assertEqual(get_week_times("Fake_ID").__len__(), 0)
+        self.assertEqual(get_week_times("AAA0000").__len__(), 1)
+
+    def test_check_can_enter(self):
+        self.assertEqual(check_can_enter("Fake_ID"), False)
+        self.assertEqual(check_can_enter("AAA0000"), True)
+
+
+class TestViewHelperTakes(TestCase):
+    def setUp(self):
+        assignments_course = Course.objects.create(course_id="AAA0000", name="name")
+        no_assignments_course = Course.objects.create(course_id="BBB0000", name="name")
+
+        name = 'name'
+        description = 'description'
+        delivery_deadline = datetime.datetime.today()
+        demo_deadline = delivery_deadline + datetime.timedelta(days=2)
+
+        assignment1 = Assignment.objects.create(course=assignments_course,
+                                                name=name,
+                                                description=description,
+                                                delivery_deadline=delivery_deadline,
+                                                demo_deadline=demo_deadline)
+        assignment2 = Assignment.objects.create(course=assignments_course,
+                                                name=name,
+                                                description=description,
+                                                delivery_deadline=delivery_deadline,
+                                                demo_deadline=demo_deadline)
+        user = User.objects.create(username='test_user', password='test_password')
+
+        Takes.objects.create(course=assignments_course, user_id=user)
+        Takes.objects.create(course=no_assignments_course, user_id=user)
+
+    def test_get_all_course_assignments(self):
+        self.assertEqual(get_all_course_assignments("BBB0000").__len__(), 0)
+        self.assertEqual(get_all_course_assignments("AAA0000").__len__(), 2)
 """
-    def get_week_times(course_id):
-        # Display only current weeks ta times
-        ta_times = []
-        all_ta_times = get_all_times(course_id)
-        for time in all_ta_times:
-            if time.date.isocalendar()[1] == datetime.date.today().isocalendar()[1]:
-                ta_times.append(time)
-        return ta_times
+    def test_get_all_student_assignments(self):
+        user_client = Client()
+        user_client.login(username='test_user', password='test_password')
 
-    def check_can_enter(course_id):
-        ta_times = get_all_times(course_id)
-        # Check if there currently is a ta time, i.e. can students enter the queue?
-        now = datetime.datetime.today()
-        can_enter = False
-        for time in ta_times:
-            if time.date == now.date():
-                if now.time() >= time.start_time and now.time() <= time.end_time:
-                    can_enter = True
-        return can_enter
+        request_with_ass = self.client.get('/course/AAA0000/')
 
-    def get_all_course_assignments(course_id):
-        # Get list of all assignments for course
-        try:
-            all_assignments = Assignment.objects.filter(course__course_id=course_id).order_by('delivery_deadline')
-        except Assignment.DoesNotExist:
-            all_assignments = []
-        # Remove "old" assignments from list
-        assignments = []
-        for assignment in all_assignments:
-            if assignment.demo_deadline >= datetime.datetime.today():
-                assignments.append(assignment)
-        return assignments
+        request_no_ass = self.client.get('/course/AAA0000/')
 
-    def get_all_student_assignments(request):
-        # Get list of all assignments for student
-        assignments = []
-        try:
-            courses = Course.objects.filter(id__in=Takes.objects.filter(user_id=request.user).values("course_id"))
-            for course_id in courses:
-                course_assignments = get_all_course_assignments(course_id)
-                for assignment in course_assignments:
-                    assignments.append(assignment)
-        except Assignment.DoesNotExist:
-            assignments = []
-        return assignments
-
-
-    def test_call_view_loads(self):
-        self.client.login(username='test_user', password='test_password')
-        request = self.client.get('/course')
-        #self.assertEqual(request.status_code, 200)
-        self.assertRedirects(request, '/login/?next=/course')
-        #self.assertTemplateUsed(response, 'main_course_page.html')
-
-
-
-    def test_call_view_fails_blank(self):
-        self.client.login(username='user', password='test')
-        response = self.client.post('/url/to/view', {})  # blank data dictionary
-        self.assertFormError(response, 'form', 'some_field', 'This field is required.')
-        # etc. ...
-
-    def test_call_view_fails_invalid(self):
-        # as above, but with invalid rather than blank data in dictionary
-
-        def test_call_view_fails_invalid(self):
-            # same again, but with valid data, then
-            self.assertRedirects(response, '/contact/1/calls/')
+        self.assertEqual(get_all_student_assignments(request_no_ass), 0)
+        self.assertEqual(get_all_student_assignments(request_with_ass), 0)
 """
+
