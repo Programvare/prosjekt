@@ -1,6 +1,6 @@
 from django.test import Client
 from django.test import TestCase
-from bota.course.models import Course, Assignment, TAin
+from bota.course.models import Course, Assignment, TATime, TAin
 from django.contrib.auth.models import User
 
 
@@ -10,6 +10,8 @@ class RequestPageTests(TestCase):
                                        description="testing", term="spring")
         Assignment.objects.create(course=course, description="testing", name="Oving 1",
                                   delivery_deadline="1990-05-04 22:15", demo_deadline="1990-05-04 22:15")
+        TATime.objects.create(course=course, date='1990-05-04', start_time='22:15',
+                              end_time='22:20', teaching_assistant='Bjarne', room='r1')
         User.objects.create_user(username='testuser', password='4epape?Huf+V')
         User.objects.create_user(username='testadmin', password='4epape?Huf+V', is_staff='True')
 
@@ -281,4 +283,39 @@ class RequestPageTests(TestCase):
         self.assertEqual(assignment.description, 'testing 1')
         self.assertEqual(assignment.delivery_deadline.year, 1991)
         self.assertEqual(assignment.demo_deadline.year, 1991)
+
+    def test_add_ta_time(self):
+
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+
+        client.post('settings/courses/TDT4140/add_ta_time/', {'date': '1991-05-04', 'start_time': '22:15',
+                                                             'end_time': '22:20', 'teaching_assistant': 'Bjarne', 'room': 'r1'})
+        self.assertEqual(True, TATime.objects.filter(teaching_assistant='Bjarne', room='r1').exists())
+
+    def test_edit_ta_time(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+
+        client.post('settings/courses/TDT4140/edit_ta_time/1/', {'date': '1991-05-04', 'start_time': '21:15',
+                                                              'end_time': '23:20', 'teaching_assistant': 'Finn',
+                                                              'room': 'r2'})
+        tatime = TATime.objects.get(id='1')
+        self.assertEqual(tatime.date.year, 1991)
+        self.assertEqual(tatime.start_time.hour, 21)
+        self.assertEqual(tatime.end_time.hour, 23)
+        self.assertEqual(tatime.teaching_assistant, "Finn")
+        self.assertEqual(tatime.room, "r2")
+
+    def test_rm_ta_time(self):
+        client = Client()
+        client.login(username='testadmin', password='4epape?Huf+V')
+        self.assertEqual(True, TATime.objects.filter(id='1').exists())
+        client.get('/settings/courses/TDT4140/rm_ta_time/1/')
+        self.assertEqual(False, TATime.objects.filter(id='1').exists())
+
+        request = client.get('/settings/courses/TDT4140/rm_ta_time/1/')
+        self.assertEqual(False, TATime.objects.filter(id="1").exists())
+        self.assertEqual(302, request.status_code)
+        self.assertEqual('/settings/courses/TDT4140/edit', request.url)
 
