@@ -1,0 +1,160 @@
+/*variables*/
+:root {
+    --main-color: #00508e;
+    --main-color-hoover: #0a5a8e;
+    --btn-color: #090080;
+}
+
+
+
+/*base */
+
+.navbar-elements {
+    font-size: 12px;
+}
+/*
+Base admin
+ */
+    .main-frame {
+        width: 70%;
+        background-color: white;
+        margin: 0 auto;
+        padding-bottom: 40px;
+        box-shadow: 0px 0px 5px #888888;
+        font-family: Helvetica;
+}
+
+    .main-container {
+        width:80%;
+        margin: 0px auto;
+        position: relative;
+        padding-top:10px;'
+        text-align:center;
+        overflow: auto;
+
+    }
+
+    .settings {
+        padding: 10px;
+        background-color: var(--main-color);
+        color:white;
+        align-content: center;
+        margin-bottom: 4px;
+    }
+    .settings:hover {
+        background-color: var(--main-color-hoover);
+    }
+
+/* Form information and info pages */
+.gridDiv-sm {
+    width:400px;
+    padding:0px 2% 0px 2%;
+    vertical-align:top;
+    display:inline-block;
+}
+.gridDiv-m {
+    width:400px;
+    vertical-align:top;
+    display:inline-block;
+}
+.gridDiv-xl{
+    width:100%;
+    vertical-align:top;
+    display:inline-block;
+}
+.errorLabel {
+    color:red;
+}
+.new-entry-input {
+    width:100%;
+    max-width: 400px;
+}
+.new-entry-button {
+    margin:5px 0 0 0;
+}
+
+.list-elements-a{
+    text-decoration: none;
+    color:white;
+}
+.list-elements-a:hover{
+    text-decoration: none;
+    color: white;
+}
+.list-elements-xl {
+    background-color: var(--main-color);
+    margin-bottom: 4px;
+    padding:15px 0 15px 15px;
+}
+.list-elements-xl:hover {
+    background-color: var(--main-color);
+    margin-bottom: 4px;
+    padding:15px 0 15px 15px;
+}
+.btn-container-xl {
+    float:right;
+    position: relative;
+    margin: 12px 15px 0 0;
+}
+
+
+/*
+Edit page course
+ */
+.add-button {
+    padding: 10px;
+    background-color: var(--btn-color);
+    color:white;
+    align-content: center;
+    margin-bottom: 4px;
+}
+
+.entry-row {
+    background-color: var(--main-color);
+    margin-bottom: 4px;
+    height:100%;
+    min-height: 50px;
+    padding: 3% 3% 3% 3%;
+    color:white;
+}
+.button-container {
+    float:right;
+    text-decoration: none;
+}
+.text-container {
+    float:left;
+}
+
+.btn-save {
+    width: 50%;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color: var(--btn-color);
+    border:0px;
+    color:white;
+}
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        border:0px;
+        width:100%;
+    }
+    .main-frame {
+        width: 100%;
+        box-shadow: none;
+    }
+    .gridDiv-sm {
+        width:100%
+    }
+}
+@media screen and (min-width: 601px) {
+    .main-frame {
+        width: 70%;
+        box-shadow: 0px 0px 5px #888888;
+}
+
+    .main-container {
+        width:80%;
+    }
+
+}

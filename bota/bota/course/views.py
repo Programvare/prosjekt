@@ -14,7 +14,6 @@ def course_main_page(request):
     }
     return render(request, 'main_course_page.html', context)
 
-
 @login_required(login_url='/login/')
 def course(request, course_id):
 
@@ -40,6 +39,48 @@ def course(request, course_id):
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
+
+@login_required(login_url='/login/')
+def course_ta(request, course_id):
+
+    username = request.user.username
+
+    if not TAin.objects.filter(course__course_id=course_id, user_id__username=username).exists():
+        return course(request, course_id)
+
+    context = {
+        'course_id': course_id,
+        'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
+    }
+    return render(request, 'course_ta.html', context)
+
+
+@login_required(login_url='/login/')
+def add_me_to_list(request, course_id):
+    if check_can_enter(course_id):
+        queue.add_to_queue(request.user, course_id)
+    return course(request, course_id)
+
+
+@login_required(login_url='/login/')
+def rm_from_course(request, course_id):
+    queue.rm_from_queue(course_id)
+    context = {
+        'course_id': course_id,
+        'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
+    }
+    return render(request, 'course_ta.html', context)
+
+
+"""
+The two following views are made for the purpose of autorefreshing divs with js.
+By creating views, they have separate URLs, with their own POST and GET requests.
+This is done so they can be refreshed separately,
+"""
 
 
 def course_position(request):
@@ -74,53 +115,9 @@ def course_ta_next(request):
     return render(request, 'course_ta_next_div.html', context)
 
 
-@login_required(login_url='/login/')
-def course_ta(request, course_id):
-    context = {
-        'course_id': course_id,
-        'next': queue.get_next(course_id),
-        'queue_length': queue.get_length(course_id),
-        'course_model': Course.objects.get(course_id=course_id),
-    }
-    return render(request, 'course_ta.html', context)
-
-
-@login_required(login_url='/login/')
-def add_me_to_list(request, course_id):
-    if check_can_enter(course_id):
-        queue.add_to_queue(request.user, course_id)
-    return course(request, course_id)
-
-
-@login_required(login_url='/login/')
-def rm_from_course(request, course_id):
-    queue.rm_from_queue(course_id)
-    context = {
-        'course_id': course_id,
-        'next': queue.get_next(course_id),
-        'queue_length': queue.get_length(course_id),
-        'course_model': Course.objects.get(course_id=course_id),
-    }
-    return render(request, 'course_ta.html', context)
-
-
 """
-Removed and placed in div
-@login_required(login_url='/login/')
-def taTimes(request, courseid):
-    all_tatimes = get_all_times(courseid)
-
-    context = {
-        'ta_time_list': all_tatimes,
-        'ccourse': courseid
-    }
-
-    template = loader.get_template('ta_time.html')
-    return HttpResponse(template.render(context, request))
+Helper functions, not views.
 """
-
-# Help functions #
-
 
 def get_all_times(course_id):
     # Get list of all ta times for course
