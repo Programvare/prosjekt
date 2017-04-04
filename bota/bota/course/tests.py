@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .queue import *
 from .views import *
 # Test models.py
-"""
+
 
 class CourseMethodTests(TestCase):
 
@@ -171,9 +171,10 @@ class QueueTests(TestCase):
         self.assertEqual(get_length(self.course3.course_id), 0)
         # queue for course1 has 2 users
         self.assertEqual(get_length(self.course1.course_id), 2)
-"""
+
 
 # Test views.py
+
 
 class TestViews(TestCase):
     def setUp(self):
@@ -344,8 +345,8 @@ class TestViewHelper(TestCase):
         self.assertEqual(get_all_times("AAA0000").__len__(), 2)
 
     def test_get_all_times_after_week(self):
-        self.assertEqual(get_all_times("Fake_ID").__len__(), 0)
-        self.assertEqual(get_all_times("AAA0000").__len__(), 1)
+        self.assertEqual(get_all_times_after_week("Fake_ID").__len__(), 0)
+        self.assertEqual(get_all_times_after_week("AAA0000").__len__(), 1)
 """
     def get_week_times(course_id):
         # Display only current weeks ta times

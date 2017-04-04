@@ -14,6 +14,7 @@ def course_main_page(request):
     }
     return render(request, 'main_course_page.html', context)
 
+
 @login_required(login_url='/login/')
 def course(request, course_id):
 
@@ -39,6 +40,7 @@ def course(request, course_id):
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
+
 
 @login_required(login_url='/login/')
 def course_ta(request, course_id):
@@ -119,6 +121,7 @@ def course_ta_next(request):
 Helper functions, not views.
 """
 
+
 def get_all_times(course_id):
     # Get list of all ta times for course
     try:
@@ -141,7 +144,7 @@ def get_all_times_after_week(course_id):
     # Remove "old" times from list
     ta_times = []
     for time in all_ta_times:
-        if time.date.isocalendar()[1] == datetime.date.today().isocalendar()[1] + 1:
+        if time.date.isocalendar()[1] >= datetime.date.today().isocalendar()[1] + 1:
             ta_times.append(time)
     return ta_times
 
