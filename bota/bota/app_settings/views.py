@@ -92,20 +92,22 @@ def add_ta_to_course(request, course_id):
 def add_ta_to_course_user(request, course_id, username):
     course = Course.objects.get(course_id=course_id)
     user = User.objects.get(username=username)
-    ta = TAin(course=Course.objects.get(course_id=course), user_id=user)
+    ta = TAin.objects.create(course=Course.objects.get(course_id=course), user_id=user)
     ta.save()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 
 @staff_member_required(login_url='/login/')
 def rm_ta_from_course(request, course_id, username):
-    TAin.objects.get(course__course_id=course_id, user_id__username=username).delete()
+    if TAin.objects.filter(course__course_id=course_id, user_id__username=username).exists():
+        TAin.objects.get(course__course_id=course_id, user_id__username=username).delete()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 
 @staff_member_required(login_url='/login/')
 def rm_as(request, course_id, as_id):
-    Assignment.objects.get(id=as_id).delete()
+    if Assignment.objects.filter(id=as_id).exists():
+        Assignment.objects.get(id=as_id).delete()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 
@@ -117,8 +119,9 @@ def add_as(request, course_id):
         description = request.POST.get("description")
         delivery_deadline = request.POST.get("delivery_deadline")
         demo_deadline = request.POST.get("demo_deadline")
-        a = Assignment(course=Course.objects.get(course_id=course_id), name=name, description=description,
-                       delivery_deadline=delivery_deadline, demo_deadline=demo_deadline)
+        a = Assignment.objects.create(course=Course.objects.get(course_id=course_id), name=name,
+                                      description=description,delivery_deadline=delivery_deadline,
+                                      demo_deadline=demo_deadline)
         a.save()
         return redirect('/settings/courses/'+course_id+'/edit')
     return render(request, 'admin/new_as.html', context)

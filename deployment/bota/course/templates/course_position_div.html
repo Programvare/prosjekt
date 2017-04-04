@@ -1,0 +1,14 @@
+<!--NOTE: jQuery can't select #id elements for some reason. Use class instead-->
+<div class="course_position_div" align="center">
+
+    {% if position == 0 %}
+       <div class="pos0">
+           <p style="font-size:30px">It is your turn! </p>
+       </div>
+    {% elif position == 1 %}
+        <p style="font-size:30px">There is {{ position }} student ahead of you </p>
+    {% else %}
+        <p style="font-size:30px">There are {{ position }} students ahead of you </p>
+    {% endif %}
+</div>
+

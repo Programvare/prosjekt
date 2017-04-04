@@ -1,0 +1,23 @@
+{% extends "border_frame.html" %}
+{% block title %}My Courses{% endblock %}
+{%  block frame %}
+        {% if courses  %}
+             <h3>Here are your courses:</h3>
+        {% else %}
+            <h3>You have no courses, you can add one under:</h3>
+        {% endif %}
+        <a href="settings/add_takes/">
+            <div class="add-button">
+                <span class="glyphicon glyphicon-plus"></span> Add new course</div></a>
+        {% for course in courses %}
+            <a href="/course/{{ course }}">
+                <div class="list-elements-xl">
+                    <div class="btn-container-xl btn-group">
+                        <a class="btn btn-danger" href="/settings/{{ course }}/rm_takes"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    </div>
+                    <h3 style="color:white;">{{ course }} - {{ course.name }}</h3>
+                </div>
+            </a>
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>BoTA - {% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    </head>
+
+    <body>
+
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class = "navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false">
+                    <span class="sr-only"></span>
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+              <a class="navbar-brand" href="/">BoTA</a>
+            </div>
+
+          <div class="collapse navbar-collapse" id="mynavbar">
+          {% if not request.user.is_staff %}
+              <ul class="nav navbar-nav">
+                <li>
+                    <a href="/course" class = "navbar-elements"><span class="glyphicon glyphicon-education"></span> My Courses</a>
+                </li>
+            </ul>
+          {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/settings" class = "navbar-elements"><span class="glyphicon glyphicon-wrench"></span> settings</a>
+                </li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="/logout" class = "navbar-elements"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/login" class = "navbar-elements"><span class="glyphicon glyphicon-log-in"></span> login</a>
+                        </li>
+                    {% endif %}
+            </ul>
+          </div>
+          </div>
+        </nav>
+
+
+        <div class="container-fluid" style="margin-top:60px;">
+        {% block content %}
+
+        {% endblock %}
+        </div >
+
+        <!--This is a block for page exclusive scripts/js or CSS-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{% static "js/bootstrap.js" %}"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <!--script>
+        $(".main-container").find("ul").addClass("list-group");
+        $(".main-container").find("li").addClass("list-group-item");
+        $(".main-container").find("button").addClass("btn btn-default");
+        $(".main-container").find("input").addClass("btn btn-default");
+        </script-->
+
+        {% block script %}{% endblock %}
+    </body>
+</html>
