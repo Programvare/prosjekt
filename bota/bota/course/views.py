@@ -61,7 +61,7 @@ def course_ta(request, course_id):
 
 @login_required(login_url='/login/')
 def add_me_to_list(request, course_id):
-    if check_can_enter(course_id):
+    if check_can_enter(course_id) and not queue.user_in_queue(request.user, course_id):
         queue.add_to_queue(request.user, course_id)
     return course(request, course_id)
 
