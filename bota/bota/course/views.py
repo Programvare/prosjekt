@@ -61,7 +61,7 @@ def course_ta(request, course_id):
 
 @login_required(login_url='/login/')
 def add_me_to_list(request, course_id):
-    if check_can_enter(course_id):
+    if check_can_enter(course_id) and not queue.user_in_queue(request.user, course_id):
         queue.add_to_queue(request.user, course_id)
     return course(request, course_id)
 
@@ -77,6 +77,23 @@ def rm_from_course(request, course_id):
     }
     return render(request, 'course_ta.html', context)
 
+
+@login_required(login_url='/login/')
+def leave_queue(request, course_id):
+    queue.leave_queue(course_id, request.user)
+
+    context = {
+        'course_model': Course.objects.get(course_id=course_id),
+        'course_id': course_id,
+        'position': queue.get_position(request.user, course_id),
+        'ta_times': get_week_times(course_id),
+        'can_enter': check_can_enter(course_id),
+        'assignments': get_all_course_assignments(course_id),
+        'all_ta_times': get_all_times_after_week(course_id),
+        'queue_length': queue.get_length(course_id),
+    }
+
+    return render(request, 'course.html', context)
 
 """
 The two following views are made for the purpose of autorefreshing divs with js.

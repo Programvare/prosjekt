@@ -46,4 +46,13 @@ $(document).ready(function() {
 
     {% include 'course_position_div.html' %}
 
+
+    <div align="center">
+        {% if position > 0 %}
+        <form action="/course/{{ course_id }}/leave_queue" method ="post">{% csrf_token %}
+            <button  class="form-control btn-leave-queue" type="submit" >Leave queue!</button>
+        </form>
+        {% endif %}
+    </div>
+
 {% endblock %}
