@@ -37,3 +37,9 @@ def get_length(course):
     if course in dCourse:
         return len(dCourse[course])
     return 0
+
+
+def leave_queue(course, user):
+    if course in dCourse and user in dCourse[course]:
+        position = get_position(user, course)
+        dCourse.get(course).pop(position)
