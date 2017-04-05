@@ -4,10 +4,17 @@
     <header>
         <div class="container">
             <div class="jumbotron">
-            <h1>Welcome to BoTA.</h1> <br>
-            <a href="/login">Log in</a>
-            <br>
-            <a href="/signup">Sign up</a>
+                <div align="center">
+                    <h1>Welcome to BoTA!</h1> <br>
+                    <form action="/login">{% csrf_token %}
+                        <button  class="form-control btn-login" type="submit" >Login</button>
+                    </form>
+                    <br>
+                    <small>New to BoTA?</small>
+                    <form action="/signup">{% csrf_token %}
+                        <button  class="form-control btn-signup" type="submit" >Sign up</button>
+                    </form>
+                </div>
             </div>
         </div>
     </header>
