@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import redirect
-from django.template import loader
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
 
 
 def main_page(request):
@@ -9,7 +7,6 @@ def main_page(request):
         if request.user.is_staff:
             return redirect('/settings')
         return redirect('/course')
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render(request))
+    return render(request, 'index.html', {})
 
 
