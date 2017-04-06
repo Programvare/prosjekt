@@ -27,7 +27,7 @@ SECRET_KEY = 'ala_fiz=7j(xua@t2vb&uqj3zxg0ki2+7i8uc1437_^n3nor5l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost', u'127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -95,11 +95,13 @@ DATABASES = {
     }
 }
 """
+
 in_heroku = False
 if 'DATABASE_URL' in os.environ:
     in_heroku = True
+    import dj_database_url
 
-import dj_database_url
+
 if in_heroku:
     DATABASES = {'default': dj_database_url.config()}
 else:
@@ -109,8 +111,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-
 
 
 # Password validation

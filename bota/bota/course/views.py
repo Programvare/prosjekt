@@ -33,12 +33,73 @@ def course(request, course_id):
         'ta_times': ta_times,
         'can_enter': can_enter,
         'assignments': assignments,
-        'all_ta_times': all_ta_times
+        'all_ta_times': all_ta_times,
+        'queue_length': queue.get_length(course_id),
     }
 
     if queue.user_in_queue(request.user, course_id):
         return render(request, 'course_in_queue.html', context)
     return render(request, 'course.html', context)
+
+
+@login_required(login_url='/login/')
+def course_ta(request, course_id):
+
+    username = request.user.username
+
+    if not TAin.objects.filter(course__course_id=course_id, user_id__username=username).exists():
+        return course(request, course_id)
+
+    context = {
+        'course_id': course_id,
+        'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
+    }
+    return render(request, 'course_ta.html', context)
+
+
+@login_required(login_url='/login/')
+def add_me_to_list(request, course_id):
+    if check_can_enter(course_id) and not queue.user_in_queue(request.user, course_id):
+        queue.add_to_queue(request.user, course_id)
+    return course(request, course_id)
+
+
+@login_required(login_url='/login/')
+def rm_from_course(request, course_id):
+    queue.rm_from_queue(course_id)
+    context = {
+        'course_id': course_id,
+        'next': queue.get_next(course_id),
+        'queue_length': queue.get_length(course_id),
+        'course_model': Course.objects.get(course_id=course_id),
+    }
+    return render(request, 'course_ta.html', context)
+
+
+@login_required(login_url='/login/')
+def leave_queue(request, course_id):
+    queue.leave_queue(course_id, request.user)
+
+    context = {
+        'course_model': Course.objects.get(course_id=course_id),
+        'course_id': course_id,
+        'position': queue.get_position(request.user, course_id),
+        'ta_times': get_week_times(course_id),
+        'can_enter': check_can_enter(course_id),
+        'assignments': get_all_course_assignments(course_id),
+        'all_ta_times': get_all_times_after_week(course_id),
+        'queue_length': queue.get_length(course_id),
+    }
+
+    return render(request, 'course.html', context)
+
+"""
+The two following views are made for the purpose of autorefreshing divs with js.
+By creating views, they have separate URLs, with their own POST and GET requests.
+This is done so they can be refreshed separately,
+"""
 
 
 def course_position(request):
@@ -62,59 +123,20 @@ def course_ta_next(request):
     #request.META gives the current url path. index [-2] should return the current courseid
     course_id = request.META['HTTP_REFERER'].split('/')[-2]
     next_queue = queue.get_next(course_id)
+    queue_length = queue.get_length(course_id)
 
     context = {
         'next': next_queue,
+        'queue_length': queue_length,
         'course_model': Course.objects.get(course_id=course_id),
         'course_id': course_id,
     }
     return render(request, 'course_ta_next_div.html', context)
 
 
-@login_required(login_url='/login/')
-def course_ta(request, course_id):
-    context = {
-        'course_id': course_id,
-        'next': queue.get_next(course_id),
-        'course_model': Course.objects.get(course_id=course_id),
-    }
-    return render(request, 'course_ta.html', context)
-
-
-@login_required(login_url='/login/')
-def add_me_to_list(request, course_id):
-    if check_can_enter(course_id):
-        queue.add_to_queue(request.user, course_id)
-    return course(request, course_id)
-
-
-@login_required(login_url='/login/')
-def rm_from_course(request, course_id):
-    queue.rm_from_queue(course_id)
-    context = {
-        'course_id': course_id,
-        'next': queue.get_next(course_id),
-        'course_model': Course.objects.get(course_id=course_id),
-    }
-    return render(request, 'course_ta.html', context)
-
-
 """
-Removed and placed in div
-@login_required(login_url='/login/')
-def taTimes(request, courseid):
-    all_tatimes = get_all_times(courseid)
-
-    context = {
-        'ta_time_list': all_tatimes,
-        'ccourse': courseid
-    }
-
-    template = loader.get_template('ta_time.html')
-    return HttpResponse(template.render(context, request))
+Helper functions, not views.
 """
-
-# Help functions #
 
 
 def get_all_times(course_id):
@@ -139,7 +161,7 @@ def get_all_times_after_week(course_id):
     # Remove "old" times from list
     ta_times = []
     for time in all_ta_times:
-        if time.date.isocalendar()[1] == datetime.date.today().isocalendar()[1] + 1:
+        if time.date.isocalendar()[1] >= datetime.date.today().isocalendar()[1] + 1:
             ta_times.append(time)
     return ta_times
 

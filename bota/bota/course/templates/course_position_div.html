@@ -7,8 +7,22 @@
        </div>
     {% elif position == 1 %}
         <p style="font-size:30px">There is {{ position }} student ahead of you </p>
+        <div align="center">
+            {% if position > 0 %}
+            <form action="/course/{{ course_id }}/leave_queue" method ="post">{% csrf_token %}
+                <button  class="form-control btn-leave-queue" type="submit" >Leave queue!</button>
+            </form>
+            {% endif %}
+        </div>
     {% else %}
         <p style="font-size:30px">There are {{ position }} students ahead of you </p>
+        <div align="center">
+            {% if position > 0 %}
+            <form action="/course/{{ course_id }}/leave_queue" method ="post">{% csrf_token %}
+                <button  class="form-control btn-leave-queue" type="submit" >Leave queue!</button>
+            </form>
+            {% endif %}
+        </div>
     {% endif %}
 </div>
 
