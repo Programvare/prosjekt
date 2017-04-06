@@ -134,6 +134,13 @@ Base admin
 .btn-tatimes:hover{
     background-color: #eeeeee;
 }
+.btn-leave-queue{
+    width: 120px;
+    margin:5px 0 0 0;
+}
+.btn-leave-queue:hover{
+    background-color: #eeeeee;
+}
 .btn-dequeue {
     width: 130px;
     height:40px;
@@ -145,7 +152,26 @@ Base admin
 .btn-dequeue:hover{
     background-color: var(--main-color-hoover);
 }
-
+.btn-login {
+    width: 150px;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color: var(--btn-color);
+    border:0px;
+    color:white;
+}
+.btn-login:hover{
+    background-color: var(--main-color-hoover);
+}
+.btn-signup {
+    width: 150px;
+    height:40px;
+    margin:5px 0 0 0;
+    border:0px;
+}
+.btn-signup:hover{
+    background-color: #eeeeee;
+}
 
 /*
 Edit page course
