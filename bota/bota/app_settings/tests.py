@@ -1,6 +1,6 @@
 from django.test import Client
 from django.test import TestCase
-from bota.course.models import Course, Assignment, TATime, TAin
+from bota.course.models import Course, Assignment, TATime, TAin, Takes
 from django.contrib.auth.models import User
 
 
@@ -10,10 +10,15 @@ class RequestPageTests(TestCase):
                                        description="testing", term="spring")
         Assignment.objects.create(course=course, description="testing", name="Oving 1",
                                   delivery_deadline="1990-05-04 22:15", demo_deadline="1990-05-04 22:15")
+
         TATime.objects.create(course=course, date='1990-05-04', start_time='22:15',
                               end_time='22:20', teaching_assistant='Bjarne', room='r1')
+
         User.objects.create_user(username='testuser', password='4epape?Huf+V')
         User.objects.create_user(username='testadmin', password='4epape?Huf+V', is_staff='True')
+
+        Takes.objects.create(course=course, user_id=User.objects.get(username='testuser'))
+
 
     def test_get_pages_as_anonymous_access_denied(self):
         """
@@ -321,17 +326,25 @@ class RequestPageTests(TestCase):
 
     def test_add_takes(self):
         client = Client()
-        client.login(username='testadmin', password='4epape?Huf+V')
+        client.login(username='testuser', password='4epape?Huf+V')
 
     def test_rm_takes_course(self):
         client = Client()
-        client.login(username='testadmin', password='4epape?Huf+V')
+        client.login(username='testuser', password='4epape?Huf+V')
+
+        self.assertEqual(True, Takes.objects.filter(course=Course.objects.get(course_id='TDT4140'), user_id=1).exists())
+        request = client.get('/settings/courses/TDT4140/rm_takes/1/')
+        self.assertEqual(False, Takes.objects.filter(course=Course.objects.get(course_id='TDT4140'), user_id=1).exists())
+        self.assertEqual(302, request.status_code)
+        self.assertEqual('/settings/edit_course', request.url)
 
     def test_add_takes_course(self):
         client = Client()
-        client.login(username='testadmin', password='4epape?Huf+V')
+        client.login(username='testuser', password='4epape?Huf+V')
+        client.post('settings/courses/TDT4140/add_takes')
+        self.assertEqual(True, Takes.objects.filter(course__course_id='TDT4140', user_id__username='testuser').exists())
+
 
     def test_user_list_courses(self):
         client = Client()
-        client.login(username='testadmin', password='4epape?Huf+V')
-        
+        client.login(username='testuser', password='4epape?Huf+V')
