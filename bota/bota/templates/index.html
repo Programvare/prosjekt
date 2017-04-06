@@ -9,8 +9,10 @@
                     <p>The easiest way for students to demonstrate assignments, <br>
                         and for TAs to help their students</p>
                     <br>
-                    <form action="/login">
-                        <button  class="form-control btn-login" type="submit" >Login</button>
+                    <form style="width:200px" action="{% url 'login' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+                        <input class="form-control" type="text" name="username" placeholder="Username">
+                        <input class="form-control" type="password" name="password" placeholder="Password">
+                        <button  name="login" class="form-control btn-login" type="submit" >Login</button>
                     </form>
                     <br>
                     <small>New to BoTA?</small>
