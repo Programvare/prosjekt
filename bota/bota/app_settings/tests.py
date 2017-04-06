@@ -310,15 +310,18 @@ class RequestPageTests(TestCase):
         client.post('/settings/courses/TDT4140/add_ta_time/', {'date': '1991-05-04', 'start_time': '22:15',
                                                              'end_time': '22:20', 'teaching_assistant': 'Bjarne',
                                                              'room': 'r1'})
-        print(TATime.objects.all())
         self.assertEqual(True, TATime.objects.filter(teaching_assistant='Bjarne', room='r1').exists())
 
     def test_edit_ta_time(self):
         client = Client()
         client.login(username='testadmin', password='4epape?Huf+V')
 
+        client.post('/settings/courses/TDT4140/add_ta_time/', {'date': '1991-05-04', 'start_time': '22:15',
+                                                               'end_time': '22:20', 'teaching_assistant': 'Bjarne',
+                                                               'room': 'r1'})
+
         client.post('/settings/courses/TDT4140/edit_ta_time/1/', {'date': '1991-05-04', 'start_time': '21:15',
-                                                             'end_time': '23:20', 'teaching_assistant': 'Beb',
+                                                             'end_time': '23:20', 'teaching_assistant': 'Finn',
                                                              'room': 'r2'})
         tatime = TATime.objects.get(id='1')
         self.assertEqual(tatime.date.year, 1991)
