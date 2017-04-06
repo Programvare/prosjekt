@@ -153,7 +153,7 @@ Base admin
     background-color: var(--main-color-hoover);
 }
 .btn-login {
-    width: 150px;
+    width: 200px;
     height:40px;
     margin:5px 0 0 0;
     background-color: var(--btn-color);
