@@ -4,7 +4,7 @@ from bota.app_settings import views
 urlpatterns = [
     url(r'^$', views.settingsPage),
 
-    url(r'courses$', views.list_courses),
+    url(r'courses/$', views.list_courses),
 
     url(r'courses/add_course', views.add_course),
     url(r'courses/((?P<course_id>[A-Z]{3}\d+)/edit$)', views.edit_course),
