@@ -7,7 +7,7 @@ This is so we don't need to hardcode the url in-->
 $(document).ready(function() {
     console.log("started script");
     var isAlerted = false;
-    var refreshTime = 2000;
+    var refreshTime = 1000;
     var alertText = "It is your turn! You will be redirected to the main course page.";
 
     function refreshPos(){
@@ -21,10 +21,10 @@ $(document).ready(function() {
 
         if (!isAlerted) {
             if ($('.pos0').text().length != 0) {
-                alert(alertText);
+                //alert(alertText);
                 isAlerted = true;
                 console.log("got here");
-                window.location.href = '/course';
+                //window.location.href = '/course';
             };
         };
     }
@@ -45,5 +45,6 @@ $(document).ready(function() {
     </div>
 
     {% include 'course_position_div.html' %}
+
 
 {% endblock %}

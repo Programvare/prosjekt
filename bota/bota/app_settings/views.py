@@ -196,7 +196,8 @@ def edit_ta_time(request, ta_id, course_id):
 
 @staff_member_required(login_url='/login/')
 def rm_ta_time(request, course_id, ta_id):
-    TATime.objects.get(id=ta_id).delete()
+    if (TATime.objects.filter(id=ta_id).exists()):
+        TATime.objects.get(id=ta_id).delete()
     return redirect('/settings/courses/'+course_id+'/edit')
 
 """

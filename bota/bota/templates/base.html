@@ -37,15 +37,15 @@
           {% endif %}
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/settings" class = "navbar-elements"><span class="glyphicon glyphicon-wrench"></span> settings</a>
+                    <a href="/settings" class = "navbar-elements"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
                 </li>
                     {% if request.user.is_authenticated %}
                         <li>
-                            <a href="/logout" class = "navbar-elements"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+                            <a href="/logout" class = "navbar-elements"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
                         </li>
                     {% else %}
                         <li>
-                            <a href="/login" class = "navbar-elements"><span class="glyphicon glyphicon-log-in"></span> login</a>
+                            <a href="/login" class = "navbar-elements"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                         </li>
                     {% endif %}
             </ul>

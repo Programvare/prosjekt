@@ -62,6 +62,26 @@ Base admin
     vertical-align:top;
     display:inline-block;
 }
+.gridDiv-left {
+    width: 270px;
+    margin: 0px auto;
+    position: relative;
+    float: left;
+    padding-top:20px;
+    text-align:left;
+    overflow: auto;
+    display:inline-block;
+}
+.gridDiv-right {
+    width: 270px;
+    margin: 0px auto;
+    position: relative;
+    float: right;
+    padding-top:20px;
+    text-align:left;
+    overflow: auto;
+    display:inline-block;
+}
 .errorLabel {
     color:red;
 }
@@ -96,7 +116,62 @@ Base admin
     position: relative;
     margin: 12px 15px 0 0;
 }
-
+.btn-enqueue {
+    width: 200px;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color: var(--btn-color);
+    border:0px;
+    color:white;
+}
+.btn-enqueue:hover{
+    background-color: var(--main-color-hoover);
+}
+.btn-tatimes {
+    width: 100px;
+    margin:5px 0 0 0;
+}
+.btn-tatimes:hover{
+    background-color: #eeeeee;
+}
+.btn-leave-queue{
+    width: 120px;
+    margin:5px 0 0 0;
+}
+.btn-leave-queue:hover{
+    background-color: #eeeeee;
+}
+.btn-dequeue {
+    width: 130px;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color: var(--btn-color);
+    border:0px;
+    color:white;
+}
+.btn-dequeue:hover{
+    background-color: var(--main-color-hoover);
+}
+.btn-login {
+    width: 200px;
+    height:40px;
+    margin:5px 0 0 0;
+    background-color: var(--btn-color);
+    border:0px;
+    color:white;
+}
+.btn-login:hover{
+    background-color: var(--main-color-hoover);
+}
+.btn-signup {
+    width: 150px;
+    height:40px;
+    margin:5px 0 0 0;
+    border:0px;
+}
+.btn-signup:hover{
+    background-color: #eeeeee;
+}
 
 /*
 Edit page course
@@ -146,6 +221,9 @@ Edit page course
     .gridDiv-sm {
         width:100%
     }
+    .gridDiv-right {
+        float: left;
+    }
 }
 @media screen and (min-width: 601px) {
     .main-frame {
@@ -157,4 +235,10 @@ Edit page course
         width:80%;
     }
 
+}
+
+@media screen and (max-width: 995px) {
+    .gridDiv-right {
+        float: left;
+    }
 }

@@ -15,6 +15,13 @@ class Course(models.Model):
     def __str__(self):
         return self.course_id
 
+class Queue(models.Model):
+    course_id = models.CharField(max_length=10, unique=True,
+                                help_text="Use upper case letters followed by 4 numbers: Example: TDT4100")
+    queue = models.CharField(max_length=255, blank=True, default="")
+
+    def __str__(self):
+        return str("Course: " + self.course_id + ", Queue: "+ self.queue)
 
 class Takes(models.Model):
     course = models.ForeignKey(Course)
@@ -56,6 +63,23 @@ class TATime(models.Model):
     def display_all(self):
         return self.date.strftime("%d/%m-%y") + ": " + self.start_time.strftime("%H:%M") + "-" \
                + self.end_time.strftime("%H:%M") + " in room " + str(self.room)
+
+    def display_week_time(self):
+        weekdays = {"0": "Sunday", "1": "Monday", "2": "Tuesday", "3": "Wednesday", "4": "Thursday", "5": "Friday",
+                    "6": "Saturday"}
+        weekday = weekdays[self.date.strftime("%w")]
+
+        return weekday + ": " + self.start_time.strftime("%H:%M") + "-" + self.end_time.strftime("%H:%M")
+
+    def display_all_time(self):
+        return self.date.strftime("%d/%m-%y") + ": " + self.start_time.strftime("%H:%M") + "-" \
+               + self.end_time.strftime("%H:%M")
+
+    def display_room(self):
+        return "Room: " + str(self.room)
+
+    def display_ta(self):
+        return "TA: " + str(self.teaching_assistant)
 
 
 class Assignment(models.Model):
