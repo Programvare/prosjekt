@@ -15,6 +15,13 @@ class Course(models.Model):
     def __str__(self):
         return self.course_id
 
+class Queue(models.Model):
+    course_id = models.CharField(max_length=10, unique=True,
+                                help_text="Use upper case letters followed by 4 numbers: Example: TDT4100")
+    queue = models.CharField(max_length=255, blank=True, default="")
+
+    def __str__(self):
+        return str("Course: " + self.course_id + ", Queue: "+ self.queue)
 
 class Takes(models.Model):
     course = models.ForeignKey(Course)
