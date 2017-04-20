@@ -30,7 +30,7 @@ DEBUG = True
 # Disable or enable django admin
 ADMIN_ENABLED = False
 
-ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost', u'127.0.0.1', 'testserver']
+ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -108,12 +108,10 @@ DATABASES = {
     }
 }
 """
-
 in_heroku = False
 if 'DATABASE_URL' in os.environ:
     in_heroku = True
     import dj_database_url
-
 
 if in_heroku:
     DATABASES = {'default': dj_database_url.config()}
@@ -124,6 +122,8 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
+
 
 
 # Password validation
@@ -168,6 +168,6 @@ STATIC_ROOT = 'bota'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( os.path.join('static'), )
+STATICFILES_DIRS = ( os.path.join('bota/static'), )
 
 LOGOUT_REDIRECT_URL = '/'
