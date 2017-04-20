@@ -42,6 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=bota',
+    '--cover-html',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
