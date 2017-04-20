@@ -144,13 +144,6 @@ class QueueTests(TestCase):
         rm_from_queue(self.course2.course_id)
         self.assertEqual(get_length(self.course2.course_id), 0)
 
-    def test_get_next(self):
-        # user1 in queue for course1
-        add_to_queue(self.user1, self.course1.course_id)
-        self.assertEqual(get_next(self.course1.course_id), self.user1.username)
-        # queue for course2 is empty
-        self.assertEqual(get_next(self.course2.course_id), None)
-
     def test_user_in_queue(self):
         # user2 in queue for course1
         add_to_queue(self.user1, self.course1.course_id)
