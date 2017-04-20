@@ -146,18 +146,23 @@ class QueueTests(TestCase):
 
     def test_get_next(self):
         # user1 in queue for course1
-        self.assertEqual(get_next(self.course1.course_id), self.user1)
+        add_to_queue(self.user1, self.course1.course_id)
+        self.assertEqual(get_next(self.course1.course_id), self.user1.username)
         # queue for course2 is empty
-        self.assertEqual(get_next(self.course2.course_id), "")
+        self.assertEqual(get_next(self.course2.course_id), None)
 
     def test_user_in_queue(self):
         # user2 in queue for course1
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertIs(user_in_queue(self.user2, self.course1.course_id), True)
         # queue for course2 is empty
         self.assertIs(user_in_queue(self.user1, self.course2.course_id), False)
 
     def test_get_position(self):
         # user2 in queue for course1
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertEqual(get_position(self.user2, self.course1.course_id), 1)
         # queue for course3 doesn't yet exist
         self.assertEqual(get_position(self.user1, self.course3.course_id), 0)
@@ -166,6 +171,8 @@ class QueueTests(TestCase):
         # queue for course3 doesn't yet exist
         self.assertEqual(get_length(self.course3.course_id), 0)
         # queue for course1 has 2 users
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertEqual(get_length(self.course1.course_id), 2)
 
 
