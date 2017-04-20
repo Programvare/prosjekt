@@ -144,20 +144,18 @@ class QueueTests(TestCase):
         rm_from_queue(self.course2.course_id)
         self.assertEqual(get_length(self.course2.course_id), 0)
 
-    def test_get_next(self):
-        # user1 in queue for course1
-        self.assertEqual(get_next(self.course1.course_id), self.user1)
-        # queue for course2 is empty
-        self.assertEqual(get_next(self.course2.course_id), "")
-
     def test_user_in_queue(self):
         # user2 in queue for course1
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertIs(user_in_queue(self.user2, self.course1.course_id), True)
         # queue for course2 is empty
         self.assertIs(user_in_queue(self.user1, self.course2.course_id), False)
 
     def test_get_position(self):
         # user2 in queue for course1
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertEqual(get_position(self.user2, self.course1.course_id), 1)
         # queue for course3 doesn't yet exist
         self.assertEqual(get_position(self.user1, self.course3.course_id), 0)
@@ -166,6 +164,8 @@ class QueueTests(TestCase):
         # queue for course3 doesn't yet exist
         self.assertEqual(get_length(self.course3.course_id), 0)
         # queue for course1 has 2 users
+        add_to_queue(self.user1, self.course1.course_id)
+        add_to_queue(self.user2, self.course1.course_id)
         self.assertEqual(get_length(self.course1.course_id), 2)
 
 
@@ -299,7 +299,8 @@ class TestViews(TestCase):
     def test_call_div_loads_with_referrer(self):
         user_client = Client()
         user_client.login(username='course_user', password='4epape?Huf+V')
-        add_to_queue(user_client, 'TDT4140')
+        user_object = User.objects.get(username='course_user')
+        add_to_queue(user_object, 'TDT4140')
 
         request = user_client.get('/course/course_position/', {}, HTTP_REFERER='/course/TDT4140/')
         self.assertEqual(200, request.status_code)

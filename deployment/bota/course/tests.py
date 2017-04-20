@@ -299,7 +299,8 @@ class TestViews(TestCase):
     def test_call_div_loads_with_referrer(self):
         user_client = Client()
         user_client.login(username='course_user', password='4epape?Huf+V')
-        add_to_queue(user_client, 'TDT4140')
+        user_object = User.objects.get(username='course_user')
+        add_to_queue(user_object, 'TDT4140')
 
         request = user_client.get('/course/course_position/', {}, HTTP_REFERER='/course/TDT4140/')
         self.assertEqual(200, request.status_code)
