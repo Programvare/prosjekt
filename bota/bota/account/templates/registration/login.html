@@ -5,7 +5,7 @@
         <div class="loginmodal-container">
 
             <h1>Login to Your Account</h1><br>
-
+            <p class="errorLabel">{{ error }}</p>
               <form action="{% url 'login' %}" method="post" accept-charset="utf-8">{% csrf_token %}
                 <input class="form-control" type="text" name="username" placeholder="Username">
                 <input class="form-control" type="password" name="password" placeholder="Password">

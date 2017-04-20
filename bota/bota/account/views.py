@@ -29,20 +29,24 @@ def signup(request):
 
 
 def login(request):
-    username = request.POST.get("username")
-    password = request.POST.get("password")
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            auth_login(request, user)
-            if user.is_staff:
-                return redirect('/settings')
+    error = ""
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                if user.is_staff:
+                    return redirect('/settings')
+                else:
+                    return redirect('/course')
             else:
-                return redirect('/course')
+                error = "Your username and password didn't match. Please try again."
         else:
-            return render(request, 'registration/login.html', {})
-    else:
-        return render(request, 'registration/login.html', {})
+            error = "Your username and password didn't match. Please try again."
+    return render(request, 'registration/login.html', {'error': error})
 
 @login_required(login_url='/login/')
 def change_password(request):
@@ -51,7 +55,6 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
             return redirect('/settings')
         else:
             messages.error(request, 'Please correct the error below.')
