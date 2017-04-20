@@ -35,6 +35,7 @@ def course(request, course_id):
         'assignments': assignments,
         'all_ta_times': all_ta_times,
         'queue_length': queue.get_length(course_id),
+
     }
 
     if queue.user_in_queue(request.user, course_id):
@@ -113,6 +114,8 @@ def course_position(request):
         'course_model': Course.objects.get(course_id=course_id),
         'position': position,
         'course_id': course_id,
+        'queue': queue.get_queue(course_id),
+
     }
     return render(request, 'course_position_div.html', context)
 
