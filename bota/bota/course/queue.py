@@ -10,7 +10,7 @@ def save_to_queue(course_id, queue_array):
         queue_object.queue = queue_string
 
     except Queue.DoesNotExist:
-        queue_object = Queue(course_id=course_id, queue = queue_array)
+        queue_object = Queue(course_id=course_id, queue=queue_string)
 
     queue_object.save()
 
