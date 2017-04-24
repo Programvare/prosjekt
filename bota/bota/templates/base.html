@@ -28,17 +28,20 @@
             </div>
 
           <div class="collapse navbar-collapse" id="mynavbar">
-          {% if not request.user.is_staff %}
+          {% if request.user.is_authenticated and not request.user.is_staff %}
               <ul class="nav navbar-nav">
                 <li>
                     <a href="/course" class = "navbar-elements"><span class="glyphicon glyphicon-education"></span> My Courses</a>
                 </li>
             </ul>
           {% endif %}
+
             <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
                 <li>
                     <a href="/settings" class = "navbar-elements"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
                 </li>
+            {% endif %}
                     {% if request.user.is_authenticated %}
                         <li>
                             <a href="/logout" class = "navbar-elements"><span class="glyphicon glyphicon-log-out"></span> Logout</a>

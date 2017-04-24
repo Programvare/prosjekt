@@ -27,7 +27,10 @@ SECRET_KEY = 'ala_fiz=7j(xua@t2vb&uqj3zxg0ki2+7i8uc1437_^n3nor5l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost', u'127.0.0.1']
+# Disable or enable django admin
+ADMIN_ENABLED = False
+
+ALLOWED_HOSTS = ['botaapp.herokuapp.com', 'localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -40,6 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=bota',
+    '--cover-html',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +168,6 @@ STATIC_ROOT = 'bota'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( os.path.join('bota/static'), )
+STATICFILES_DIRS = ( os.path.join('static'), )
 
 LOGOUT_REDIRECT_URL = '/'
