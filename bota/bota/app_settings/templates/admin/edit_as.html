@@ -9,13 +9,13 @@
                 <label >Name:</label>
                 <input type="text" class="new-entry-input form-control"  name="name" value="{{ assignment.name }}" required>
 
-                <label>description:</label>
+                <label>Description:</label>
                 <input type="text" class="new-entry-input form-control"  value="{{ assignment.description }}" name="description">
 
-                <label>delivery_deadline:</label>
+                <label>Delivery Deadline:</label>
                 <input  type="datetime-local" type="text" class="new-entry-input form-control"  value="{{ delivery_deadline }}" name="delivery_deadline"required>
 
-                <label>demo_deadline:</label>
+                <label>Demo Deadline:</label>
                 <input  type="datetime-local" type="text" class="new-entry-input form-control"  value = "{{ demo_deadline }}"name="demo_deadline" required>
 
                 <button class = "btn btn-default new-entry-button" type="submit">Save</button>
