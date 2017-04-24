@@ -374,7 +374,7 @@
 <p id="t65" class="stm run hide_run">        <span class="nam">course</span><span class="op">.</span><span class="nam">term</span> <span class="op">=</span> <span class="nam">request</span><span class="op">.</span><span class="nam">POST</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"term"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t66" class="stm run hide_run">        <span class="nam">course</span><span class="op">.</span><span class="nam">description</span> <span class="op">=</span> <span class="nam">request</span><span class="op">.</span><span class="nam">POST</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"description"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t67" class="stm run hide_run">        <span class="nam">course</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t68" class="stm run hide_run">        <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="str">'/settings/courses/'</span> <span class="op">+</span> <span class="nam">course_id</span> <span class="op">+</span> <span class="str">'/edit'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t68" class="stm run hide_run">        <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="str">'/settings/courses/'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t69" class="stm run hide_run">    <span class="key">return</span> <span class="nam">render</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="str">'admin/edit_course.html'</span><span class="op">,</span> <span class="nam">context</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t70" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t71" class="pln"><span class="strut">&nbsp;</span></p>
@@ -534,7 +534,7 @@
 <p id="t225" class="pln"><span class="key">def</span> <span class="nam">add_takes_course</span><span class="op">(</span><span class="nam">request</span><span class="op">,</span> <span class="nam">course_id</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t226" class="stm run hide_run">    <span class="nam">c</span> <span class="op">=</span> <span class="nam">Takes</span><span class="op">(</span><span class="nam">course</span><span class="op">=</span><span class="nam">Course</span><span class="op">.</span><span class="nam">objects</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">course_id</span><span class="op">=</span><span class="nam">course_id</span><span class="op">)</span><span class="op">,</span> <span class="nam">user_id</span><span class="op">=</span><span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t227" class="stm run hide_run">    <span class="nam">c</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t228" class="stm run hide_run">    <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="str">'/settings/edit_course'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t228" class="stm run hide_run">    <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="str">'/settings/add_takes'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t229" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t230" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t231" class="stm run hide_run"><span class="op">@</span><span class="nam">login_required</span><span class="op">(</span><span class="nam">login_url</span><span class="op">=</span><span class="str">'/login/'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
@@ -554,7 +554,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.3.4</a>,
-            created at 2017-04-20 19:06
+            created at 2017-04-24 23:32
         </p>
     </div>
 </div>
