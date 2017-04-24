@@ -65,7 +65,7 @@ def edit_course(request, course_id):
         course.term = request.POST.get("term")
         course.description = request.POST.get("description")
         course.save()
-        return redirect('/settings/courses/' + course_id + '/edit')
+        return redirect('/settings/courses/')
     return render(request, 'admin/edit_course.html', context)
 
 
@@ -225,7 +225,7 @@ def rm_takes_course(request, course_id):
 def add_takes_course(request, course_id):
     c = Takes(course=Course.objects.get(course_id=course_id), user_id=request.user)
     c.save()
-    return redirect('/settings/edit_course')
+    return redirect('/settings/add_takes')
 
 
 @login_required(login_url='/login/')
