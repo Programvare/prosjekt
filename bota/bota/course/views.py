@@ -56,6 +56,7 @@ def course_ta(request, course_id):
         'next': queue.get_next(course_id),
         'queue_length': queue.get_length(course_id),
         'course_model': Course.objects.get(course_id=course_id),
+        'queue_array': get_entire_queue(course_id),
     }
     return render(request, 'course_ta.html', context)
 
@@ -75,6 +76,7 @@ def rm_from_course(request, course_id):
         'next': queue.get_next(course_id),
         'queue_length': queue.get_length(course_id),
         'course_model': Course.objects.get(course_id=course_id),
+        'queue_array': get_entire_queue(course_id),
     }
     return render(request, 'course_ta.html', context)
 
@@ -133,6 +135,7 @@ def course_ta_next(request):
         'queue_length': queue_length,
         'course_model': Course.objects.get(course_id=course_id),
         'course_id': course_id,
+        'queue_array': get_entire_queue(course_id),
     }
     return render(request, 'course_ta_next_div.html', context)
 
@@ -219,3 +222,12 @@ def get_all_student_assignments(request):
     return assignments
 
 
+def get_entire_queue(course_id):
+    queue_array = queue.get_queue(course_id)
+    return_queue_array = []
+    position = 1
+    for student in queue_array:
+        string = str(position) + ". " + student
+        return_queue_array.append(string)
+        position += 1
+    return return_queue_array

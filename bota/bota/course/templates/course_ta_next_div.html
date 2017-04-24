@@ -1,15 +1,25 @@
 <!--NOTE: jQuery can't select #id elements for some reason. Use class instead-->
-<div class="course_ta_next_div" align="center">
-    <h3>Queue:</h3>
-    {% if next is none %}
-        <p>No one is in queue</p>
-    {% else %}
-        <p>Currently helping: </p>
-        <p><b style="font-size:50px">{{ next }}</b><br /> Queue length: {{ queue_length}} </p>
+<div class="course_ta_next_div", align="center">
+    <div class="queue-first-place-div">
+        <h3>Currently helping: </h3>
+        {% if next is none %}
+            <p>No one is in queue</p>
+        {% else %}
+            <p><b style="font-size:50px">1. {{ next }}</b><br /> Queue length: {{ queue_length}} </p>
 
-        <form action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
-            <button  class="form-control btn-dequeue" type="submit" >Next student!</button>
-        </form>
+            <form style="padding-left:70px" action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
+                <button  class="form-control btn-dequeue" type="submit" >Next student!</button>
+            </form>
+    </div>
+    <div class="queue-entire-div">
+        <h3>Queue:</h3>
+        <p>
+        {% for student in queue_array %}
+            {{ student }}
+            <br />
+        {% endfor %}
+        </p>
     {% endif %}
+    </div>
 </div>
 
