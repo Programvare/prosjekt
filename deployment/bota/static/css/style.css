@@ -88,7 +88,7 @@ Base admin
     position: relative;
     float: left;
     padding-top:20px;
-    text-align: center;
+    text-align: left;
     overflow: auto;
     display:inline-block;
 }
@@ -270,3 +270,4 @@ Edit page course
     }
 
 }
+
