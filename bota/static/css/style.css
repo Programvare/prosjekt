@@ -83,7 +83,7 @@ Base admin
     display:inline-block;
 }
 .queue-first-place-div {
-    width: 270px;
+    width: 300px;
     margin: 0px auto;
     position: relative;
     float: left;
@@ -264,10 +264,9 @@ Edit page course
 
 }
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 925px) {
     .queue-entire-div {
         float: left;
-        text-align: center;
     }
 
 }

@@ -5,7 +5,8 @@
         {% if next is none %}
             <p>No one is in queue</p>
         {% else %}
-            <p><b style="font-size:50px">1. {{ next }}</b><br /> Queue length: {{ queue_length}} </p>
+            <h3>1. {{ next }}</h3>
+            <p> Queue length: {{ queue_length}} </p>
 
             <form style="padding-left:70px" action="/course/{{ course_id }}/rm_queue" method ="post">{% csrf_token %}
                 <button  class="form-control btn-dequeue" type="submit" >Next student!</button>
