@@ -10,7 +10,7 @@ Otherwise, to use the website as a regular user, simply sign up.
 1. Clone the GitHub repo
 2. Open the files in your preffered API. We recommend using PyCharm, as this was our development API and it has worked quite well for us.
 3. Install Django. This can be done via the 'pip' installer. Simply run the 'pip3 install Django' in the command line, or use PyCharms plugin installer.
-4. When everything is installed, you need to setup a run/debug configuration. Choose Django, and make sure that you are using Python 3.4.4. Copy this as your environmental variables:
+4. When everything is installed, you can either skip this part if you intend to use the Terminal. Otherwise, if you intend to use PyCharm to run the site, you need to setup a run/debug configuration. Choose Django, and make sure that you are using Python 3.4.4. Copy this as your environmental variables:
 
 ```
     DJANGO_SETTINGS_MODULE=bota.settings;PYTHONUNBUFFERED=1
@@ -26,4 +26,10 @@ Otherwise, to use the website as a regular user, simply sign up.
 
 ```
     python manage.py createsuperuser
+```
+
+7. You can now run the site through PyCharm or if you are using the Terminal, you need to run the following command in the same folder to run the local server:
+
+```
+    python manage.py runserver
 ```
