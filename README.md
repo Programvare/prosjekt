@@ -4,6 +4,7 @@ Making learing better.
 You can find us online at: http://bota-app.com. 
 To try out the admin features, login as ‘admin’ with the password ‘passord1’. 
 Otherwise, to use the website as a regular user, simply sign up.
+An important thing to note is that the queue for each course will not be available unless there is an active TA Time.
 
 ## How to Install BoTA Locally:
 

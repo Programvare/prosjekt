@@ -123,10 +123,12 @@ def course_position(request):
 
 
 def course_ta_next(request):
-    #The problem with having a separate view for a _div_
-    #is that we can't have a fancy context-based url in urls.py
-    #request.META gives the current url path. index [-2] should return the current courseid
+    """
+    The problem with having a separate view for a _div_
+    is that we can't have a fancy context-based url in urls.py
+    request.META gives the current url path. index [-2] should return the current courseid
     course_id = request.META['HTTP_REFERER'].split('/')[-2]
+    """
     next_queue = queue.get_next(course_id)
     queue_length = queue.get_length(course_id)
 
@@ -146,7 +148,9 @@ Helper functions, not views.
 
 
 def get_all_times(course_id):
-    # Get list of all ta times for course
+    """
+    Get list of all ta times for course
+    """
     try:
         all_ta_times = TATime.objects.filter(course__course_id=course_id).order_by('date')
     except TATime.DoesNotExist:
@@ -173,7 +177,9 @@ def get_all_times_after_week(course_id):
 
 
 def get_week_times(course_id):
-    # Display only current weeks ta times
+    """
+    Display only current weeks ta times
+    """
     ta_times = []
     all_ta_times = get_all_times(course_id)
     for time in all_ta_times:
@@ -183,8 +189,10 @@ def get_week_times(course_id):
 
 
 def check_can_enter(course_id):
+    """
+    Check if there currently is a ta time, i.e. can students enter the queue?
+    """
     ta_times = get_all_times(course_id)
-    # Check if there currently is a ta time, i.e. can students enter the queue?
     now = datetime.datetime.today()
     can_enter = False
     for time in ta_times:
@@ -195,7 +203,9 @@ def check_can_enter(course_id):
 
 
 def get_all_course_assignments(course_id):
-    # Get list of all assignments for course
+    """
+    Get list of all assignments for course
+    """
     try:
         all_assignments = Assignment.objects.filter(course__course_id=course_id).order_by('delivery_deadline')
     except Assignment.DoesNotExist:
@@ -209,7 +219,9 @@ def get_all_course_assignments(course_id):
 
 
 def get_all_student_assignments(request):
-    # Get list of all assignments for student
+    """
+    gett list of all assignments for student
+    """
     assignments = []
     try:
         courses = Course.objects.filter(id__in=Takes.objects.filter(user_id=request.user).values("course_id"))

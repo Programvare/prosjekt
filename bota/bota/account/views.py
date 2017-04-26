@@ -64,12 +64,18 @@ def change_password(request):
 
 @staff_member_required(login_url='/login/')
 def promote_user_list(request):
+    """
+    Lists the users that can be promoted
+    """
     context = { 'users': User.objects.exclude(is_staff=True) }
     return render(request, 'list_users.html', context)
 
 
 @staff_member_required(login_url='/login/')
 def promote_user(request, username):
+    """
+    promotes the user that is sendt using get
+    """
     user = User.objects.get(username=username)
     user.is_staff = True
     user.save()

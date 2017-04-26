@@ -4,6 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from bota.course.models import Takes, Course, TAin, Assignment, TATime
 from django.contrib.auth.models import User
 
+
 @login_required(login_url='/login/')
 def settingsPage(request):
     context = {'is_staff': request.user.is_staff}
