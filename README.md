@@ -35,4 +35,10 @@ Otherwise, to use the website as a regular user, simply sign up.
 ```
 
 
+## Coverage
+
+We have also included a whole website with coverage data. This website can be found by:
+1. open the cover folder
+2. Open index.html in the browser of your choise
+
 
