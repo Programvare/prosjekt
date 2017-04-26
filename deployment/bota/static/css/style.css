@@ -207,13 +207,15 @@ Edit page course
 .entry-row {
     background-color: var(--main-color);
     margin-bottom: 4px;
-    height:100%;
     min-height: 50px;
+    height:100%;
+    overflow: auto;
     padding: 3% 3% 3% 3%;
     color:white;
 }
 .button-container {
     float:right;
+    padding-top:1%;
     text-decoration: none;
 }
 .text-container {
