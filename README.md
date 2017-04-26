@@ -1,14 +1,16 @@
 # BoTA
 Making learing better.
 
-You can find us online at: http://bota-app.com
+You can find us online at: http://bota-app.com. 
+To try out the admin features, login as ‘admin’ with the password ‘passord1’. 
+Otherwise, to use the website as a regular user, simply sign up.
 
 ## How to Install BoTA Locally:
 
 1. Clone the GitHub repo
-2. Open the files in your preffered API. We recommend using PyChar, as this was our development API and it has worked quite well for us.
+2. Open the files in your preffered API. We recommend using PyCharm, as this was our development API and it has worked quite well for us.
 3. Install Django. This can be done via the 'pip' installer. Simply run the 'pip3 install Django' in the command line, or use PyCharms plugin installer.
-4. When everything is installed, you need to setup a run/debug configuration. Choose Django, and make sure that you are using Python 3.4.4. Copy this as your enviromental variables:
+4. When everything is installed, you need to setup a run/debug configuration. Choose Django, and make sure that you are using Python 3.4.4. Copy this as your environmental variables:
 
 ```
     DJANGO_SETTINGS_MODULE=bota.settings;PYTHONUNBUFFERED=1
