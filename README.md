@@ -1,6 +1,8 @@
 # BoTA
 Making learing better.
 
+You can find us online at: http://bota-app.com
+
 ## How to Install BoTA Locally:
 
 1. Clone the GitHub repo
